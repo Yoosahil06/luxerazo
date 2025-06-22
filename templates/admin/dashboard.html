@@ -1,0 +1,43 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Dashboard</h1>
+
+<div class="dashboard-metrics">
+  <div class="metric">
+    <h2>Total Sales</h2>
+    <p>${{ total_sales|default:"0" }}</p>
+  </div>
+  <div class="metric">
+    <h2>Total Orders</h2>
+    <p>{{ total_orders|default:"0" }}</p>
+  </div>
+  <div class="metric">
+    <h2>Total Customers</h2>
+    <p>{{ total_customers|default:"0" }}</p>
+  </div>
+</div>
+
+<div class="dashboard-lists">
+  <div class="list-section">
+    <h3>Top Products</h3>
+    <ul>
+      {% for product in top_products %}
+      <li>{{ product.name }} ({{ product.order_count }})</li>
+      {% empty %}
+      <li>No data available</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="list-section">
+    <h3>Top Brands</h3>
+    <ul>
+      {% for brand in top_brands %}
+      <li>{{ brand.name }} ({{ brand.product_count }})</li>
+      {% empty %}
+      <li>No data available</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

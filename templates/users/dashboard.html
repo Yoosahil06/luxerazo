@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% block content %}
 <h2>Welcome, {{ request.user.username }}</h2>
@@ -14,4 +13,43 @@
     <li>No products in wishlist yet.</li>
   {% endfor %}
 </ul>
+
+<h3>Order History</h3>
+<ul>
+  {% for order in orders %}
+    <li>Order #{{ order.id }} - {{ order.status }} - ${{ order.total }} - {{ order.date_ordered }}</li>
+  {% empty %}
+    <li>No orders found.</li>
+  {% endfor %}
+</ul>
+
+<h3>Saved Payment Methods</h3>
+<ul>
+  {% for payment_method in payment_methods %}
+    <li>{{ payment_method.card_type }} ending in {{ payment_method.last4 }} — Expires {{ payment_method.expiry_month }}/{{ payment_method.expiry_year }}</li>
+  {% empty %}
+    <li>No saved payment methods.</li>
+  {% endfor %}
+</ul>
+
+<h3>Address Book</h3>
+<ul>
+  {% for address in addresses %}
+    <li>{{ address.full_name }}, {{ address.street }}, {{ address.city }}, {{ address.state }}, {{ address.zip_code }}, {{ address.country }}</li>
+  {% empty %}
+    <li>No saved addresses.</li>
+  {% endfor %}
+</ul>
+
+<h3>Profile Settings</h3>
+<form method="post" action="{% url 'update_profile' %}">
+  {% csrf_token %}
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" value="{{ request.user.email }}" required><br>
+  <label for="first_name">First Name:</label>
+  <input type="text" id="first_name" name="first_name" value="{{ profile.first_name }}"><br>
+  <label for="last_name">Last Name:</label>
+  <input type="text" id="last_name" name="last_name" value="{{ profile.last_name }}"><br>
+  <button type="submit" class="btn-primary">Update Profile</button>
+</form>
 {% endblock %}

@@ -34,6 +34,11 @@
       <h3>Price</h3>
       <input type="number" name="min_price" placeholder="Min"> - 
       <input type="number" name="max_price" placeholder="Max"><br>
+
+      <h3>Authenticity</h3>
+      <label><input type="checkbox" name="authenticity" value="Original"> Original</label><br>
+      <label><input type="checkbox" name="authenticity" value="Grade-A"> Grade-A</label><br>
+
       <button class="filter-btn">Apply</button>
     </form>
   </aside>
@@ -42,6 +47,9 @@
     {% for product in products %}
     <div class="product-card">
       <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% if product.authenticity %}
+      <div class="badge">{{ product.authenticity }}</div>
+      {% endif %}
       <h3>{{ product.name }}</h3>
       <p>{{ currency }}{{ product.price_in_usd|floatformat:0 }}</p>
     </div>

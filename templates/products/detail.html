@@ -1,28 +1,53 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="product-detail">
-  <div class="product-image">
-    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+  <div class="image-gallery">
+    <img id="main-product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+    <div class="thumbnail-strip">
+      {% for image in product.images.all %}
+      <img src="{{ image.url }}" alt="{{ product.name }}" onclick="changeImage(this)">
+      {% endfor %}
+    </div>
+    <button id="view-360-btn">360° View</button>
   </div>
   <div class="product-info">
+    <img src="{{ product.brand.logo.url }}" alt="{{ product.brand.name }}">
     <h1>{{ product.name }}</h1>
-    <p class="brand">{{ product.brand.name }}</p>
-    <p class="price">{{ currency }}{{ converted_price }}</p>
-    <p class="auth-badge">
-      {% if product.authenticity == 'Original' %}
-        ✅ 100% Authentic Product
-      {% else %}
-        ⭐ Grade-A Quality First Copy
-      {% endif %}
-    </p>
+    <p class="price">{{ currency }}{{ product.price_in_usd }}</p>
+    {% if product.authenticity %}
+    <div class="authenticity-badge">{{ product.authenticity }}</div>
+    {% endif %}
     <p class="description">{{ product.description }}</p>
-    <button class="btn-primary">Add to Cart</button>
-    <button class="btn-outline">♡ Wishlist</button>
+    <button id="add-to-cart" class="btn-primary">Add to Cart</button>
+    <button id="wishlist" class="btn-wishlist"><i class="fa fa-heart"></i></button>
+    <button id="buy-now" class="btn-primary">Buy Now</button>
   </div>
-</div>
-
-<div class="product-footer-note">
-  <h4>Shipping & Returns</h4>
-  <p>Free worldwide shipping on all orders. Hassle-free 7-day returns guaranteed.</p>
+  <div class="additional-sections">
+    <div class="carousel you-may-also-like">
+      <h3>You May Also Like</h3>
+      {% for related_product in related_products %}
+      <div class="related-product-card">
+        <img src="{{ related_product.image.url }}" alt="{{ related_product.name }}">
+        <p>{{ related_product.name }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="customer-reviews">
+      <h3>Customer Reviews</h3>
+      {% for review in product.reviews.all %}
+      <div class="review">
+        <p>{{ review.user.username }}: {{ review.comment }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="shipping-returns">
+      <h3>Shipping & Returns</h3>
+      <p>{{ product.shipping_returns_info }}</p>
+    </div>
+    <div class="authenticity-guarantee">
+      <h3>Authenticity Guarantee</h3>
+      <p>All products are guaranteed authentic.</p>
+    </div>
+  </div>
 </div>
 {% endblock %}

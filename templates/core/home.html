@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% block content %}
 <section class="hero-section swiper hero-swiper">
@@ -8,7 +7,7 @@
         <div class="hero-content">
           <h1>Luxury Watches</h1>
           <p>Discover Timeless Craftsmanship</p>
-          <a href="#" class="btn-primary">Explore Now</a>
+          <a href="/catalog/" class="btn-primary">Explore Now</a>
         </div>
       </div>
     </div>
@@ -17,7 +16,7 @@
         <div class="hero-content">
           <h1>Signature Fashion</h1>
           <p>Imported Excellence from Italy & China</p>
-          <a href="#" class="btn-primary">Shop Now</a>
+          <a href="/catalog/" class="btn-primary">Shop Now</a>
         </div>
       </div>
     </div>
@@ -28,9 +27,9 @@
 <section class="collections">
   <h2>Curated Collections</h2>
   <div class="grid">
-    <div class="card">New Arrivals</div>
-    <div class="card">Bestsellers</div>
-    <div class="card">Limited Editions</div>
+    <a href="/catalog/new-arrivals/" class="card">New Arrivals</a>
+    <a href="/catalog/bestsellers/" class="card">Bestsellers</a>
+    <a href="/catalog/exclusive-drops/" class="card">Limited Editions</a>
   </div>
 </section>
 
@@ -39,5 +38,28 @@
   <img src="/static/img/armani.png" alt="Armani">
   <img src="/static/img/versace.png" alt="Versace">
   <img src="/static/img/rolex.png" alt="Rolex">
+</section>
+
+<section class="editorial-content">
+  <h2>The Luxerazo Story</h2>
+  <p>Experience the epitome of luxury with our curated collections, crafted with passion and precision. Our story is one of timeless elegance and unparalleled quality.</p>
+</section>
+
+<section class="newsletter-signup">
+  <h2>Subscribe to Our Newsletter</h2>
+  <form method="post" action="/subscribe/">
+    {% csrf_token %}
+    <input type="email" name="email" placeholder="Enter your email" required>
+    <button type="submit" class="btn-primary">Subscribe</button>
+  </form>
+</section>
+
+<section class="social-proof">
+  <h3>As seen in</h3>
+  <div class="magazine-badges">
+    <img src="/static/img/magazine1.png" alt="Luxury Magazine 1">
+    <img src="/static/img/magazine2.png" alt="Luxury Magazine 2">
+    <img src="/static/img/magazine3.png" alt="Luxury Magazine 3">
+  </div>
 </section>
 {% endblock %}

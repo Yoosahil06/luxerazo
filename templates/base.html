@@ -15,22 +15,103 @@
         <img src="/static/img/luxerazo-logo.png" alt="Luxerazo Logo">
       </div>
       <nav>
-        <ul>
-          <li><a href="#">MEN</a></li>
-          <li><a href="#">WOMEN</a></li>
-          <li><a href="#">WATCHES</a></li>
-          <li><a href="#">NEW ARRIVALS</a></li>
-          <li><a href="#">SALE</a></li>
+        <ul class="main-menu">
+          <li class="menu-item has-mega-menu"><a href="/catalog/men/">MEN</a>
+            <div class="mega-menu">
+              <div class="mega-menu-section">
+                <h4>Brands</h4>
+                <ul>
+                  <li><a href="/catalog/gucci/">Gucci</a></li>
+                  <li><a href="/catalog/armani/">Armani</a></li>
+                  <li><a href="/catalog/versace/">Versace</a></li>
+                  <li><a href="/catalog/rolex/">Rolex</a></li>
+                </ul>
+              </div>
+              <div class="mega-menu-section">
+                <h4>Categories</h4>
+                <ul>
+                  <li><a href="/catalog/watches/">Watches</a></li>
+                  <li><a href="/catalog/bags/">Bags</a></li>
+                  <li><a href="/catalog/accessories/">Accessories</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="menu-item has-mega-menu"><a href="/catalog/women/">WOMEN</a>
+            <div class="mega-menu">
+              <div class="mega-menu-section">
+                <h4>Brands</h4>
+                <ul>
+                  <li><a href="/catalog/gucci/">Gucci</a></li>
+                  <li><a href="/catalog/armani/">Armani</a></li>
+                  <li><a href="/catalog/versace/">Versace</a></li>
+                  <li><a href="/catalog/rolex/">Rolex</a></li>
+                </ul>
+              </div>
+              <div class="mega-menu-section">
+                <h4>Categories</h4>
+                <ul>
+                  <li><a href="/catalog/watches/">Watches</a></li>
+                  <li><a href="/catalog/bags/">Bags</a></li>
+                  <li><a href="/catalog/accessories/">Accessories</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li><a href="/catalog/watches/">WATCHES</a></li>
+          <li><a href="/catalog/new-arrivals/">NEW ARRIVALS</a></li>
+          <li><a href="/catalog/sale/">SALE</a></li>
         </ul>
       </nav>
       <div class="icons">
-        <a href="#"><i class="fa fa-search"></i></a>
+        <a href="#" id="search-icon"><i class="fa fa-search"></i></a>
         <a href="#"><i class="fa fa-heart"></i></a>
-        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+        <a href="#" id="cart-icon"><i class="fa fa-shopping-cart"></i></a>
         <a href="#"><i class="fa fa-user"></i></a>
+        <select id="currency-selector" aria-label="Select Currency">
+          <option value="USD" selected>USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="JPY">JPY</option>
+        </select>
       </div>
     </div>
   </header>
+
+  <footer class="lux-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#">About Us</a>
+        <a href="#">Shipping & Returns</a>
+        <a href="#">Contact/Concierge</a>
+      </div>
+      <div class="footer-selectors">
+        <label for="country-selector">Country:</label>
+        <select id="country-selector" aria-label="Select Country">
+          <option value="US" selected>United States</option>
+          <option value="GB">United Kingdom</option>
+          <option value="FR">France</option>
+          <option value="JP">Japan</option>
+        </select>
+      </div>
+    </div>
+  </footer>
+
+  <div id="search-overlay" class="search-overlay hidden">
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search products...">
+      <button id="search-close">&times;</button>
+    </div>
+  </div>
+
+  <div id="cart-preview" class="cart-preview hidden">
+    <h4>Your Cart</h4>
+    <div class="cart-items">
+      <!-- Cart items will be dynamically loaded here -->
+      <p>Your cart is empty.</p>
+    </div>
+    <a href="/cart/" class="btn-primary">View Cart</a>
+  </div>
   {% block content %}{% endblock %}
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   <script>
