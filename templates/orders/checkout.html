@@ -1,16 +1,77 @@
-
 {% extends 'base.html' %}
 {% block content %}
-<h2>Checkout</h2>
-<form method="POST">
-  {% csrf_token %}
-  <h3>Order Summary</h3>
-  <ul>
-    {% for item in cart %}
-    <li>{{ item.product.name }} × {{ item.quantity }} = ${{ item.total_price }}</li>
-    {% endfor %}
-  </ul>
-  <strong>Total: ${{ cart.total }}</strong><br><br>
-  <button class="btn-primary" type="submit">Pay with Stripe</button>
-</form>
+<div class="checkout-steps">
+  <h2>Checkout</h2>
+  <form method="post" action="{% url 'process_checkout' %}" id="checkout-form">
+    {% csrf_token %}
+    <div class="step step-login">
+      <h3>Login or Continue as Guest</h3>
+      <input type="radio" id="guest" name="checkout_type" value="guest" checked>
+      <label for="guest">Checkout as Guest</label>
+      <input type="radio" id="login" name="checkout_type" value="login">
+      <label for="login">Login</label>
+      <div class="social-login">
+        <button type="button" class="btn-social">Login with Facebook</button>
+        <button type="button" class="btn-social">Login with Google</button>
+      </div>
+    </div>
+    <div class="step step-shipping" style="display:none;">
+      <h3>Shipping Information</h3>
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address" required>
+      <label for="shipping_method">Shipping Method</label>
+      <select id="shipping_method" name="shipping_method" required>
+        <option value="standard">Standard</option>
+        <option value="express">Express</option>
+      </select>
+    </div>
+    <div class="step step-payment" style="display:none;">
+      <h3>Payment</h3>
+      <label for="payment_method">Payment Method</label>
+      <select id="payment_method" name="payment_method" required>
+        <option value="credit_card">Credit Card</option>
+        <option value="paypal">PayPal</option>
+        <option value="crypto">Crypto</option>
+      </select>
+      <div class="saved-payment-methods">
+        <h4>Saved Payment Methods</h4>
+        {# List saved payment methods here #}
+      </div>
+    </div>
+    <div class="step step-review" style="display:none;">
+      <h3>Review Order</h3>
+      {# Order summary here #}
+      <button type="submit" class="btn-primary">Place Order</button>
+    </div>
+  </form>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('checkout-form');
+  const steps = form.querySelectorAll('.step');
+  let currentStep = 0;
+
+  function showStep(index) {
+    steps.forEach((step, i) => {
+      step.style.display = i === index ? 'block' : 'none';
+    });
+  }
+
+  showStep(currentStep);
+
+  form.addEventListener('change', (e) => {
+    if (e.target.name === 'checkout_type' && e.target.value === 'login') {
+      // Show login form or social login options
+      // For simplicity, proceed to next step
+      currentStep = 1;
+      showStep(currentStep);
+    } else if (e.target.name === 'checkout_type' && e.target.value === 'guest') {
+      currentStep = 1;
+      showStep(currentStep);
+    }
+  });
+
+  // Add validation and next step logic here for shipping, payment, review steps
+});
+</script>
 {% endblock %}
