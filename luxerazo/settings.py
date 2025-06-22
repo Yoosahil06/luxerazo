@@ -87,13 +87,14 @@ WSGI_APPLICATION = 'luxerazo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Luxerazo',
-        'USER': 'postgres',
-        'PASSWORD': 'sAHIL096114',
-        'HOST': 'localhost',
+        'NAME': 'luxerazo_db',
+        'USER': 'luxuser',
+        'PASSWORD': 'luxerazo',  
+        'HOST': 'localhost',     
         'PORT': '5432',
     }
 }
+
 
 # --------------------------------------------
 # PASSWORD VALIDATION
