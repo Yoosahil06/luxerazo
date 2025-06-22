@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Our Brands</h2>
+<div class="brand-gallery">
+  {% for brand in brands %}
+    <div class="brand-box">
+      <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
+      <p>{{ brand.name }}</p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

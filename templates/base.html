@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Luxerazo – Style Without Limits</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header class="lux-header">
+    <div class="container">
+      <div class="logo">
+        <img src="/static/img/luxerazo-logo.png" alt="Luxerazo Logo">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">MEN</a></li>
+          <li><a href="#">WOMEN</a></li>
+          <li><a href="#">WATCHES</a></li>
+          <li><a href="#">NEW ARRIVALS</a></li>
+          <li><a href="#">SALE</a></li>
+        </ul>
+      </nav>
+      <div class="icons">
+        <a href="#"><i class="fa fa-search"></i></a>
+        <a href="#"><i class="fa fa-heart"></i></a>
+        <a href="#"><i class="fa fa-shopping-cart"></i></a>
+        <a href="#"><i class="fa fa-user"></i></a>
+      </div>
+    </div>
+  </header>
+  {% block content %}{% endblock %}
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const swiper = new Swiper('.hero-swiper', {
+        loop: true,
+        autoplay: { delay: 3000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true }
+      });
+    });
+  </script>
+</body>
+</html>

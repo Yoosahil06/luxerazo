@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+{% block content %}
+<section class="hero-section swiper hero-swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <div class="hero-slide" style="background-image: url('/static/img/hero1.jpg');">
+        <div class="hero-content">
+          <h1>Luxury Watches</h1>
+          <p>Discover Timeless Craftsmanship</p>
+          <a href="#" class="btn-primary">Explore Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <div class="hero-slide" style="background-image: url('/static/img/hero2.jpg');">
+        <div class="hero-content">
+          <h1>Signature Fashion</h1>
+          <p>Imported Excellence from Italy & China</p>
+          <a href="#" class="btn-primary">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+</section>
+
+<section class="collections">
+  <h2>Curated Collections</h2>
+  <div class="grid">
+    <div class="card">New Arrivals</div>
+    <div class="card">Bestsellers</div>
+    <div class="card">Limited Editions</div>
+  </div>
+</section>
+
+<section class="brands-carousel">
+  <img src="/static/img/gucci.png" alt="Gucci">
+  <img src="/static/img/armani.png" alt="Armani">
+  <img src="/static/img/versace.png" alt="Versace">
+  <img src="/static/img/rolex.png" alt="Rolex">
+</section>
+{% endblock %}

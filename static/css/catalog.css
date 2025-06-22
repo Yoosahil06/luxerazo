@@ -1,0 +1,100 @@
+
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid #eaeaea;
+  align-items: center;
+}
+
+.catalog-header h1 {
+  font-size: 26px;
+}
+
+.sort-bar {
+  font-size: 14px;
+}
+
+.catalog-page {
+  display: flex;
+  padding: 30px 40px;
+}
+
+.catalog-sidebar {
+  width: 250px;
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.catalog-sidebar h3 {
+  margin-top: 20px;
+}
+
+.catalog-sidebar input {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 5px;
+}
+
+.filter-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background: #b88a54;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.product-gallery {
+  flex-grow: 1;
+  padding-left: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.06);
+  text-align: center;
+  padding: 15px;
+  transition: 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-card .badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: green;
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+.price-original {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.price-discounted {
+  color: #233747;
+  font-weight: bold;
+}

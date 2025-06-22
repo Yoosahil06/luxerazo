@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editorials</h2>
+<ul>
+  {% for blog in blogs %}
+    <li>
+      <img src="{{ blog.image.url }}" alt="{{ blog.title }}" width="120">
+      <a href="{% url 'blog_detail' blog.slug %}">{{ blog.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
