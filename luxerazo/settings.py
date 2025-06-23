@@ -15,6 +15,7 @@ ALLOWED_HOSTS = [
     'luxerazo.com',
     'www.luxerazo.com',
     '18.208.184.243'
+    'localhost'
 ]
 
 # --------------------------------------------
