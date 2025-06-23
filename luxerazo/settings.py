@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # --------------------------------------------
 SECRET_KEY = 'django-insecure-bll9(2xl5-+nrk()f$_c!z+fqy2sk(503k4^yt0pj^&&*6_*e6'
 DEBUG = True
-ALLOWED_HOSTS = ['luxerazo.com', 'www.luxerazo.com', '18.208.184.243']
+ALLOWED_HOSTS = ['luxerazo.com', 'www.luxerazo.com', '3.85.26.72']
 
 # --------------------------------------------
 # INSTALLED APPS
