@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # --------------------------------------------
 SECRET_KEY = 'django-insecure-bll9(2xl5-+nrk()f$_c!z+fqy2sk(503k4^yt0pj^&&*6_*e6'
 DEBUG = True
-ALLOWED_HOSTS = [ '13.220.153.37', 'luxerazo.com', 'www.luxerazo.com']
+ALLOWED_HOSTS = [ '13.220.153.37', 'luxerazo.com', 'www.luxerazo.com', '127.0.0.1']
 
 # --------------------------------------------
 # INSTALLED APPS
@@ -87,9 +87,9 @@ WSGI_APPLICATION = 'luxerazo.wsgi.application'
 DATABASES = {
     'default': {
          'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'luxerazo_db',
-        'USER': 'luxuser',
-        'PASSWORD': 'Luxerazo',  
+        'NAME': 'Luxerazo',
+        'USER': 'postgres',
+        'PASSWORD': 'Sahil096114',  
         'HOST': 'localhost',     
         'PORT': '5432',
     }
@@ -128,10 +128,10 @@ USE_TZ = True
 # --------------------------------------------
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'templates']
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # --------------------------------------------
 # DEFAULT PRIMARY KEY FIELD TYPE
