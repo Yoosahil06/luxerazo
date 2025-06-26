@@ -347,4 +347,21 @@ nav a {
   .btn-primary {
     padding: 10px 20px;
   }
+
+  /* Magazine slider responsive */
+  .magazine-slider {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .magazine-slider .swiper-slide {
+    width: 80%;
+    text-align: center;
+  }
+
+  .magazine-slider img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
 }

@@ -54,12 +54,52 @@
   </form>
 </section>
 
-<section class="social-proof">
-  <h3>As seen in</h3>
-  <div class="magazine-badges">
-    <img src="/static/img/magazine1.png" alt="Luxury Magazine 1">
-    <img src="/static/img/magazine2.png" alt="Luxury Magazine 2">
-    <img src="/static/img/magazine3.png" alt="Luxury Magazine 3">
-  </div>
-</section>
+  <section class="social-proof">
+    <h3>As seen in</h3>
+    <div class="magazine-slider swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="/static/img/magazine1.png" alt="Luxury Magazine 1">
+        </div>
+        <div class="swiper-slide">
+          <img src="/static/img/magazine2.png" alt="Luxury Magazine 2">
+        </div>
+        <div class="swiper-slide">
+          <img src="/static/img/magazine3.png" alt="Luxury Magazine 3">
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const magazineSwiper = new Swiper('.magazine-slider', {
+        loop: true,
+        slidesPerView: 3,
+        spaceBetween: 20,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          640: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        },
+      });
+    });
+  </script>
 {% endblock %}

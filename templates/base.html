@@ -25,8 +25,9 @@
       </div>
       <nav>
         <ul class="main-menu">
-          <li class="menu-item has-mega-menu"><a href="/catalog/men/">MEN</a>
-            <div class="mega-menu">
+          <li class="menu-item has-mega-menu">
+            <button class="mega-menu-toggle" aria-expanded="false" aria-controls="men-mega-menu">MEN</button>
+            <div class="mega-menu" id="men-mega-menu" hidden>
               <div class="mega-menu-section">
                 <h4>Brands</h4>
                 <ul>
@@ -46,8 +47,9 @@
               </div>
             </div>
           </li>
-          <li class="menu-item has-mega-menu"><a href="/catalog/women/">WOMEN</a>
-            <div class="mega-menu">
+          <li class="menu-item has-mega-menu">
+            <button class="mega-menu-toggle" aria-expanded="false" aria-controls="women-mega-menu">WOMEN</button>
+            <div class="mega-menu" id="women-mega-menu" hidden>
               <div class="mega-menu-section">
                 <h4>Brands</h4>
                 <ul>
@@ -126,10 +128,28 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const swiper = new Swiper('.hero-swiper', {
+      const heroSwiper = new Swiper('.hero-swiper', {
         loop: true,
         autoplay: { delay: 3000, disableOnInteraction: false },
         pagination: { el: '.swiper-pagination', clickable: true }
+      });
+
+      // Mega menu toggle buttons
+      const megaMenuToggles = document.querySelectorAll('.mega-menu-toggle');
+      megaMenuToggles.forEach(button => {
+        button.addEventListener('click', () => {
+          const menuId = button.getAttribute('aria-controls');
+          const menu = document.getElementById(menuId);
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', !isExpanded);
+          if (menu) {
+            if (menu.hasAttribute('hidden')) {
+              menu.removeAttribute('hidden');
+            } else {
+              menu.setAttribute('hidden', '');
+            }
+          }
+        });
       });
     });
   </script>
