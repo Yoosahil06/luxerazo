@@ -13,13 +13,77 @@ body {
 }
 
 .lux-header {
-  background: white;
-  border-bottom: 1px solid #eee;
+  background: linear-gradient(90deg, #b88a54, #a67c3a);
+  border-bottom: none;
   position: sticky;
   top: 0;
   z-index: 999;
   transition: all 0.3s ease;
   padding: 20px 40px;
+  box-shadow: 0 4px 15px rgba(184, 138, 84, 0.6);
+  font-family: 'Georgia', serif;
+  color: white;
+}
+
+.lux-header .logo img {
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+}
+
+nav ul.main-menu {
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+nav ul.main-menu li {
+  position: relative;
+}
+
+nav ul.main-menu li button.mega-menu-toggle {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: color 0.3s ease;
+}
+
+nav ul.main-menu li button.mega-menu-toggle:hover,
+nav ul.main-menu li button.mega-menu-toggle[aria-expanded="true"] {
+  color: #f0d9a6;
+}
+
+.mega-menu {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(184, 138, 84, 0.4);
+  padding: 20px;
+  width: 600px;
+  display: flex;
+  gap: 40px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+}
+
+.mega-menu-section h4 {
+  color: #b88a54;
+  font-family: 'Georgia', serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.mega-menu-section ul li a {
+  color: #555;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.mega-menu-section ul li a:hover {
+  color: #a67c3a;
 }
 
 .lux-header.shrink {
