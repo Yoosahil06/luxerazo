@@ -4,154 +4,350 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luxerazo – Style Without Limits</title>
-  <meta name="description" content="Luxerazo offers style without limits with a wide range of luxury products including watches, bags, and accessories. Shop the latest collections from top brands.">
-  <meta name="keywords" content="luxury, fashion, watches, bags, accessories, designer brands, style">
+  <title>{% block title %}Luxerazo – Style Without Limits{% endblock %}</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="{% block description %}Luxerazo offers ultra-luxury fashion with style without limits. Discover exclusive collections of watches, bags, and accessories from the world's most prestigious brands.{% endblock %}">
+  <meta name="keywords" content="luxury fashion, designer watches, luxury bags, premium accessories, exclusive collections, high-end fashion, luxury lifestyle">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Luxerazo – Style Without Limits">
-  <meta property="og:description" content="Luxerazo offers style without limits with a wide range of luxury products including watches, bags, and accessories. Shop the latest collections from top brands.">
+  <meta name="author" content="Luxerazo">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="{% block og_title %}Luxerazo – Style Without Limits{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Experience ultra-luxury fashion with Luxerazo's exclusive collections of premium watches, bags, and accessories.{% endblock %}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://luxerazo.com/">
+  <meta property="og:url" content="https://luxerazo.com{% block og_url %}{% endblock %}">
   <meta property="og:image" content="{% static 'img/luxerazo-logo.png' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta property="og:site_name" content="Luxerazo">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}Luxerazo – Style Without Limits{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Experience ultra-luxury fashion with exclusive collections.{% endblock %}">
+  <meta name="twitter:image" content="{% static 'img/luxerazo-logo.png' %}">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+  
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="{% static 'css/luxury-core.css' %}" as="style">
+  <link rel="preload" href="{% static 'css/luxury-navigation.css' %}" as="style">
+  <link rel="preload" href="{% static 'img/luxerazo-logo.png' %}" as="image">
+  
+  <!-- Preload Fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </noscript>
+  
+  <!-- Luxury CSS Framework -->
+  <link rel="stylesheet" href="{% static 'css/luxury-core.css' %}">
+  <link rel="stylesheet" href="{% static 'css/luxury-navigation.css' %}">
+  <link rel="stylesheet" href="{% static 'css/luxury-homepage.css' %}">
+  <link rel="stylesheet" href="{% static 'css/luxury-footer.css' %}">
+  
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Additional Page Styles -->
+  {% block extra_css %}{% endblock %}
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Luxerazo",
+    "url": "https://luxerazo.com",
+    "logo": "{% static 'img/luxerazo-logo.png' %}",
+    "description": "Ultra-luxury fashion retailer offering exclusive collections of watches, bags, and accessories",
+    "sameAs": [
+      "https://instagram.com/luxerazo",
+      "https://facebook.com/luxerazo",
+      "https://twitter.com/luxerazo"
+    ]
+  }
+  </script>
 </head>
-<body>
-  <header class="lux-header">
-    <div class="container">
-      <div class="logo">
-        <img src="{% static 'img/luxerazo-logo.png' %}" alt="Luxerazo Logo">
-      </div>
-      <nav>
-        <ul class="main-menu">
-          <li class="menu-item has-mega-menu">
-            <button class="mega-menu-toggle" aria-expanded="false" aria-controls="men-mega-menu">MEN</button>
-            <div class="mega-menu" id="men-mega-menu" hidden>
-              <div class="mega-menu-section">
-                <h4>Brands</h4>
-                <ul>
-                  <li><a href="/catalog/gucci/">Gucci</a></li>
-                  <li><a href="/catalog/armani/">Armani</a></li>
-                  <li><a href="/catalog/versace/">Versace</a></li>
-                  <li><a href="/catalog/rolex/">Rolex</a></li>
-                </ul>
-              </div>
-              <div class="mega-menu-section">
-                <h4>Categories</h4>
-                <ul>
-                  <li><a href="/catalog/watches/">Watches</a></li>
-                  <li><a href="/catalog/bags/">Bags</a></li>
-                  <li><a href="/catalog/accessories/">Accessories</a></li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li class="menu-item has-mega-menu">
-            <button class="mega-menu-toggle" aria-expanded="false" aria-controls="women-mega-menu">WOMEN</button>
-            <div class="mega-menu" id="women-mega-menu" hidden>
-              <div class="mega-menu-section">
-                <h4>Brands</h4>
-                <ul>
-                  <li><a href="/catalog/gucci/">Gucci</a></li>
-                  <li><a href="/catalog/armani/">Armani</a></li>
-                  <li><a href="/catalog/versace/">Versace</a></li>
-                  <li><a href="/catalog/rolex/">Rolex</a></li>
-                </ul>
-              </div>
-              <div class="mega-menu-section">
-                <h4>Categories</h4>
-                <ul>
-                  <li><a href="/catalog/watches/">Watches</a></li>
-                  <li><a href="/catalog/bags/">Bags</a></li>
-                  <li><a href="/catalog/accessories/">Accessories</a></li>
-                </ul>
+<body class="luxe-body">
+  
+  <!-- Ultra-Premium Navigation Header -->
+  <header class="luxe-header">
+    <div class="luxe-header-container">
+      
+      <!-- Luxury Logo -->
+      <a href="/" class="luxe-logo">
+        <img src="{% static 'img/luxerazo-logo.png' %}" alt="Luxerazo - Style Without Limits" width="200" height="50">
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="luxe-nav">
+        <ul class="luxe-nav-menu">
+          <li class="luxe-nav-item">
+            <a href="/catalog/men/" class="luxe-nav-link">Men</a>
+            <div class="luxe-mega-menu">
+              <div class="luxe-mega-menu-grid">
+                <div class="luxe-mega-menu-section">
+                  <h4>Luxury Brands</h4>
+                  <ul class="luxe-mega-menu-list">
+                    <li><a href="/catalog/rolex/">Rolex</a></li>
+                    <li><a href="/catalog/patek-philippe/">Patek Philippe</a></li>
+                    <li><a href="/catalog/audemars-piguet/">Audemars Piguet</a></li>
+                    <li><a href="/catalog/richard-mille/">Richard Mille</a></li>
+                    <li><a href="/catalog/gucci/">Gucci</a></li>
+                    <li><a href="/catalog/louis-vuitton/">Louis Vuitton</a></li>
+                  </ul>
+                </div>
+                <div class="luxe-mega-menu-section">
+                  <h4>Categories</h4>
+                  <ul class="luxe-mega-menu-list">
+                    <li><a href="/catalog/watches/">Luxury Watches</a></li>
+                    <li><a href="/catalog/bags/">Designer Bags</a></li>
+                    <li><a href="/catalog/accessories/">Premium Accessories</a></li>
+                    <li><a href="/catalog/jewelry/">Fine Jewelry</a></li>
+                    <li><a href="/catalog/sunglasses/">Designer Sunglasses</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </li>
-          <li><a href="/catalog/watches/">WATCHES</a></li>
-          <li><a href="/catalog/new-arrivals/">NEW ARRIVALS</a></li>
-          <li><a href="/catalog/sale/">SALE</a></li>
+          
+          <li class="luxe-nav-item">
+            <a href="/catalog/women/" class="luxe-nav-link">Women</a>
+            <div class="luxe-mega-menu">
+              <div class="luxe-mega-menu-grid">
+                <div class="luxe-mega-menu-section">
+                  <h4>Luxury Brands</h4>
+                  <ul class="luxe-mega-menu-list">
+                    <li><a href="/catalog/chanel/">Chanel</a></li>
+                    <li><a href="/catalog/hermes/">Hermès</a></li>
+                    <li><a href="/catalog/dior/">Dior</a></li>
+                    <li><a href="/catalog/cartier/">Cartier</a></li>
+                    <li><a href="/catalog/prada/">Prada</a></li>
+                    <li><a href="/catalog/bottega-veneta/">Bottega Veneta</a></li>
+                  </ul>
+                </div>
+                <div class="luxe-mega-menu-section">
+                  <h4>Categories</h4>
+                  <ul class="luxe-mega-menu-list">
+                    <li><a href="/catalog/handbags/">Luxury Handbags</a></li>
+                    <li><a href="/catalog/jewelry/">Fine Jewelry</a></li>
+                    <li><a href="/catalog/watches/">Luxury Watches</a></li>
+                    <li><a href="/catalog/scarves/">Designer Scarves</a></li>
+                    <li><a href="/catalog/perfumes/">Exclusive Perfumes</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <li class="luxe-nav-item">
+            <a href="/catalog/watches/" class="luxe-nav-link">Timepieces</a>
+          </li>
+          
+          <li class="luxe-nav-item">
+            <a href="/catalog/new-arrivals/" class="luxe-nav-link">New Arrivals</a>
+          </li>
+          
+          <li class="luxe-nav-item">
+            <a href="/private-client/" class="luxe-nav-link">
+              <span class="luxe-pill-btn">Private Client</span>
+            </a>
+          </li>
         </ul>
       </nav>
-      <div class="icons">
-        <a href="#" id="search-icon"><i class="fa fa-search"></i></a>
-        <a href="#"><i class="fa fa-heart"></i></a>
-        <a href="#" id="cart-icon"><i class="fa fa-shopping-cart"></i></a>
-        <a href="#"><i class="fa fa-user"></i></a>
-        <select id="currency-selector" aria-label="Select Currency">
-          <option value="USD" selected>USD</option>
-          <option value="EUR">EUR</option>
-          <option value="GBP">GBP</option>
-          <option value="JPY">JPY</option>
-        </select>
+      
+      <!-- Header Actions -->
+      <div class="luxe-header-actions">
+        <button class="luxe-action-btn" data-search-toggle aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <a href="/wishlist/" class="luxe-action-btn" aria-label="Wishlist">
+          <i class="fas fa-heart"></i>
+        </a>
+        
+        <button class="luxe-action-btn has-badge" data-cart-toggle data-count="0" aria-label="Shopping Cart">
+          <i class="fas fa-shopping-bag"></i>
+        </button>
+        
+        <a href="/account/" class="luxe-action-btn" aria-label="Account">
+          <i class="fas fa-user"></i>
+        </a>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="luxe-mobile-toggle" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </div>
   </header>
-
-  <footer class="lux-footer">
-    <div class="container">
-      <div class="footer-links">
-        <a href="#">About Us</a>
-        <a href="#">Shipping & Returns</a>
-        <a href="#">Contact/Concierge</a>
+  
+  <!-- Luxury Search Modal -->
+  <div class="luxe-search-modal">
+    <div class="luxe-search-container">
+      <div class="luxe-search-header">
+        <h3 class="luxe-search-title">Search Luxury Collections</h3>
+        <button class="luxe-search-close" aria-label="Close Search">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
-      <div class="footer-selectors">
-        <label for="country-selector">Country:</label>
-        <select id="country-selector" aria-label="Select Country">
-          <option value="US" selected>United States</option>
-          <option value="GB">United Kingdom</option>
-          <option value="FR">France</option>
-          <option value="JP">Japan</option>
-        </select>
+      <input type="text" class="luxe-search-input" placeholder="Search for luxury watches, bags, accessories..." autocomplete="off">
+      <div class="luxe-search-suggestions">
+        <!-- Search suggestions will be populated here -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div class="luxe-mobile-menu">
+    <div class="luxe-mobile-menu-header">
+      <img src="{% static 'img/luxerazo-logo.png' %}" alt="Luxerazo" height="40">
+      <button class="luxe-mobile-menu-close" aria-label="Close Menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <nav class="luxe-mobile-nav">
+      <ul class="luxe-mobile-nav-list">
+        <li class="luxe-mobile-nav-item">
+          <a href="/catalog/men/" class="luxe-mobile-nav-link">Men's Collection</a>
+        </li>
+        <li class="luxe-mobile-nav-item">
+          <a href="/catalog/women/" class="luxe-mobile-nav-link">Women's Collection</a>
+        </li>
+        <li class="luxe-mobile-nav-item">
+          <a href="/catalog/watches/" class="luxe-mobile-nav-link">Luxury Timepieces</a>
+        </li>
+        <li class="luxe-mobile-nav-item">
+          <a href="/catalog/new-arrivals/" class="luxe-mobile-nav-link">New Arrivals</a>
+        </li>
+        <li class="luxe-mobile-nav-item">
+          <a href="/private-client/" class="luxe-mobile-nav-link">Private Client Services</a>
+        </li>
+        <li class="luxe-mobile-nav-item">
+          <a href="/concierge/" class="luxe-mobile-nav-link">Concierge</a>
+        </li>
+        <li class="luxe-mobile-nav-item">
+          <a href="/account/" class="luxe-mobile-nav-link">My Account</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
+  <!-- Main Content -->
+  <main class="luxe-main">
+    {% block content %}{% endblock %}
+  </main>
+  
+  <!-- Ultra-Premium Footer -->
+  <footer class="luxe-footer">
+    <div class="luxe-container">
+      <div class="luxe-footer-content">
+        
+        <!-- Footer Brand -->
+        <div class="luxe-footer-brand">
+          <img src="{% static 'img/luxerazo-logo.png' %}" alt="Luxerazo" class="luxe-footer-logo">
+          <p class="luxe-footer-tagline">Style Without Limits</p>
+          <p class="luxe-footer-description">
+            Experience the pinnacle of luxury with our curated collections of the world's most prestigious brands.
+          </p>
+        </div>
+        
+        <!-- Footer Links -->
+        <div class="luxe-footer-links">
+          <div class="luxe-footer-section">
+            <h4>Client Services</h4>
+            <ul>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/concierge/">Personal Concierge</a></li>
+              <li><a href="/shipping/">Shipping & Returns</a></li>
+              <li><a href="/size-guide/">Size Guide</a></li>
+              <li><a href="/care/">Care Instructions</a></li>
+            </ul>
+          </div>
+          
+          <div class="luxe-footer-section">
+            <h4>About Luxerazo</h4>
+            <ul>
+              <li><a href="/about/">Our Story</a></li>
+              <li><a href="/authenticity/">Authenticity Guarantee</a></li>
+              <li><a href="/sustainability/">Sustainability</a></li>
+              <li><a href="/careers/">Careers</a></li>
+              <li><a href="/press/">Press</a></li>
+            </ul>
+          </div>
+          
+          <div class="luxe-footer-section">
+            <h4>Exclusive Services</h4>
+            <ul>
+              <li><a href="/private-client/">Private Client</a></li>
+              <li><a href="/personal-shopping/">Personal Shopping</a></li>
+              <li><a href="/vip-events/">VIP Events</a></li>
+              <li><a href="/customization/">Customization</a></li>
+              <li><a href="/authentication/">Authentication</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Newsletter Signup -->
+        <div class="luxe-footer-newsletter">
+          <h4>Stay Connected</h4>
+          <p>Be the first to discover new arrivals and exclusive collections.</p>
+          <form class="luxe-newsletter-form" method="post" action="/newsletter/">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Enter your email" required class="luxe-newsletter-input">
+            <button type="submit" class="luxe-newsletter-btn">Subscribe</button>
+          </form>
+          
+          <!-- Social Links -->
+          <div class="luxe-social-links">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer Bottom -->
+      <div class="luxe-footer-bottom">
+        <div class="luxe-footer-legal">
+          <p>&copy; 2024 Luxerazo. All rights reserved.</p>
+          <div class="luxe-footer-legal-links">
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Service</a>
+            <a href="/cookies/">Cookie Policy</a>
+          </div>
+        </div>
+        
+        <div class="luxe-footer-certifications">
+          <img src="{% static 'img/ssl-secure.png' %}" alt="SSL Secure" class="luxe-cert-badge">
+          <img src="{% static 'img/authenticity-guaranteed.png' %}" alt="Authenticity Guaranteed" class="luxe-cert-badge">
+        </div>
       </div>
     </div>
   </footer>
-
-  <div id="search-overlay" class="search-overlay hidden">
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search products...">
-      <button id="search-close">&times;</button>
-    </div>
-  </div>
-
-  <div id="cart-preview" class="cart-preview hidden">
-    <h4>Your Cart</h4>
-    <div class="cart-items">
-      <p>Your cart is empty.</p>
-    </div>
-    <a href="/cart/" class="btn-primary">View Cart</a>
-  </div>
-
-  {% block content %}{% endblock %}
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script src="{% static 'js/luxury-interactions.js' %}"></script>
+  
+  <!-- Additional Page Scripts -->
+  {% block extra_js %}{% endblock %}
+  
+  <!-- Analytics (Replace with your tracking code) -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const heroSwiper = new Swiper('.hero-swiper', {
-        loop: true,
-        autoplay: { delay: 3000, disableOnInteraction: false },
-        pagination: { el: '.swiper-pagination', clickable: true }
-      });
-
-      // Mega menu toggle buttons
-      const megaMenuToggles = document.querySelectorAll('.mega-menu-toggle');
-      megaMenuToggles.forEach(button => {
-        button.addEventListener('click', () => {
-          const menuId = button.getAttribute('aria-controls');
-          const menu = document.getElementById(menuId);
-          const isExpanded = button.getAttribute('aria-expanded') === 'true';
-          button.setAttribute('aria-expanded', !isExpanded);
-          if (menu) {
-            if (menu.hasAttribute('hidden')) {
-              menu.removeAttribute('hidden');
-            } else {
-              menu.setAttribute('hidden', '');
-            }
-          }
-        });
-      });
-    });
+    // Google Analytics or other tracking code
+    // gtag('config', 'GA_MEASUREMENT_ID');
   </script>
+  
 </body>
 </html>

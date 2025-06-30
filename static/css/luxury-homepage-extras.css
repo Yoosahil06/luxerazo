@@ -1,0 +1,130 @@
+/* Additional Homepage Styles */
+.luxe-services {
+  padding: var(--luxe-space-xxl) 0;
+  background: var(--luxe-cream);
+}
+
+.luxe-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xxl);
+}
+
+.luxe-service-card {
+  background: white;
+  padding: var(--luxe-space-xl);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--luxe-shadow-subtle);
+  transition: all var(--luxe-transition-medium);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.luxe-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--luxe-shadow-medium);
+  border-color: var(--luxe-gold);
+}
+
+.luxe-service-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--luxe-gold-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--luxe-space-lg);
+  font-size: 2rem;
+  color: var(--luxe-obsidian);
+}
+
+.luxe-service-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-service-description {
+  font-family: var(--luxe-font-body);
+  color: var(--luxe-charcoal);
+  line-height: 1.6;
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-service-link {
+  font-family: var(--luxe-font-body);
+  font-weight: 600;
+  color: var(--luxe-gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+  transition: color var(--luxe-transition-medium);
+}
+
+.luxe-service-link:hover {
+  color: var(--luxe-burgundy);
+}
+
+.luxe-social-proof {
+  padding: var(--luxe-space-xxl) 0;
+  background: var(--luxe-pearl);
+}
+
+.luxe-magazine-slider {
+  margin-top: var(--luxe-space-xxl);
+}
+
+.luxe-magazine-item {
+  padding: var(--luxe-space-lg);
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--luxe-shadow-subtle);
+  transition: all var(--luxe-transition-medium);
+}
+
+.luxe-magazine-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--luxe-shadow-medium);
+}
+
+.luxe-magazine-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  filter: grayscale(100%);
+  transition: filter var(--luxe-transition-medium);
+}
+
+.luxe-magazine-item:hover .luxe-magazine-image {
+  filter: grayscale(0%);
+}
+
+.luxe-newsletter-privacy {
+  text-align: center;
+  margin-top: var(--luxe-space-md);
+  color: var(--luxe-charcoal);
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .luxe-services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--luxe-space-lg);
+  }
+  
+  .luxe-service-card {
+    padding: var(--luxe-space-lg);
+  }
+  
+  .luxe-service-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}

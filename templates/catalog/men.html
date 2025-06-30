@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ meta_description }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="luxe-catalog-men">
+    <!-- Premium Hero Section -->
+    <section class="luxe-hero">
+        <div class="luxe-container">
+            <h1 class="luxe-hero-title">Men's Collection</h1>
+            <p class="luxe-hero-subtitle">Discover the epitome of masculine elegance with our curated selection of luxury timepieces, leather goods, and premium accessories</p>
+        </div>
+    </section>
+
+    <!-- Luxury Filter Section -->
+    <section class="luxe-filters">
+        <div class="luxe-container">
+            <div class="luxe-filter-bar">
+                <button class="luxe-filter-btn active" data-filter="all">All Products</button>
+                <button class="luxe-filter-btn" data-filter="watches">Timepieces</button>
+                <button class="luxe-filter-btn" data-filter="bags">Leather Goods</button>
+                <button class="luxe-filter-btn" data-filter="accessories">Accessories</button>
+                <button class="luxe-filter-btn" data-filter="jewelry">Jewelry</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Products Section -->
+    <section class="luxe-products">
+        <div class="luxe-container">
+            <h2 class="luxe-section-title">Exclusive Collection</h2>
+            <div class="luxe-products-grid">
+                
+                <!-- Rolex Submariner -->
+                <div class="luxe-product-card" data-category="watches">
+                    <div class="luxe-product-image-container">
+                        <img src="{% static 'img/rolex.png' %}" alt="Rolex Submariner" class="luxe-product-image">
+                        <div class="luxe-product-badge">Exclusive</div>
+                        <div class="luxe-product-overlay">
+                            <button class="luxe-quick-view-btn">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="luxe-product-info">
+                        <div class="luxe-product-brand">Rolex</div>
+                        <h3 class="luxe-product-title">Submariner Date</h3>
+                        <p class="luxe-product-description">Iconic diving watch with unparalleled precision and style</p>
+                        <div class="luxe-product-price">$12,500</div>
+                    </div>
+                    <div class="luxe-product-actions">
+                        <button class="luxe-add-to-cart-btn">Add to Cart</button>
+                        <button class="luxe-wishlist-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gucci Leather Bag -->
+                <div class="luxe-product-card" data-category="bags">
+                    <div class="luxe-product-image-container">
+                        <img src="{% static 'img/gucci.png' %}" alt="Gucci Leather Bag" class="luxe-product-image">
+                        <div class="luxe-product-badge">New</div>
+                        <div class="luxe-product-overlay">
+                            <button class="luxe-quick-view-btn">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="luxe-product-info">
+                        <div class="luxe-product-brand">Gucci</div>
+                        <h3 class="luxe-product-title">GG Marmont Briefcase</h3>
+                        <p class="luxe-product-description">Sophisticated leather briefcase with signature GG hardware</p>
+                        <div class="luxe-product-price">$3,200</div>
+                    </div>
+                    <div class="luxe-product-actions">
+                        <button class="luxe-add-to-cart-btn">Add to Cart</button>
+                        <button class="luxe-wishlist-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Versace Sunglasses -->
+                <div class="luxe-product-card" data-category="accessories">
+                    <div class="luxe-product-image-container">
+                        <img src="{% static 'img/versace.png' %}" alt="Versace Sunglasses" class="luxe-product-image">
+                        <div class="luxe-product-overlay">
+                            <button class="luxe-quick-view-btn">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="luxe-product-info">
+                        <div class="luxe-product-brand">Versace</div>
+                        <h3 class="luxe-product-title">Medusa Aviator</h3>
+                        <p class="luxe-product-description">Bold aviator sunglasses with iconic Medusa detailing</p>
+                        <div class="luxe-product-price">$850</div>
+                    </div>
+                    <div class="luxe-product-actions">
+                        <button class="luxe-add-to-cart-btn">Add to Cart</button>
+                        <button class="luxe-wishlist-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Armani Watch -->
+                <div class="luxe-product-card" data-category="watches">
+                    <div class="luxe-product-image-container">
+                        <img src="{% static 'img/armani.png' %}" alt="Armani Watch" class="luxe-product-image">
+                        <div class="luxe-product-overlay">
+                            <button class="luxe-quick-view-btn">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="luxe-product-info">
+                        <div class="luxe-product-brand">Emporio Armani</div>
+                        <h3 class="luxe-product-title">Classic Chronograph</h3>
+                        <p class="luxe-product-description">Timeless elegance with modern functionality</p>
+                        <div class="luxe-product-price">$1,200</div>
+                    </div>
+                    <div class="luxe-product-actions">
+                        <button class="luxe-add-to-cart-btn">Add to Cart</button>
+                        <button class="luxe-wishlist-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Additional Premium Products -->
+                <div class="luxe-product-card" data-category="bags">
+                    <div class="luxe-product-image-container">
+                        <img src="{% static 'img/hero2.jpg' %}" alt="Premium Leather Wallet" class="luxe-product-image">
+                        <div class="luxe-product-badge">Limited</div>
+                        <div class="luxe-product-overlay">
+                            <button class="luxe-quick-view-btn">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="luxe-product-info">
+                        <div class="luxe-product-brand">Hermès</div>
+                        <h3 class="luxe-product-title">Calvi Card Holder</h3>
+                        <p class="luxe-product-description">Exquisite leather card holder with impeccable craftsmanship</p>
+                        <div class="luxe-product-price">$650</div>
+                    </div>
+                    <div class="luxe-product-actions">
+                        <button class="luxe-add-to-cart-btn">Add to Cart</button>
+                        <button class="luxe-wishlist-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="luxe-product-card" data-category="jewelry">
+                    <div class="luxe-product-image-container">
+                        <img src="{% static 'img/magazine1.png' %}" alt="Luxury Cufflinks" class="luxe-product-image">
+                        <div class="luxe-product-overlay">
+                            <button class="luxe-quick-view-btn">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="luxe-product-info">
+                        <div class="luxe-product-brand">Cartier</div>
+                        <h3 class="luxe-product-title">Santos Cufflinks</h3>
+                        <p class="luxe-product-description">Elegant gold cufflinks with signature Cartier design</p>
+                        <div class="luxe-product-price">$2,800</div>
+                    </div>
+                    <div class="luxe-product-actions">
+                        <button class="luxe-add-to-cart-btn">Add to Cart</button>
+                        <button class="luxe-wishlist-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Features Section -->
+    <section class="luxe-premium-features">
+        <div class="luxe-container">
+            <h2 class="luxe-section-title">Why Choose Luxerazo</h2>
+            <div class="luxe-features-grid">
+                <div class="luxe-feature-card">
+                    <div class="luxe-feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="luxe-feature-title">Authenticity Guaranteed</h3>
+                    <p class="luxe-feature-description">Every product comes with a certificate of authenticity from authorized dealers</p>
+                </div>
+                <div class="luxe-feature-card">
+                    <div class="luxe-feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="luxe-feature-title">White Glove Delivery</h3>
+                    <p class="luxe-feature-description">Premium packaging and secure delivery to your doorstep</p>
+                </div>
+                <div class="luxe-feature-card">
+                    <div class="luxe-feature-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="luxe-feature-title">VIP Service</h3>
+                    <p class="luxe-feature-description">Dedicated personal shopping assistance and exclusive access</p>
+                </div>
+                <div class="luxe-feature-card">
+                    <div class="luxe-feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="luxe-feature-title">Lifetime Warranty</h3>
+                    <p class="luxe-feature-description">Comprehensive protection and maintenance for your luxury investments</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.luxe-filter-btn');
+    const productCards = document.querySelectorAll('.luxe-product-card');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            const filter = this.getAttribute('data-filter');
+            
+            productCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.6s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Add to cart functionality
+    const addToCartBtns = document.querySelectorAll('.luxe-add-to-cart-btn');
+    addToCartBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-check"></i> Added';
+            this.style.background = '#28a745';
+            setTimeout(() => {
+                this.innerHTML = 'Add to Cart';
+                this.style.background = '';
+            }, 2000);
+        });
+    });
+    
+    // Wishlist functionality
+    const wishlistBtns = document.querySelectorAll('.luxe-wishlist-btn');
+    wishlistBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const heart = this.querySelector('i');
+            if (heart.classList.contains('fas')) {
+                heart.classList.remove('fas');
+                heart.classList.add('far');
+                this.style.color = '#666';
+            } else {
+                heart.classList.remove('far');
+                heart.classList.add('fas');
+                this.style.color = '#e74c3c';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

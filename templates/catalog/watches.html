@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Luxury Watches Collection{% endblock %}
+{% block description %}Explore Luxerazo's exclusive collection of luxury watches from the world's finest brands.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static 'img/hero2.jpg' %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Timeless Elegance</p>
+    <h1 class="luxe-hero-title">Luxury Watches</h1>
+    <p class="luxe-hero-description">
+      Discover the finest selection of Swiss and international luxury watches, crafted for precision and style.
+    </p>
+  </div>
+</section>
+
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Exclusive Timepieces</p>
+      <h2 class="luxe-section-title">Our Watch Collection</h2>
+      <p class="luxe-section-description">
+        Browse our curated collection of luxury watches from the world's most prestigious brands.
+      </p>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      <!-- Example watch cards, replace with dynamic content as needed -->
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="100">
+        <img src="{% static 'img/rolex.png' %}" alt="Rolex Watch" class="luxe-collection-image">
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">Rolex</h3>
+            <p class="luxe-collection-subtitle">Precision and Prestige</p>
+            <a href="/catalog/rolex/" class="luxe-collection-cta">
+              Discover Collection <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="200">
+        <img src="{% static 'img/patek-philippe.png' %}" alt="Patek Philippe Watch" class="luxe-collection-image">
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">Patek Philippe</h3>
+            <p class="luxe-collection-subtitle">Timeless Craftsmanship</p>
+            <a href="/catalog/patek-philippe/" class="luxe-collection-cta">
+              Explore Craftsmanship <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add more watch cards as needed -->
+    </div>
+  </div>
+</section>
+{% endblock %}

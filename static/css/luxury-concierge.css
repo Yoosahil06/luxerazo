@@ -1,0 +1,255 @@
+/* Concierge Page Styles */
+.luxe-concierge {
+    background-color: #ffffff;
+}
+
+/* Hero Section */
+.luxe-concierge-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/img/concierge-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 120px 0;
+    text-align: center;
+}
+
+.luxe-concierge-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.luxe-concierge-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Services Grid */
+.luxe-concierge-services {
+    padding: 80px 0;
+    background-color: #f8f8f8;
+}
+
+.luxe-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.luxe-service-card {
+    background: #ffffff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.luxe-service-card:hover {
+    transform: translateY(-5px);
+}
+
+.luxe-service-icon {
+    font-size: 2.5rem;
+    color: #b8860b;
+    margin-bottom: 20px;
+}
+
+.luxe-service-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.luxe-service-description {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Request Form */
+.luxe-concierge-form {
+    padding: 80px 0;
+}
+
+.luxe-form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.luxe-form-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.luxe-form-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.luxe-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.luxe-form-group {
+    margin-bottom: 20px;
+}
+
+.luxe-form-group.full-width {
+    grid-column: span 2;
+}
+
+.luxe-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+.luxe-form-group input,
+.luxe-form-group select,
+.luxe-form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.luxe-form-group input:focus,
+.luxe-form-group select:focus,
+.luxe-form-group textarea:focus {
+    border-color: #b8860b;
+    outline: none;
+}
+
+.luxe-form-group input.error,
+.luxe-form-group select.error,
+.luxe-form-group textarea.error {
+    border-color: #dc3545;
+}
+
+.luxe-form-footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.luxe-submit-btn {
+    background: #b8860b;
+    color: #ffffff;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.luxe-submit-btn:hover {
+    background: #96700a;
+}
+
+/* Messages */
+.luxe-messages {
+    margin-bottom: 20px;
+}
+
+.luxe-message {
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.luxe-message-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.luxe-message-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Why Choose Us Section */
+.luxe-why-us {
+    padding: 80px 0;
+    background-color: #f8f8f8;
+}
+
+.luxe-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.luxe-feature {
+    text-align: center;
+    padding: 30px;
+}
+
+.luxe-feature i {
+    font-size: 2.5rem;
+    color: #b8860b;
+    margin-bottom: 20px;
+}
+
+.luxe-feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.luxe-feature p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .luxe-concierge-title {
+        font-size: 2.5rem;
+    }
+    
+    .luxe-form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .luxe-form-group.full-width {
+        grid-column: auto;
+    }
+    
+    .luxe-form-wrapper {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .luxe-concierge-hero {
+        padding: 80px 0;
+    }
+    
+    .luxe-concierge-title {
+        font-size: 2rem;
+    }
+    
+    .luxe-service-card {
+        padding: 20px;
+    }
+}

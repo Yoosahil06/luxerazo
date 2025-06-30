@@ -11,7 +11,14 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
     path('users/', include('users.urls')),
     path('brands/', include('brands.urls')),
+    path('concierge/', include('concierge.urls')),
+    path('catalog/', include('catalog.urls')),
     # path('accounts/', include('accounts.urls')),
     # path('dashboard/', include('dashboard.urls')),
     # path('content/', include('content.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+# Serve static and media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

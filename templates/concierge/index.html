@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Personal Concierge Service - Luxerazo{% endblock %}
+
+{% block description %}{{ meta_description }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-concierge.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="luxe-concierge">
+    <!-- Hero Section -->
+    <section class="luxe-concierge-hero">
+        <div class="luxe-container">
+            <h1 class="luxe-concierge-title">Personal Concierge Service</h1>
+            <p class="luxe-concierge-subtitle">Experience luxury on your terms with our dedicated concierge service</p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="luxe-concierge-services">
+        <div class="luxe-container">
+            <h2 class="luxe-section-title">Our Exclusive Services</h2>
+            <div class="luxe-services-grid">
+                {% for service_code, service_name in service_types %}
+                <div class="luxe-service-card">
+                    <div class="luxe-service-icon">
+                        <i class="fas fa-{% if service_code == 'personal_shopping' %}shopping-bag
+                            {% elif service_code == 'product_sourcing' %}search
+                            {% elif service_code == 'styling_consultation' %}tshirt
+                            {% elif service_code == 'authentication' %}certificate
+                            {% elif service_code == 'customization' %}magic
+                            {% elif service_code == 'gift_service' %}gift
+                            {% elif service_code == 'vip_appointment' %}crown
+                            {% else %}concierge-bell{% endif %}">
+                        </i>
+                    </div>
+                    <h3 class="luxe-service-title">{{ service_name }}</h3>
+                    <p class="luxe-service-description">
+                        {% if service_code == 'personal_shopping' %}
+                        Let our expert shoppers curate the perfect selection tailored to your preferences.
+                        {% elif service_code == 'product_sourcing' %}
+                        We'll source rare and exclusive items from our global network of luxury partners.
+                        {% elif service_code == 'styling_consultation' %}
+                        Receive personalized styling advice from our fashion experts.
+                        {% elif service_code == 'authentication' %}
+                        Verify the authenticity of luxury items with our expert authentication service.
+                        {% elif service_code == 'customization' %}
+                        Create unique pieces tailored to your exact specifications.
+                        {% elif service_code == 'gift_service' %}
+                        Let us help you select and present the perfect luxury gift.
+                        {% elif service_code == 'vip_appointment' %}
+                        Exclusive in-store experiences and private viewings.
+                        {% else %}
+                        Custom requests tailored to your specific needs.
+                        {% endif %}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Request Form -->
+    <section class="luxe-concierge-form">
+        <div class="luxe-container">
+            <div class="luxe-form-wrapper">
+                <h2 class="luxe-form-title">Submit Your Request</h2>
+                <p class="luxe-form-subtitle">Our luxury service team will respond within 24 hours</p>
+
+                <form method="post" class="luxe-request-form">
+                    {% csrf_token %}
+                    
+                    {% if messages %}
+                    <div class="luxe-messages">
+                        {% for message in messages %}
+                        <div class="luxe-message {% if message.tags %}luxe-message-{{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="luxe-form-grid">
+                        <div class="luxe-form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="luxe-form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="luxe-form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="luxe-form-group">
+                            <label for="service_type">Service Type *</label>
+                            <select id="service_type" name="service_type" required>
+                                <option value="">Select a Service</option>
+                                {% for service_code, service_name in service_types %}
+                                <option value="{{ service_code }}">{{ service_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="luxe-form-group">
+                            <label for="priority">Priority Level</label>
+                            <select id="priority" name="priority">
+                                {% for priority_code, priority_name in priority_levels %}
+                                <option value="{{ priority_code }}">{{ priority_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="luxe-form-group">
+                            <label for="budget_range">Budget Range</label>
+                            <input type="text" id="budget_range" name="budget_range" placeholder="Optional">
+                        </div>
+
+                        <div class="luxe-form-group full-width">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="luxe-form-group full-width">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+
+                        <div class="luxe-form-group">
+                            <label for="preferred_contact">Preferred Contact Method</label>
+                            <select id="preferred_contact" name="preferred_contact">
+                                <option value="email">Email</option>
+                                <option value="phone">Phone</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="luxe-form-footer">
+                        <button type="submit" class="luxe-submit-btn">Submit Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="luxe-why-us">
+        <div class="luxe-container">
+            <h2 class="luxe-section-title">Why Choose Our Concierge Service</h2>
+            <div class="luxe-features-grid">
+                <div class="luxe-feature">
+                    <i class="fas fa-clock"></i>
+                    <h3>24/7 Availability</h3>
+                    <p>Our concierge team is available around the clock to assist with your requests.</p>
+                </div>
+                <div class="luxe-feature">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Personal Attention</h3>
+                    <p>Dedicated luxury experts providing personalized service tailored to your needs.</p>
+                </div>
+                <div class="luxe-feature">
+                    <i class="fas fa-globe"></i>
+                    <h3>Global Network</h3>
+                    <p>Access to an exclusive network of luxury brands and services worldwide.</p>
+                </div>
+                <div class="luxe-feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Discretion Assured</h3>
+                    <p>Your privacy and confidentiality are our top priorities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.luxe-request-form');
+    
+    form.addEventListener('submit', function(e) {
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('error');
+            } else {
+                field.classList.remove('error');
+            }
+        });
+        
+        if (!isValid) {
+            e.preventDefault();
+            alert('Please fill in all required fields.');
+        }
+    });
+});
+</script>
+{% endblock %}

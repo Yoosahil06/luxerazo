@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Rolex Collection{% endblock %}
+{% block description %}Explore Luxerazo's exclusive collection of Rolex luxury watches.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static 'img/rolex.png' %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Iconic Timepieces</p>
+    <h1 class="luxe-hero-title">Rolex Collection</h1>
+    <p class="luxe-hero-description">
+      Discover the timeless elegance and precision of Rolex watches, curated for the discerning collector.
+    </p>
+  </div>
+</section>
+
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Exclusive Rolex Watches</p>
+      <h2 class="luxe-section-title">Our Rolex Collection</h2>
+      <p class="luxe-section-description">
+        Browse our curated selection of authentic Rolex watches, crafted to perfection.
+      </p>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      {% for product in products %}
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="{{ forloop.counter0|add:'100' }}">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="luxe-collection-image">
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">{{ product.name }}</h3>
+            <p class="luxe-collection-subtitle">{{ product.brand.name }}</p>
+            <p class="luxe-collection-price">₹ {{ product.price_in_usd|floatformat:2 }}</p>
+            <a href="#" class="luxe-collection-cta">
+              Check Our Selling Price
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>No Rolex products available at the moment.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

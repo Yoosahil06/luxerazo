@@ -23,6 +23,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to="products/")
     description = models.TextField()
     price_in_usd = models.DecimalField(max_digits=10, decimal_places=2)
+    discount_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     authenticity = models.CharField(max_length=20, choices=[('Original', 'Original'), ('Grade-A', 'Grade-A')])
     stock = models.BooleanField(default=True)
     gender = models.CharField(max_length=10, choices=[('Men', 'Men'), ('Women', 'Women'), ('Unisex', 'Unisex')])

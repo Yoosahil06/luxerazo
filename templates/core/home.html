@@ -1,109 +1,308 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Ultra-Luxury Fashion & Timepieces{% endblock %}
+{% block description %}Discover the world's most exclusive luxury collections. From Swiss timepieces to Italian craftsmanship, experience style without limits at Luxerazo.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/luxury-homepage-extras.css' %}">
+{% endblock %}
+
 {% block content %}
-<section class="hero-section swiper hero-swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <div class="hero-slide" style="background-image: url('/static/img/hero1.jpg');">
-        <div class="hero-content">
-          <h1>Luxury Watches</h1>
-          <p>Discover Timeless Craftsmanship</p>
-          <a href="/catalog/" class="btn-primary">Explore Now</a>
+
+<!-- Ultra-Premium Hero Section -->
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static 'img/hero1.jpg' %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Exclusively Curated</p>
+    <h1 class="luxe-hero-title">Style Without Limits</h1>
+    <p class="luxe-hero-description">
+      Discover the world's most coveted luxury collections, where Swiss precision meets Italian artistry in perfect harmony.
+    </p>
+    
+    <div class="luxe-hero-cta">
+      <a href="/catalog/watches/" class="luxe-btn luxe-hero-btn luxe-hero-btn-primary luxe-ripple">
+        Explore Timepieces
+      </a>
+      <a href="/private-client/" class="luxe-btn luxe-hero-btn luxe-hero-btn-secondary luxe-ripple">
+        Private Client
+      </a>
+    </div>
+  </div>
+  
+  <div class="luxe-scroll-indicator">
+    <div class="luxe-scroll-mouse">
+      <div class="luxe-scroll-wheel"></div>
+    </div>
+    <p class="luxe-scroll-text">Scroll to Explore</p>
+  </div>
+</section>
+
+<!-- Luxury Collections Section -->
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Curated Excellence</p>
+      <h2 class="luxe-section-title">Exclusive Collections</h2>
+      <p class="luxe-section-description">
+        Each piece in our collection represents the pinnacle of craftsmanship, selected for the discerning connoisseur who accepts nothing less than perfection.
+      </p>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="100">
+        <img src="{% static 'img/hero1.jpg' %}" alt="Swiss Timepieces" class="luxe-collection-image">
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">Swiss Timepieces</h3>
+            <p class="luxe-collection-subtitle">Precision Redefined</p>
+            <a href="/catalog/watches/" class="luxe-collection-cta">
+              Discover Collection <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="hero-slide" style="background-image: url('/static/img/hero2.jpg');">
-        <div class="hero-content">
-          <h1>Signature Fashion</h1>
-          <p>Imported Excellence from Italy & China</p>
-          <a href="/catalog/" class="btn-primary">Shop Now</a>
+      
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="200">
+        <img src="{% static 'img/hero2.jpg' %}" alt="Italian Leather" class="luxe-collection-image">
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">Italian Leather</h3>
+            <p class="luxe-collection-subtitle">Artisanal Mastery</p>
+            <a href="/catalog/bags/" class="luxe-collection-cta">
+              Explore Craftsmanship <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="300">
+        <img src="{% static 'img/magazine1.png' %}" alt="Limited Editions" class="luxe-collection-image">
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">Limited Editions</h3>
+            <p class="luxe-collection-subtitle">Exclusive Access</p>
+            <a href="/catalog/limited-editions/" class="luxe-collection-cta">
+              View Exclusives <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="swiper-pagination"></div>
 </section>
 
-<section class="collections">
-  <h2>Curated Collections</h2>
-  <div class="grid">
-    <a href="/catalog/new-arrivals/" class="card">New Arrivals</a>
-    <a href="/catalog/bestsellers/" class="card">Bestsellers</a>
-    <a href="/catalog/exclusive-drops/" class="card">Limited Editions</a>
+<!-- Luxury Brands Showcase -->
+<section class="luxe-brands" data-animate>
+  <div class="luxe-brands-container">
+    <div class="luxe-brands-header">
+      <p class="luxe-section-subtitle">Prestigious Partners</p>
+      <h2 class="luxe-section-title">World's Finest Brands</h2>
+    </div>
+    
+    <div class="luxe-brands-grid">
+      <div class="luxe-brand-item luxe-hover-scale" data-animate-delay="100">
+        <img src="{% static 'img/rolex.png' %}" alt="Rolex" class="luxe-brand-logo">
+      </div>
+      <div class="luxe-brand-item luxe-hover-scale" data-animate-delay="150">
+        <img src="{% static 'img/gucci.png' %}" alt="Gucci" class="luxe-brand-logo">
+      </div>
+      <div class="luxe-brand-item luxe-hover-scale" data-animate-delay="200">
+        <img src="{% static 'img/armani.png' %}" alt="Armani" class="luxe-brand-logo">
+      </div>
+      <div class="luxe-brand-item luxe-hover-scale" data-animate-delay="250">
+        <img src="{% static 'img/versace.png' %}" alt="Versace" class="luxe-brand-logo">
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="brands-carousel">
-  <img src="/static/img/gucci.png" alt="Gucci">
-  <img src="/static/img/armani.png" alt="Armani">
-  <img src="/static/img/versace.png" alt="Versace">
-  <img src="/static/img/rolex.png" alt="Rolex">
+<!-- Luxury Editorial Section -->
+<section class="luxe-editorial" data-animate>
+  <div class="luxe-editorial-container">
+    <div class="luxe-editorial-content">
+      <p class="luxe-editorial-subtitle">Our Heritage</p>
+      <h2 class="luxe-editorial-title">The Luxerazo Legacy</h2>
+      <p class="luxe-editorial-text">
+        Born from a passion for excellence and an unwavering commitment to authenticity, Luxerazo represents more than luxury—it embodies a lifestyle where every detail matters and every moment is crafted to perfection.
+      </p>
+      <p class="luxe-editorial-text">
+        Our curators travel the world to discover pieces that transcend trends, selecting only those that represent the absolute pinnacle of their craft.
+      </p>
+      <a href="/about/" class="luxe-btn luxe-btn-ghost luxe-ripple">
+        Discover Our Story
+      </a>
+    </div>
+    
+    <div class="luxe-editorial-image-container">
+      <img src="{% static 'img/magazine2.jpg' %}" alt="Luxerazo Heritage" class="luxe-editorial-image">
+    </div>
+  </div>
 </section>
 
-<section class="editorial-content">
-  <h2>The Luxerazo Story</h2>
-  <p>Experience the epitome of luxury with our curated collections, crafted with passion and precision. Our story is one of timeless elegance and unparalleled quality.</p>
+<!-- Exclusive Services Section -->
+<section class="luxe-services" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Bespoke Services</p>
+      <h2 class="luxe-section-title">White-Glove Experience</h2>
+      <p class="luxe-section-description">
+        Experience luxury redefined with our exclusive concierge services, designed for the most discerning clientele.
+      </p>
+    </div>
+    
+    <div class="luxe-services-grid">
+      <div class="luxe-service-card" data-animate-delay="100">
+        <div class="luxe-service-icon">
+          <i class="fas fa-concierge-bell"></i>
+        </div>
+        <h3 class="luxe-service-title">Personal Concierge</h3>
+        <p class="luxe-service-description">
+          Dedicated luxury specialists available 24/7 for personalized assistance and exclusive access.
+        </p>
+        <a href="/concierge/" class="luxe-service-link">Learn More</a>
+      </div>
+      
+      <div class="luxe-service-card" data-animate-delay="200">
+        <div class="luxe-service-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 class="luxe-service-title">Authenticity Guarantee</h3>
+        <p class="luxe-service-description">
+          Every piece undergoes rigorous authentication by certified experts with blockchain verification.
+        </p>
+        <a href="/authenticity/" class="luxe-service-link">View Process</a>
+      </div>
+      
+      <div class="luxe-service-card" data-animate-delay="300">
+        <div class="luxe-service-icon">
+          <i class="fas fa-shipping-fast"></i>
+        </div>
+        <h3 class="luxe-service-title">White-Glove Delivery</h3>
+        <p class="luxe-service-description">
+          Secure, insured delivery with optional in-person presentation for your most precious acquisitions.
+        </p>
+        <a href="/delivery/" class="luxe-service-link">Explore Options</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="newsletter-signup">
-  <h2>Subscribe to Our Newsletter</h2>
-  <form method="post" action="/subscribe/">
-    {% csrf_token %}
-    <input type="email" name="email" placeholder="Enter your email" required>
-    <button type="submit" class="btn-primary">Subscribe</button>
-  </form>
+<!-- Newsletter Section -->
+<section class="luxe-newsletter" data-animate>
+  <div class="luxe-newsletter-container">
+    <p class="luxe-section-subtitle">Stay Informed</p>
+    <h2 class="luxe-section-title">Exclusive Access</h2>
+    <p class="luxe-section-description">
+      Be the first to discover new arrivals, limited editions, and exclusive events reserved for our most valued clients.
+    </p>
+    
+    <form class="luxe-newsletter-form" method="post" action="/newsletter/">
+      {% csrf_token %}
+      <input type="email" name="email" placeholder="Enter your email address" required class="luxe-newsletter-input">
+      <button type="submit" class="luxe-newsletter-btn luxe-ripple">
+        Join Our Circle
+      </button>
+    </form>
+    
+    <p class="luxe-newsletter-privacy">
+      <small>Your privacy is paramount. We never share your information and you can unsubscribe at any time.</small>
+    </p>
+  </div>
 </section>
 
-  <section class="social-proof">
-    <h3>As seen in</h3>
-    <div class="magazine-slider swiper">
+<!-- Social Proof Section -->
+<section class="luxe-social-proof" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Recognition</p>
+      <h2 class="luxe-section-title">As Featured In</h2>
+    </div>
+    
+    <div class="luxe-magazine-slider swiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="/static/img/magazine1.png" alt="Luxury Magazine 1">
+          <div class="luxe-magazine-item">
+            <img src="{% static 'img/magazine1.png' %}" alt="Luxury Magazine Feature" class="luxe-magazine-image">
+          </div>
         </div>
         <div class="swiper-slide">
-          <img src="/static/img/magazine2.jpg" alt="Luxury Magazine 2">
+          <div class="luxe-magazine-item">
+            <img src="{% static 'img/magazine2.jpg' %}" alt="Fashion Weekly Feature" class="luxe-magazine-image">
+          </div>
         </div>
         <div class="swiper-slide">
-          <img src="/static/img/magazine3.jpg" alt="Luxury Magazine 3">
+          <div class="luxe-magazine-item">
+            <img src="{% static 'img/magazine3.jpg' %}" alt="Elite Lifestyle Feature" class="luxe-magazine-image">
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="luxe-magazine-item">
+            <img src="{% static 'img/magazine4.jpg' %}" alt="Luxury Times Feature" class="luxe-magazine-image">
+          </div>
         </div>
       </div>
       <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const magazineSwiper = new Swiper('.magazine-slider', {
-        loop: true,
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize magazine slider
+  const magazineSwiper = new Swiper('.luxe-magazine-slider', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+      },
+      1024: {
         slidesPerView: 3,
-        spaceBetween: 20,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        breakpoints: {
-          0: {
-            slidesPerView: 1,
-          },
-          640: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
-        },
-      });
+      },
+      1280: {
+        slidesPerView: 4,
+      },
+    },
+  });
+  
+  // Add luxury loading animation for page elements
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
     });
-  </script>
+  }, observerOptions);
+  
+  // Observe all animated elements
+  document.querySelectorAll('[data-animate]').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    observer.observe(el);
+  });
+});
+</script>
 {% endblock %}
