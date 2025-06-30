@@ -501,8 +501,134 @@
     padding: var(--luxe-space-lg);
   }
   
+  .luxe-mobile-toggle {
+    position: relative;
+    z-index: 3000;
+    width: 42px;
+    height: 42px;
+  }
+  
   .luxe-mobile-menu {
     width: 280px;
     padding: var(--luxe-space-lg);
+    z-index: 2999;
+  }
+  
+  .luxe-action-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+  
+  .luxe-header-actions {
+    gap: var(--luxe-space-xs);
+  }
+}
+
+@media (max-width: 430px) {
+  .luxe-header-container {
+    padding: 0 8px;
+  }
+  
+  .luxe-logo img {
+    height: 36px;
+  }
+  
+  .luxe-mobile-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+  
+  .luxe-action-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
+  }
+  
+  .luxe-header-actions {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 375px) {
+  .luxe-header-container {
+    padding: 0 6px;
+  }
+  
+  .luxe-logo img {
+    height: 32px;
+  }
+  
+  .luxe-mobile-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  
+  .luxe-action-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+  
+  .luxe-header-actions {
+    gap: 3px;
+  }
+}
+
+@media (max-width: 340px) {
+  .luxe-header-container {
+    padding: 0 4px;
+  }
+  
+  .luxe-logo img {
+    height: 28px;
+  }
+  
+  .luxe-mobile-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 0.9rem !important;
+    z-index: 4000 !important;
+    background: rgba(212, 175, 55, 0.1) !important;
+    border-radius: 8px !important;
+    pointer-events: auto !important;
+  }
+  
+  .luxe-action-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
+  }
+  
+  .luxe-header-actions {
+    gap: 2px;
+  }
+}
+
+@media (max-width: 320px) {
+  .luxe-header-container {
+    padding: 0 2px;
+  }
+  
+  .luxe-logo img {
+    height: 26px;
+  }
+  
+  .luxe-mobile-toggle {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .luxe-action-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+  
+  .luxe-header-actions {
+    gap: 1px;
   }
 }

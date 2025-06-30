@@ -10,7 +10,7 @@ def contact_view(request):
     return render(request, 'core/contact.html')
 
 def concierge_view(request):
-    return render(request, 'core/concierge.html')
+    return render(request, 'concierge/index.html')
 
 def shipping_view(request):
     return render(request, 'core/shipping.html')
