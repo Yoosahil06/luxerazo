@@ -1,0 +1,732 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact Us – Luxerazo Client Services{% endblock %}
+{% block description %}Experience unparalleled customer service at Luxerazo. Our dedicated concierge team is available 24/7 to assist with your luxury shopping needs.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* LUXURY CONTACT PAGE STYLES */
+.luxe-contact-hero {
+  position: relative;
+  min-height: 60vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-contact-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/hero2.jpg" %}') center/cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.luxe-contact-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-contact-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.25rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-sm);
+  font-style: italic;
+}
+
+.luxe-contact-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-contact-hero-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-contact-priority {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xl) 0;
+  text-align: center;
+}
+
+.luxe-priority-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-sm) var(--luxe-space-lg);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: var(--luxe-space-md);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-priority-statement {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-priority-description {
+  font-size: 1.125rem;
+  color: var(--luxe-charcoal);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.luxe-contact-methods {
+  padding: var(--luxe-space-xxl) 0;
+  background: var(--luxe-cream);
+}
+
+.luxe-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-contact-card {
+  background: white;
+  padding: var(--luxe-space-xl);
+  border-radius: 8px;
+  box-shadow: var(--luxe-shadow-subtle);
+  text-align: center;
+  transition: all var(--luxe-transition-medium);
+  border: 1px solid var(--luxe-platinum);
+}
+
+.luxe-contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--luxe-shadow-strong);
+  border-color: var(--luxe-gold);
+}
+
+.luxe-contact-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--luxe-gold-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--luxe-space-md);
+  font-size: 2rem;
+  color: var(--luxe-obsidian);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-contact-card-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-sm);
+}
+
+.luxe-contact-card-description {
+  color: var(--luxe-charcoal);
+  margin-bottom: var(--luxe-space-md);
+  line-height: 1.6;
+}
+
+.luxe-contact-info {
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-xs);
+}
+
+.luxe-contact-availability {
+  font-size: 0.875rem;
+  color: var(--luxe-gold);
+  font-style: italic;
+}
+
+.luxe-contact-form-section {
+  padding: var(--luxe-space-xxl) 0;
+  background: var(--luxe-pearl);
+}
+
+.luxe-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: var(--luxe-space-xxl);
+  border-radius: 12px;
+  box-shadow: var(--luxe-shadow-medium);
+  border: 1px solid var(--luxe-platinum);
+}
+
+.luxe-form-header {
+  text-align: center;
+  margin-bottom: var(--luxe-space-xl);
+}
+
+.luxe-form-title {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-sm);
+}
+
+.luxe-form-subtitle {
+  color: var(--luxe-charcoal);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.luxe-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--luxe-space-md);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-form-group {
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-xs);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.luxe-form-input,
+.luxe-form-select,
+.luxe-form-textarea {
+  width: 100%;
+  padding: var(--luxe-space-sm) var(--luxe-space-md);
+  border: 2px solid var(--luxe-platinum);
+  border-radius: 4px;
+  font-family: var(--luxe-font-body);
+  font-size: 1rem;
+  transition: all var(--luxe-transition-medium);
+  background: var(--luxe-pearl);
+}
+
+.luxe-form-input:focus,
+.luxe-form-select:focus,
+.luxe-form-textarea:focus {
+  outline: none;
+  border-color: var(--luxe-gold);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.luxe-form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.luxe-form-submit {
+  width: 100%;
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  border: none;
+  padding: var(--luxe-space-md) var(--luxe-space-lg);
+  font-family: var(--luxe-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--luxe-transition-medium);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+}
+
+.luxe-vip-services {
+  padding: var(--luxe-space-xxl) 0;
+  background: var(--luxe-navy);
+  color: var(--luxe-pearl);
+}
+
+.luxe-vip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--luxe-space-lg);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-vip-service {
+  text-align: center;
+  padding: var(--luxe-space-lg);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  transition: all var(--luxe-transition-medium);
+}
+
+.luxe-vip-service:hover {
+  border-color: var(--luxe-gold);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.luxe-vip-icon {
+  font-size: 2.5rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-vip-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--luxe-space-sm);
+}
+
+.luxe-vip-description {
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.luxe-testimonials {
+  padding: var(--luxe-space-xxl) 0;
+  background: var(--luxe-champagne);
+}
+
+.luxe-testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-testimonial {
+  background: white;
+  padding: var(--luxe-space-xl);
+  border-radius: 8px;
+  box-shadow: var(--luxe-shadow-subtle);
+  text-align: center;
+  border: 1px solid var(--luxe-platinum);
+}
+
+.luxe-testimonial-quote {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--luxe-charcoal);
+  margin-bottom: var(--luxe-space-md);
+  line-height: 1.7;
+}
+
+.luxe-testimonial-author {
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-xs);
+}
+
+.luxe-testimonial-title {
+  font-size: 0.875rem;
+  color: var(--luxe-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .luxe-contact-hero {
+    min-height: 50vh;
+  }
+  
+  .luxe-contact-grid,
+  .luxe-vip-grid,
+  .luxe-testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .luxe-form-container {
+    padding: var(--luxe-space-lg);
+  }
+  
+  .luxe-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Contact Hero -->
+<section class="luxe-contact-hero" data-animate>
+  <div class="luxe-contact-hero-content">
+    <p class="luxe-contact-hero-subtitle">Unparalleled Service Excellence</p>
+    <h1 class="luxe-contact-hero-title">Your Satisfaction is Our Priority</h1>
+    <p class="luxe-contact-hero-description">
+      Experience the pinnacle of luxury customer service. Our dedicated concierge team is committed to exceeding your expectations at every touchpoint, ensuring your journey with Luxerazo is nothing short of extraordinary.
+    </p>
+  </div>
+</section>
+
+<!-- Customer Priority Statement -->
+<section class="luxe-contact-priority" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-priority-badge">
+      <i class="fas fa-crown"></i>
+      <span>Our Promise</span>
+    </div>
+    <h2 class="luxe-priority-statement">Customer Satisfaction Above All</h2>
+    <p class="luxe-priority-description">
+      At Luxerazo, your satisfaction isn't just our goal—it's our obsession. Every interaction is crafted to deliver the white-glove service you deserve, because true luxury lies in the details of exceptional care.
+    </p>
+  </div>
+</section>
+
+<!-- Premium Contact Methods -->
+<section class="luxe-contact-methods" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Multiple Ways to Connect</p>
+      <h2 class="luxe-section-title">Reach Our Luxury Concierge</h2>
+      <p class="luxe-section-description">
+        Choose your preferred method of communication. Our dedicated team is standing by to provide personalized assistance.
+      </p>
+    </div>
+    
+    <div class="luxe-contact-grid">
+      <div class="luxe-contact-card luxe-hover-lift" data-animate-delay="100">
+        <div class="luxe-contact-icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <h3 class="luxe-contact-card-title">Priority Hotline</h3>
+        <p class="luxe-contact-card-description">
+          Speak directly with our luxury specialists for immediate assistance with your inquiries.
+        </p>
+        <div class="luxe-contact-info">+1 (555) 123-LUXE</div>
+        <div class="luxe-contact-availability">Available 24/7</div>
+      </div>
+      
+      <div class="luxe-contact-card luxe-hover-lift" data-animate-delay="200">
+        <div class="luxe-contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3 class="luxe-contact-card-title">Private Email</h3>
+        <p class="luxe-contact-card-description">
+          Send us a detailed message and receive a personalized response within 2 hours.
+        </p>
+        <div class="luxe-contact-info">concierge@luxerazo.com</div>
+        <div class="luxe-contact-availability">Response within 2 hours</div>
+      </div>
+      
+      <div class="luxe-contact-card luxe-hover-lift" data-animate-delay="300">
+        <div class="luxe-contact-icon">
+          <i class="fas fa-comments"></i>
+        </div>
+        <h3 class="luxe-contact-card-title">Live Chat</h3>
+        <p class="luxe-contact-card-description">
+          Connect instantly with our luxury advisors for real-time assistance and guidance.
+        </p>
+        <div class="luxe-contact-info">Instant Connection</div>
+        <div class="luxe-contact-availability">Available 24/7</div>
+      </div>
+      
+      <div class="luxe-contact-card luxe-hover-lift" data-animate-delay="400">
+        <div class="luxe-contact-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h3 class="luxe-contact-card-title">Private Appointment</h3>
+        <p class="luxe-contact-card-description">
+          Schedule a one-on-one consultation with our luxury specialists at your convenience.
+        </p>
+        <div class="luxe-contact-info">Book Consultation</div>
+        <div class="luxe-contact-availability">Flexible scheduling</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Luxury Contact Form -->
+<section class="luxe-contact-form-section" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-form-container">
+      <div class="luxe-form-header">
+        <h2 class="luxe-form-title">Send Us a Message</h2>
+        <p class="luxe-form-subtitle">
+          Share your inquiry with us, and our luxury concierge team will respond with personalized attention to your needs.
+        </p>
+      </div>
+      
+      <form class="luxe-contact-form" method="post" action="/contact/">
+        {% csrf_token %}
+        
+        <div class="luxe-form-grid">
+          <div class="luxe-form-group">
+            <label for="first_name" class="luxe-form-label">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="luxe-form-input" required>
+          </div>
+          
+          <div class="luxe-form-group">
+            <label for="last_name" class="luxe-form-label">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="luxe-form-input" required>
+          </div>
+        </div>
+        
+        <div class="luxe-form-grid">
+          <div class="luxe-form-group">
+            <label for="email" class="luxe-form-label">Email Address</label>
+            <input type="email" id="email" name="email" class="luxe-form-input" required>
+          </div>
+          
+          <div class="luxe-form-group">
+            <label for="phone" class="luxe-form-label">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="luxe-form-input">
+          </div>
+        </div>
+        
+        <div class="luxe-form-group">
+          <label for="subject" class="luxe-form-label">Subject</label>
+          <select id="subject" name="subject" class="luxe-form-select" required>
+            <option value="">Select a topic</option>
+            <option value="product_inquiry">Product Inquiry</option>
+            <option value="order_status">Order Status</option>
+            <option value="private_client">Private Client Services</option>
+            <option value="authentication">Authentication Services</option>
+            <option value="customization">Customization Request</option>
+            <option value="vip_events">VIP Events</option>
+            <option value="feedback">Feedback</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="luxe-form-group">
+          <label for="message" class="luxe-form-label">Message</label>
+          <textarea id="message" name="message" class="luxe-form-textarea" placeholder="Please share your inquiry or how we can assist you..." required></textarea>
+        </div>
+        
+        <button type="submit" class="luxe-form-submit luxe-ripple">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- VIP Client Services -->
+<section class="luxe-vip-services" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle" style="color: var(--luxe-gold);">Exclusive Services</p>
+      <h2 class="luxe-section-title" style="color: var(--luxe-pearl);">White-Glove Experience</h2>
+      <p class="luxe-section-description" style="color: rgba(248, 246, 240, 0.9);">
+        Discover the exceptional services that set Luxerazo apart in the world of luxury retail.
+      </p>
+    </div>
+    
+    <div class="luxe-vip-grid">
+      <div class="luxe-vip-service" data-animate-delay="100">
+        <div class="luxe-vip-icon">
+          <i class="fas fa-concierge-bell"></i>
+        </div>
+        <h3 class="luxe-vip-title">Personal Concierge</h3>
+        <p class="luxe-vip-description">
+          Dedicated luxury specialists available 24/7 for personalized assistance and exclusive access.
+        </p>
+      </div>
+      
+      <div class="luxe-vip-service" data-animate-delay="200">
+        <div class="luxe-vip-icon">
+          <i class="fas fa-shipping-fast"></i>
+        </div>
+        <h3 class="luxe-vip-title">White-Glove Delivery</h3>
+        <p class="luxe-vip-description">
+          Secure, insured delivery with optional in-person presentation for your precious acquisitions.
+        </p>
+      </div>
+      
+      <div class="luxe-vip-service" data-animate-delay="300">
+        <div class="luxe-vip-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 class="luxe-vip-title">Authenticity Guarantee</h3>
+        <p class="luxe-vip-description">
+          Every piece undergoes rigorous authentication by certified experts with lifetime guarantee.
+        </p>
+      </div>
+      
+      <div class="luxe-vip-service" data-animate-delay="400">
+        <div class="luxe-vip-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <h3 class="luxe-vip-title">VIP Events</h3>
+        <p class="luxe-vip-description">
+          Exclusive access to private viewings, trunk shows, and luxury brand events worldwide.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Customer Testimonials -->
+<section class="luxe-testimonials" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Client Experiences</p>
+      <h2 class="luxe-section-title">Exceptional Service Stories</h2>
+      <p class="luxe-section-description">
+        Hear from our valued clients about their extraordinary experiences with Luxerazo's customer service.
+      </p>
+    </div>
+    
+    <div class="luxe-testimonial-grid">
+      <div class="luxe-testimonial" data-animate-delay="100">
+        <p class="luxe-testimonial-quote">
+          "The level of personal attention I received was extraordinary. My concierge understood exactly what I was looking for and made the entire experience seamless and luxurious."
+        </p>
+        <div class="luxe-testimonial-author">Victoria Sterling</div>
+        <div class="luxe-testimonial-title">Private Client</div>
+      </div>
+      
+      <div class="luxe-testimonial" data-animate-delay="200">
+        <p class="luxe-testimonial-quote">
+          "When I had concerns about my purchase, the team went above and beyond to resolve everything immediately. This is what true luxury service looks like."
+        </p>
+        <div class="luxe-testimonial-author">James Wellington</div>
+        <div class="luxe-testimonial-title">VIP Member</div>
+      </div>
+      
+      <div class="luxe-testimonial" data-animate-delay="300">
+        <p class="luxe-testimonial-quote">
+          "The white-glove delivery service was impeccable. They treated my timepiece like the precious artifact it is. Absolutely exceptional attention to detail."
+        </p>
+        <div class="luxe-testimonial-author">Isabella Rothschild</div>
+        <div class="luxe-testimonial-title">Collector</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Luxury form enhancements
+  const form = document.querySelector('.luxe-contact-form');
+  const inputs = form.querySelectorAll('.luxe-form-input, .luxe-form-select, .luxe-form-textarea');
+  
+  // Add luxury focus effects
+  inputs.forEach(input => {
+    input.addEventListener('focus', function() {
+      this.parentElement.style.transform = 'translateY(-2px)';
+      this.parentElement.style.transition = 'transform 0.3s ease';
+    });
+    
+    input.addEventListener('blur', function() {
+      this.parentElement.style.transform = 'translateY(0)';
+    });
+  });
+  
+  // Form submission with luxury loading
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const submitBtn = form.querySelector('.luxe-form-submit');
+    const originalText = submitBtn.textContent;
+    
+    // Luxury loading state
+    submitBtn.textContent = 'Sending Message...';
+    submitBtn.style.background = 'var(--luxe-platinum)';
+    submitBtn.style.color = 'var(--luxe-charcoal)';
+    submitBtn.disabled = true;
+    
+    // Simulate form submission (replace with actual submission logic)
+    setTimeout(() => {
+      submitBtn.textContent = 'Message Sent!';
+      submitBtn.style.background = 'var(--luxe-gold-gradient)';
+      submitBtn.style.color = 'var(--luxe-obsidian)';
+      
+      // Show success message
+      const successMessage = document.createElement('div');
+      successMessage.innerHTML = `
+        <div style="background: var(--luxe-gold); color: var(--luxe-obsidian); padding: var(--luxe-space-md); border-radius: 4px; margin-top: var(--luxe-space-md); text-align: center; font-weight: 600;">
+          <i class="fas fa-check-circle"></i> Thank you! Our luxury concierge team will respond within 2 hours.
+        </div>
+      `;
+      form.appendChild(successMessage);
+      
+      // Reset form after delay
+      setTimeout(() => {
+        form.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        successMessage.remove();
+      }, 3000);
+    }, 2000);
+  });
+  
+  // Luxury scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.animateDelay || 0;
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, delay);
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all animated elements
+  document.querySelectorAll('[data-animate], [data-animate-delay]').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    observer.observe(el);
+  });
+  
+  // Add luxury hover effects to contact cards
+  document.querySelectorAll('.luxe-contact-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.borderColor = 'var(--luxe-gold)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.borderColor = 'var(--luxe-platinum)';
+    });
+  });
+});
+</script>
+{% endblock %}

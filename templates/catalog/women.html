@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Women's Collection{% endblock %}
+{% block description %}Explore Luxerazo's exclusive women's collection featuring luxury watches, bags, jewelry, and accessories.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}">
+<style>
+  /* Feminine luxury styling */
+  .luxe-hero {
+    background: linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 100%);
+  }
+  
+  .luxe-hero-overlay {
+    background: linear-gradient(135deg, rgba(218, 165, 132, 0.3) 0%, rgba(139, 69, 19, 0.2) 100%);
+  }
+  
+  .luxe-hero-title {
+    color: #8b4513;
+    text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    letter-spacing: 3px;
+  }
+  
+  .luxe-hero-subtitle {
+    color: #daa584;
+    font-style: italic;
+    font-weight: 300;
+  }
+  
+  .luxe-section-title {
+    color: #8b4513;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+  }
+  
+  .luxe-collection-card {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box, 
+                linear-gradient(135deg, #daa584, #f4e4d6) border-box;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  
+  .luxe-collection-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(218, 165, 132, 0.3);
+  }
+  
+  .luxe-collection-overlay {
+    background: linear-gradient(135deg, rgba(218, 165, 132, 0.9) 0%, rgba(139, 69, 19, 0.8) 100%);
+  }
+  
+  .luxe-collection-cta {
+    background: linear-gradient(135deg, #8b4513 0%, #daa584 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+  }
+  
+  .luxe-collection-cta:hover {
+    background: linear-gradient(135deg, #daa584 0%, #8b4513 100%);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+  }
+  
+  .luxe-filter-section {
+    background: linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 100%);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    border: 1px solid #daa584;
+  }
+  
+  .luxe-filter-title {
+    color: #8b4513;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .luxe-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    align-items: end;
+  }
+  
+  .luxe-filter-group label {
+    color: #8b4513;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .luxe-filter-group select,
+  .luxe-filter-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #daa584;
+    border-radius: 8px;
+    background: white;
+    color: #8b4513;
+    font-size: 14px;
+  }
+  
+  .luxe-filter-group select:focus,
+  .luxe-filter-group input:focus {
+    outline: none;
+    border-color: #8b4513;
+    box-shadow: 0 0 10px rgba(218, 165, 132, 0.3);
+  }
+  
+  .luxe-apply-filters {
+    background: linear-gradient(135deg, #8b4513 0%, #daa584 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .luxe-apply-filters:hover {
+    background: linear-gradient(135deg, #daa584 0%, #8b4513 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static "img/women-luxury-hero.jpg" %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Exquisite Elegance</p>
+    <h1 class="luxe-hero-title">Women's Luxury Collection</h1>
+    <p class="luxe-hero-description">
+      Discover timeless pieces that celebrate feminine sophistication and luxury craftsmanship.
+    </p>
+  </div>
+</section>
+
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Curated for Her</p>
+      <h2 class="luxe-section-title">Elegant Women's Collection</h2>
+      <p class="luxe-section-description">
+        From exquisite timepieces to stunning jewelry, discover luxury pieces that embody grace and sophistication.
+      </p>
+    </div>
+    
+    <!-- Filters Section -->
+    <div class="luxe-filter-section">
+      <h3 class="luxe-filter-title">Refine Your Selection</h3>
+      <form method="get" class="luxe-filter-form">
+        <div class="luxe-filter-grid">
+          <div class="luxe-filter-group">
+            <label for="brand">Brand</label>
+            <select name="brand" id="brand">
+              <option value="">All Brands</option>
+              <option value="cartier" {% if current_filters.brand == 'cartier' %}selected{% endif %}>Cartier</option>
+              <option value="tiffany" {% if current_filters.brand == 'tiffany' %}selected{% endif %}>Tiffany & Co.</option>
+              <option value="chanel" {% if current_filters.brand == 'chanel' %}selected{% endif %}>Chanel</option>
+              <option value="dior" {% if current_filters.brand == 'dior' %}selected{% endif %}>Dior</option>
+              <option value="hermes" {% if current_filters.brand == 'hermes' %}selected{% endif %}>Hermès</option>
+            </select>
+          </div>
+          
+          <div class="luxe-filter-group">
+            <label for="category">Category</label>
+            <select name="category" id="category">
+              <option value="">All Categories</option>
+              <option value="watches" {% if current_filters.category == 'watches' %}selected{% endif %}>Watches</option>
+              <option value="jewelry" {% if current_filters.category == 'jewelry' %}selected{% endif %}>Jewelry</option>
+              <option value="bags" {% if current_filters.category == 'bags' %}selected{% endif %}>Handbags</option>
+              <option value="accessories" {% if current_filters.category == 'accessories' %}selected{% endif %}>Accessories</option>
+            </select>
+          </div>
+          
+          <div class="luxe-filter-group">
+            <label for="price_min">Min Price ($)</label>
+            <input type="number" name="price_min" id="price_min" value="{{ current_filters.price_min }}" placeholder="0">
+          </div>
+          
+          <div class="luxe-filter-group">
+            <label for="price_max">Max Price ($)</label>
+            <input type="number" name="price_max" id="price_max" value="{{ current_filters.price_max }}" placeholder="50000">
+          </div>
+          
+          <div class="luxe-filter-group">
+            <label for="sort">Sort By</label>
+            <select name="sort" id="sort">
+              <option value="newest" {% if current_filters.sort == 'newest' %}selected{% endif %}>Newest First</option>
+              <option value="price_low" {% if current_filters.sort == 'price_low' %}selected{% endif %}>Price: Low to High</option>
+              <option value="price_high" {% if current_filters.sort == 'price_high' %}selected{% endif %}>Price: High to Low</option>
+            </select>
+          </div>
+          
+          <div class="luxe-filter-group">
+            <button type="submit" class="luxe-apply-filters">Apply Filters</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      {% for product in page_obj %}
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="{{ forloop.counter0|add:'100' }}">
+        {% if product.main_image %}
+        <img src="{{ product.main_image.image.url }}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% else %}
+        <img src="{% static 'img/hero1.jpg' %}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% endif %}
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">{{ product.name }}</h3>
+            <p class="luxe-collection-subtitle">{{ product.brand.name }}</p>
+            <p class="luxe-collection-price">${{ product.discounted_price|floatformat:2 }}</p>
+            {% if product.discount_percent > 0 %}
+            <p class="luxe-collection-discount">{{ product.discount_percent }}% OFF</p>
+            {% endif %}
+            <a href="{% url 'catalog:product_detail' product.slug %}" class="luxe-collection-cta">
+              Discover More
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="luxe-no-products">
+        <p>No women's products available at the moment. Please check back soon for our latest arrivals.</p>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <div class="luxe-pagination">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="luxe-pagination-link">Previous</a>
+      {% endif %}
+      
+      <span class="luxe-pagination-info">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+      </span>
+      
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="luxe-pagination-link">Next</a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,578 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Private Client Services – Luxerazo Exclusive Membership{% endblock %}
+{% block description %}Join Luxerazo's exclusive Private Client program. Experience unparalleled luxury with personalized service, exclusive access, and VIP privileges.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* LUXURY PRIVATE CLIENT PAGE STYLES */
+.luxe-private-hero {
+  position: relative;
+  min-height: 80vh;
+  background: linear-gradient(135deg, var(--luxe-obsidian) 0%, var(--luxe-navy) 50%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-private-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/hero1.jpg" %}') center/cover;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.luxe-private-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-private-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-md) var(--luxe-space-xl);
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.125rem;
+  margin-bottom: var(--luxe-space-lg);
+  box-shadow: var(--luxe-shadow-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: luxe-pulse-gold 3s infinite;
+}
+
+.luxe-private-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 900;
+  line-height: 1.0;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
+  letter-spacing: -2px;
+}
+
+.luxe-private-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 2rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-lg);
+  font-style: italic;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.luxe-private-hero-description {
+  font-size: 1.375rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: var(--luxe-space-xl);
+  font-weight: 500;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.luxe-exclusive-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-lg) var(--luxe-space-xl);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--luxe-font-body);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--luxe-transition-medium);
+  box-shadow: var(--luxe-shadow-gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-exclusive-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+}
+
+.luxe-exclusive-benefits {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+}
+
+.luxe-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-benefit-card {
+  background: white;
+  padding: var(--luxe-space-xl);
+  border-radius: 16px;
+  box-shadow: var(--luxe-shadow-medium);
+  text-align: center;
+  border: 3px solid transparent;
+  transition: all var(--luxe-transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--luxe-gold-gradient);
+}
+
+.luxe-benefit-card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--luxe-shadow-strong);
+  border-color: var(--luxe-gold);
+}
+
+.luxe-benefit-icon {
+  width: 100px;
+  height: 100px;
+  background: var(--luxe-gold-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--luxe-space-lg);
+  font-size: 2.5rem;
+  color: var(--luxe-obsidian);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-benefit-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.luxe-benefit-description {
+  color: var(--luxe-charcoal);
+  line-height: 1.8;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.luxe-membership-tiers {
+  background: var(--luxe-navy);
+  color: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+}
+
+.luxe-tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-tier-card {
+  background: rgba(248, 246, 240, 0.05);
+  padding: var(--luxe-space-xl);
+  border-radius: 16px;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  text-align: center;
+  transition: all var(--luxe-transition-medium);
+  position: relative;
+}
+
+.luxe-tier-card.featured {
+  border-color: var(--luxe-gold);
+  background: rgba(212, 175, 55, 0.1);
+  transform: scale(1.05);
+}
+
+.luxe-tier-card:hover {
+  border-color: var(--luxe-gold);
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateY(-8px);
+}
+
+.luxe-tier-badge {
+  display: inline-block;
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-xs) var(--luxe-space-md);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-tier-title {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: var(--luxe-space-sm);
+  color: var(--luxe-gold);
+}
+
+.luxe-tier-price {
+  font-size: 1.125rem;
+  margin-bottom: var(--luxe-space-lg);
+  opacity: 0.9;
+}
+
+.luxe-tier-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-tier-features li {
+  padding: var(--luxe-space-xs) 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  font-weight: 500;
+}
+
+.luxe-tier-cta {
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-md) var(--luxe-space-lg);
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all var(--luxe-transition-medium);
+  width: 100%;
+}
+
+.luxe-tier-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-exclusive-access {
+  background: var(--luxe-champagne);
+  padding: var(--luxe-space-xxl) 0;
+  text-align: center;
+}
+
+.luxe-access-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.luxe-access-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: var(--luxe-space-lg);
+  color: var(--luxe-navy);
+}
+
+.luxe-access-description {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--luxe-charcoal);
+  margin-bottom: var(--luxe-space-xl);
+  font-weight: 500;
+}
+
+.luxe-join-now {
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-lg) var(--luxe-space-xxl);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all var(--luxe-transition-medium);
+  box-shadow: var(--luxe-shadow-gold);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.luxe-join-now:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 35px rgba(212, 175, 55, 0.6);
+}
+
+@media (max-width: 768px) {
+  .luxe-private-hero {
+    min-height: 70vh;
+  }
+  
+  .luxe-benefits-grid,
+  .luxe-tiers-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .luxe-tier-card.featured {
+    transform: none;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Exclusive Private Client Hero -->
+<section class="luxe-private-hero" data-animate>
+  <div class="luxe-private-hero-content">
+    <div class="luxe-private-hero-badge">
+      <i class="fas fa-crown"></i>
+      <span>Invitation Only</span>
+    </div>
+    <h1 class="luxe-private-hero-title">PRIVATE CLIENT</h1>
+    <p class="luxe-private-hero-subtitle">Where Luxury Meets Exclusivity</p>
+    <p class="luxe-private-hero-description">
+      Step into a world reserved for the most discerning connoisseurs. Our Private Client program offers unparalleled access to the rarest pieces, personalized concierge services, and experiences that money simply cannot buy elsewhere.
+    </p>
+    <a href="#membership" class="luxe-exclusive-cta luxe-ripple">
+      <i class="fas fa-key"></i>
+      <span>Request Invitation</span>
+    </a>
+  </div>
+</section>
+
+<!-- Exclusive Benefits -->
+<section class="luxe-exclusive-benefits" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Unmatched Privileges</p>
+      <h2 class="luxe-section-title">Private Client Benefits</h2>
+      <p class="luxe-section-description">
+        Experience luxury redefined with benefits that extend far beyond ordinary retail. Our Private Client program is designed for those who demand the extraordinary.
+      </p>
+    </div>
+    
+    <div class="luxe-benefits-grid">
+      <div class="luxe-benefit-card luxe-hover-lift" data-animate-delay="100">
+        <div class="luxe-benefit-icon">
+          <i class="fas fa-gem"></i>
+        </div>
+        <h3 class="luxe-benefit-title">Exclusive Access</h3>
+        <p class="luxe-benefit-description">
+          First access to limited editions, private collections, and pieces never available to the public. Your personal curator ensures you never miss a coveted item.
+        </p>
+      </div>
+      
+      <div class="luxe-benefit-card luxe-hover-lift" data-animate-delay="200">
+        <div class="luxe-benefit-icon">
+          <i class="fas fa-concierge-bell"></i>
+        </div>
+        <h3 class="luxe-benefit-title">24/7 Concierge</h3>
+        <p class="luxe-benefit-description">
+          Your dedicated luxury specialist available around the clock for personalized assistance, expert advice, and immediate service wherever you are in the world.
+        </p>
+      </div>
+      
+      <div class="luxe-benefit-card luxe-hover-lift" data-animate-delay="300">
+        <div class="luxe-benefit-icon">
+          <i class="fas fa-plane"></i>
+        </div>
+        <h3 class="luxe-benefit-title">VIP Experiences</h3>
+        <p class="luxe-benefit-description">
+          Exclusive invitations to private viewings, luxury brand events, and once-in-a-lifetime experiences curated specifically for our most valued clients.
+        </p>
+      </div>
+      
+      <div class="luxe-benefit-card luxe-hover-lift" data-animate-delay="400">
+        <div class="luxe-benefit-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 class="luxe-benefit-title">Lifetime Protection</h3>
+        <p class="luxe-benefit-description">
+          Comprehensive insurance, authentication guarantees, and exclusive maintenance services to protect and preserve your luxury investments forever.
+        </p>
+      </div>
+      
+      <div class="luxe-benefit-card luxe-hover-lift" data-animate-delay="500">
+        <div class="luxe-benefit-icon">
+          <i class="fas fa-magic"></i>
+        </div>
+        <h3 class="luxe-benefit-title">Bespoke Services</h3>
+        <p class="luxe-benefit-description">
+          Custom sourcing, personalization services, and access to master craftsmen for truly unique pieces that reflect your individual style and preferences.
+        </p>
+      </div>
+      
+      <div class="luxe-benefit-card luxe-hover-lift" data-animate-delay="600">
+        <div class="luxe-benefit-icon">
+          <i class="fas fa-infinity"></i>
+        </div>
+        <h3 class="luxe-benefit-title">Legacy Program</h3>
+        <p class="luxe-benefit-description">
+          Build and curate a luxury legacy with our heritage collection services, ensuring your acquisitions appreciate in value and significance over time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Membership Tiers -->
+<section class="luxe-membership-tiers" data-animate id="membership">
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle" style="color: var(--luxe-gold);">Membership Levels</p>
+      <h2 class="luxe-section-title" style="color: var(--luxe-pearl);">Choose Your Level of Luxury</h2>
+      <p class="luxe-section-description" style="color: rgba(248, 246, 240, 0.9);">
+        Each tier offers progressively exclusive benefits designed to match your luxury lifestyle and aspirations.
+      </p>
+    </div>
+    
+    <div class="luxe-tiers-grid">
+      <div class="luxe-tier-card" data-animate-delay="100">
+        <div class="luxe-tier-badge">Elite</div>
+        <h3 class="luxe-tier-title">PLATINUM</h3>
+        <div class="luxe-tier-price">By Invitation</div>
+        <ul class="luxe-tier-features">
+          <li>Priority access to new arrivals</li>
+          <li>Personal shopping appointments</li>
+          <li>Complimentary authentication</li>
+          <li>Exclusive member events</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <button class="luxe-tier-cta">Apply Now</button>
+      </div>
+      
+      <div class="luxe-tier-card featured" data-animate-delay="200">
+        <div class="luxe-tier-badge">Most Exclusive</div>
+        <h3 class="luxe-tier-title">DIAMOND</h3>
+        <div class="luxe-tier-price">Ultra-Exclusive</div>
+        <ul class="luxe-tier-features">
+          <li>All Platinum benefits</li>
+          <li>First access to rare pieces</li>
+          <li>Private showroom access</li>
+          <li>Bespoke sourcing services</li>
+          <li>Global concierge support</li>
+          <li>VIP brand partnerships</li>
+        </ul>
+        <button class="luxe-tier-cta">Request Invitation</button>
+      </div>
+      
+      <div class="luxe-tier-card" data-animate-delay="300">
+        <div class="luxe-tier-badge">Ultimate</div>
+        <h3 class="luxe-tier-title">ROYAL</h3>
+        <div class="luxe-tier-price">Invitation Only</div>
+        <ul class="luxe-tier-features">
+          <li>All Diamond benefits</li>
+          <li>Museum-quality pieces</li>
+          <li>Private jet delivery</li>
+          <li>Master craftsman access</li>
+          <li>Legacy collection curation</li>
+          <li>Unlimited customization</li>
+        </ul>
+        <button class="luxe-tier-cta">By Invitation Only</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Exclusive Access Call-to-Action -->
+<section class="luxe-exclusive-access" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-access-content">
+      <h2 class="luxe-access-title">Join the Elite</h2>
+      <p class="luxe-access-description">
+        Membership is limited and by invitation only. Our Private Client program is reserved for those who appreciate the finest things in life and demand service that exceeds every expectation.
+      </p>
+      <a href="/contact/" class="luxe-join-now luxe-ripple">
+        Request Your Invitation
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Luxury scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.animateDelay || 0;
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, delay);
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all animated elements
+  document.querySelectorAll('[data-animate], [data-animate-delay]').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    observer.observe(el);
+  });
+  
+  // Add luxury hover effects to benefit cards
+  document.querySelectorAll('.luxe-benefit-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.borderColor = 'var(--luxe-gold)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.borderColor = 'transparent';
+    });
+  });
+  
+  // Add exclusive interaction to tier cards
+  document.querySelectorAll('.luxe-tier-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      if (!this.classList.contains('featured')) {
+        this.style.transform = 'translateY(-8px) scale(1.02)';
+      }
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      if (!this.classList.contains('featured')) {
+        this.style.transform = 'translateY(0) scale(1)';
+      }
+    });
+  });
+});
+</script>
+{% endblock %}

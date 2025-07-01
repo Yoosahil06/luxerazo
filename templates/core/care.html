@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Care Instructions – Luxerazo Luxury Product Care{% endblock %}
+{% block description %}Learn how to care for your luxury products with expert tips and guidance from Luxerazo. Preserve the beauty and value of your acquisitions.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* LUXURY CARE PAGE STYLES */
+.luxe-care-hero {
+  position: relative;
+  min-height: 60vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-care-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine4.jpg" %}') center/cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.luxe-care-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-care-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.25rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-sm);
+  font-style: italic;
+}
+
+.luxe-care-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-care-hero-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-care-info {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--luxe-charcoal);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.luxe-care-section {
+  margin-bottom: var(--luxe-space-xxl);
+}
+
+.luxe-care-section h2 {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-care-section p {
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-care-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-care-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: var(--luxe-space-sm);
+  font-weight: 500;
+}
+
+.luxe-care-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--luxe-gold);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .luxe-care-hero {
+    min-height: 50vh;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Care Hero -->
+<section class="luxe-care-hero" data-animate>
+  <div class="luxe-care-hero-content">
+    <p class="luxe-care-hero-subtitle">Preserve Your Investment</p>
+    <h1 class="luxe-care-hero-title">Expert Care Instructions</h1>
+    <p class="luxe-care-hero-description">
+      Maintain the beauty and value of your luxury products with our expert care tips. From watches to handbags, we guide you through proper maintenance.
+    </p>
+  </div>
+</section>
+
+<!-- Care Information -->
+<section class="luxe-care-info" data-animate>
+  <div class="luxe-care-section">
+    <h2>Watches</h2>
+    <ul class="luxe-care-list">
+      <li>Keep your watch clean and dry; avoid exposure to extreme temperatures.</li>
+      <li>Service your watch regularly with authorized professionals.</li>
+      <li>Store your watch in a protective case when not in use.</li>
+    </ul>
+  </div>
+  
+  <div class="luxe-care-section">
+    <h2>Handbags & Accessories</h2>
+    <ul class="luxe-care-list">
+      <li>Store handbags in dust bags to prevent scratches and dust accumulation.</li>
+      <li>Avoid overloading to maintain shape and structure.</li>
+      <li>Clean with appropriate leather or fabric care products.</li>
+    </ul>
+  </div>
+  
+  <div class="luxe-care-section">
+    <h2>Apparel</h2>
+    <ul class="luxe-care-list">
+      <li>Follow care labels for washing and dry cleaning instructions.</li>
+      <li>Store garments in breathable garment bags to prevent damage.</li>
+      <li>Handle delicate fabrics with care to avoid snags and tears.</li>
+    </ul>
+  </div>
+</section>
+
+{% endblock %}

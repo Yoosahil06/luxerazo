@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Luxerazo – Ultra-Luxury Fashion & Heritage{% endblock %}
+{% block description %}Discover the story behind Luxerazo, a premier destination for ultra-luxury fashion, watches, and accessories. Experience style without limits.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* LUXURY ABOUT PAGE STYLES */
+.luxe-about-hero {
+  position: relative;
+  min-height: 60vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-about-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine1.png" %}') center/cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.luxe-about-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-about-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.25rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-sm);
+  font-style: italic;
+}
+
+.luxe-about-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-about-hero-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-about-info {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--luxe-charcoal);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.luxe-about-section {
+  margin-bottom: var(--luxe-space-xxl);
+}
+
+.luxe-about-section h2 {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-about-section p {
+  margin-bottom: var(--luxe-space-md);
+}
+
+@media (max-width: 768px) {
+  .luxe-about-hero {
+    min-height: 50vh;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury About Hero -->
+<section class="luxe-about-hero" data-animate>
+  <div class="luxe-about-hero-content">
+    <p class="luxe-about-hero-subtitle">Our Heritage</p>
+    <h1 class="luxe-about-hero-title">The Luxerazo Legacy</h1>
+    <p class="luxe-about-hero-description">
+      Born from a passion for excellence and an unwavering commitment to authenticity, Luxerazo represents more than luxury—it embodies a lifestyle where every detail matters and every moment is crafted to perfection.
+    </p>
+  </div>
+</section>
+
+<!-- About Information -->
+<section class="luxe-about-info" data-animate>
+  <div class="luxe-about-section">
+    <h2>Our Story</h2>
+    <p>
+      Luxerazo was founded to bring the world’s most exclusive luxury collections to discerning clients who demand the highest standards of quality and service.
+    </p>
+    <p>
+      Our curators travel the globe to discover pieces that transcend trends, selecting only those that represent the pinnacle of craftsmanship and style.
+    </p>
+  </div>
+  
+  <div class="luxe-about-section">
+    <h2>Our Commitment</h2>
+    <p>
+      We are dedicated to providing an unparalleled shopping experience, combining expert knowledge, personalized service, and a curated selection of the finest luxury brands.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

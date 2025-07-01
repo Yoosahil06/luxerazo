@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Size Guide – Luxerazo Perfect Fit{% endblock %}
+{% block description %}Find your perfect fit with Luxerazo's comprehensive size guide. Expert tips and measurements for luxury fashion and accessories.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* LUXURY SIZE GUIDE PAGE STYLES */
+.luxe-size-hero {
+  position: relative;
+  min-height: 60vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-size-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine3.jpg" %}') center/cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.luxe-size-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-size-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.25rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-sm);
+  font-style: italic;
+}
+
+.luxe-size-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-size-hero-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-size-info {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--luxe-charcoal);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.luxe-size-section {
+  margin-bottom: var(--luxe-space-xxl);
+}
+
+.luxe-size-section h2 {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-size-section p {
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-size-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-size-table th,
+.luxe-size-table td {
+  border: 1px solid var(--luxe-platinum);
+  padding: var(--luxe-space-sm);
+  text-align: center;
+  font-weight: 500;
+  color: var(--luxe-charcoal);
+}
+
+.luxe-size-table th {
+  background: var(--luxe-cream);
+  font-family: var(--luxe-font-display);
+  color: var(--luxe-navy);
+}
+
+.luxe-size-note {
+  font-style: italic;
+  color: var(--luxe-gold);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .luxe-size-hero {
+    min-height: 50vh;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Size Guide Hero -->
+<section class="luxe-size-hero" data-animate>
+  <div class="luxe-size-hero-content">
+    <p class="luxe-size-hero-subtitle">Perfect Fit, Perfect Style</p>
+    <h1 class="luxe-size-hero-title">Luxerazo Size Guide</h1>
+    <p class="luxe-size-hero-description">
+      Ensure your luxury purchases fit flawlessly with our comprehensive size guide. Expert measurements and tips for watches, bags, and apparel.
+    </p>
+  </div>
+</section>
+
+<!-- Size Guide Information -->
+<section class="luxe-size-info" data-animate>
+  <div class="luxe-size-section">
+    <h2>Watches</h2>
+    <p>Measure your wrist circumference to find the perfect watch size. Our collection offers a range of sizes to suit every style.</p>
+    <table class="luxe-size-table">
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Wrist Circumference (mm)</th>
+          <th>Watch Case Diameter (mm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Small</td>
+          <td>140-160</td>
+          <td>36-38</td>
+        </tr>
+        <tr>
+          <td>Medium</td>
+          <td>160-180</td>
+          <td>39-42</td>
+        </tr>
+        <tr>
+          <td>Large</td>
+          <td>180-200</td>
+          <td>43-46</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="luxe-size-section">
+    <h2>Bags & Accessories</h2>
+    <p>Choose the right size for your luxury bags and accessories by considering your personal style and usage needs.</p>
+    <table class="luxe-size-table">
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Dimensions (cm)</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Small</td>
+          <td>20 x 15 x 8</td>
+          <td>Evening & Formal</td>
+        </tr>
+        <tr>
+          <td>Medium</td>
+          <td>30 x 20 x 12</td>
+          <td>Day-to-Day</td>
+        </tr>
+        <tr>
+          <td>Large</td>
+          <td>40 x 30 x 15</td>
+          <td>Travel & Work</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="luxe-size-section">
+    <h2>Apparel</h2>
+    <p>Refer to our detailed size charts to select the perfect fit for your luxury clothing items.</p>
+    <p class="luxe-size-note">Please consult individual product pages for specific sizing details.</p>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Prada Collection{% endblock %}
+{% block description %}Explore Luxerazo's exclusive collection of Prada luxury products.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}">
+<style>
+  /* Prada luxury styling */
+  .luxe-hero {
+    background: linear-gradient(135deg, #f6f5f3 0%, #e7e5e1 100%);
+  }
+  
+  .luxe-hero-overlay {
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.15) 0%, rgba(138, 43, 226, 0.3) 100%);
+  }
+  
+  .luxe-hero-title {
+    color: #4b0082;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  
+  .luxe-hero-subtitle {
+    color: #6a5acd;
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  
+  .luxe-section-title {
+    color: #4b0082;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .luxe-collection-card {
+    border: 1px solid #4b0082;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    background: white;
+  }
+  
+  .luxe-collection-card:hover {
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+    transform: translateY(-8px);
+  }
+  
+  .luxe-collection-overlay {
+    background: rgba(138, 43, 226, 0.6);
+  }
+  
+  .luxe-collection-cta {
+    background: #4b0082;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 13px;
+    transition: all 0.3s ease;
+  }
+  
+  .luxe-collection-cta:hover {
+    background: #6a5acd;
+    transform: scale(1.05);
+  }
+  
+  .luxe-collection-title {
+    color: #4b0082;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  .luxe-collection-subtitle {
+    color: #6a5acd;
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  
+  .luxe-collection-price {
+    color: #4b0082;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .luxe-no-products {
+    text-align: center;
+    padding: 60px 20px;
+    color: #4b0082;
+    font-family: 'Playfair Display', serif;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static "img/prada-hero.jpg" %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Modern Elegance</p>
+    <h1 class="luxe-hero-title">Prada Collection</h1>
+    <p class="luxe-hero-description">
+      Discover the modern elegance and innovative style of Prada luxury products curated exclusively for you.
+    </p>
+  </div>
+</section>
+
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Luxury Redefined</p>
+      <h2 class="luxe-section-title">Exclusive Prada Collection</h2>
+      <p class="luxe-section-description">
+        From cutting-edge fashion to iconic accessories, explore the essence of Prada's unparalleled craftsmanship and style.
+      </p>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      {% for product in products %}
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="{{ forloop.counter0|add:'100' }}">
+        {% if product.main_image %}
+        <img src="{{ product.main_image.image.url }}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% else %}
+        <img src="{% static 'img/hero1.jpg' %}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% endif %}
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">{{ product.name }}</h3>
+            <p class="luxe-collection-subtitle">{{ product.brand.name }}</p>
+            <p class="luxe-collection-price">${{ product.discounted_price|floatformat:2 }}</p>
+            {% if product.discount_percent > 0 %}
+            <p class="luxe-collection-discount" style="color: #6a5acd; font-size: 14px; margin-bottom: 15px; font-style: italic;">{{ product.discount_percent }}% OFF</p>
+            {% endif %}
+            <a href="{% url 'catalog:product_detail' product.slug %}" class="luxe-collection-cta">
+              Explore
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="luxe-no-products" style="text-align: center; padding: 60px 20px; color: #4b0082;">
+        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 15px;">Coming Soon</h3>
+        <p>Our exclusive Prada collection is being curated. Please check back soon for the finest luxury products.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Luxury Perfumes Collection{% endblock %}
+{% block description %}Explore Luxerazo's exclusive collection of luxury perfumes from the world's most prestigious fragrance houses.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}">
+<style>
+  /* Elegant perfume styling */
+  .luxe-hero {
+    background: linear-gradient(135deg, #f9f7f5 0%, #eae3db 100%);
+  }
+  
+  .luxe-hero-overlay {
+    background: linear-gradient(135deg, rgba(205, 133, 63, 0.2) 0%, rgba(139, 69, 19, 0.3) 100%);
+  }
+  
+  .luxe-hero-title {
+    color: #cd853f;
+    text-shadow: 2px 2px 4px rgba(205, 133, 63, 0.4);
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    letter-spacing: 3px;
+    font-style: italic;
+  }
+  
+  .luxe-hero-subtitle {
+    color: #d2b48c;
+    font-style: italic;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .luxe-section-title {
+    color: #cd853f;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .luxe-collection-card {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box, 
+                linear-gradient(135deg, #d2b48c, #f0e6d2) border-box;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    position: relative;
+  }
+  
+  .luxe-collection-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(210, 180, 140, 0.07) 0%, rgba(240, 230, 210, 0.07) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .luxe-collection-card:hover::before {
+    opacity: 1;
+  }
+  
+  .luxe-collection-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 28px 56px rgba(210, 180, 140, 0.3);
+  }
+  
+  .luxe-collection-overlay {
+    background: linear-gradient(135deg, rgba(210, 180, 140, 0.9) 0%, rgba(139, 69, 19, 0.85) 100%);
+  }
+  
+  .luxe-collection-cta {
+    background: linear-gradient(135deg, #cd853f 0%, #d2b48c 100%);
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  
+  .luxe-collection-cta:hover {
+    background: linear-gradient(135deg, #d2b48c 0%, #cd853f 100%);
+    transform: scale(1.1);
+    box-shadow: 0 12px 30px rgba(139, 69, 19, 0.5);
+  }
+  
+  .luxe-collection-title {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  
+  .luxe-collection-subtitle {
+    color: #f0e6d2;
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .luxe-collection-price {
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 18px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  .luxe-no-products {
+    text-align: center;
+    padding: 80px 20px;
+    color: #cd853f;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static "img/perfumes-hero.jpg" %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Fragrance Excellence</p>
+    <h1 class="luxe-hero-title">Luxury Perfumes Collection</h1>
+    <p class="luxe-hero-description">
+      Discover exquisite perfumes that embody timeless elegance and olfactory artistry from the world's most prestigious fragrance houses.
+    </p>
+  </div>
+</section>
+
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Scented Masterpieces</p>
+      <h2 class="luxe-section-title">Exquisite Perfumes Collection</h2>
+      <p class="luxe-section-description">
+        From rare blends to iconic classics, discover perfumes that transform every moment into a luxurious experience.
+      </p>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      {% for product in products %}
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="{{ forloop.counter0|add:'100' }}">
+        {% if product.main_image %}
+        <img src="{{ product.main_image.image.url }}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% else %}
+        <img src="{% static 'img/hero1.jpg' %}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% endif %}
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">{{ product.name }}</h3>
+            <p class="luxe-collection-subtitle">{{ product.brand.name }}</p>
+            <p class="luxe-collection-price">${{ product.discounted_price|floatformat:2 }}</p>
+            {% if product.discount_percent > 0 %}
+            <p class="luxe-collection-discount" style="color: #f0e6d2; font-size: 14px; margin-bottom: 18px; font-style: italic;">{{ product.discount_percent }}% OFF</p>
+            {% endif %}
+            <a href="{% url 'catalog:product_detail' product.slug %}" class="luxe-collection-cta">
+              Discover
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="luxe-no-products">
+        <p>No perfumes available at the moment. Please check back soon for our latest arrivals.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

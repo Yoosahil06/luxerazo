@@ -1,0 +1,173 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    .bulk-upload-form {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .help-text {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+    
+    .help-text h3 {
+        margin-top: 0;
+        color: #666;
+    }
+    
+    .help-text table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    
+    .help-text th, .help-text td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    
+    .help-text th {
+        background: #f1f1f1;
+    }
+    
+    .file-upload {
+        margin: 20px 0;
+    }
+    
+    .submit-row {
+        margin-top: 20px;
+        padding: 10px 0;
+        border-top: 1px solid #eee;
+    }
+    
+    .error-message {
+        color: #dc3545;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #dc3545;
+        border-radius: 4px;
+        background: #fff8f8;
+    }
+    
+    .success-message {
+        color: #28a745;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #28a745;
+        border-radius: 4px;
+        background: #f8fff8;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bulk-upload-form">
+    <h1>Bulk Upload Products</h1>
+    
+    <div class="help-text">
+        <h3>CSV File Format</h3>
+        <p>Please ensure your CSV file follows this format:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column</th>
+                    <th>Description</th>
+                    <th>Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>name</td>
+                    <td>Product name</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>brand</td>
+                    <td>Brand name</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>category</td>
+                    <td>Category name</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>description</td>
+                    <td>Product description</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>price</td>
+                    <td>Price in USD</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>stock_quantity</td>
+                    <td>Initial stock quantity</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>variant_name</td>
+                    <td>Name of the variant (if any)</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>variant_sku</td>
+                    <td>SKU for the variant</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3 class="mt-4">Sample CSV Format</h3>
+        <pre>name,brand,category,price,stock_quantity,description,variant_name,variant_sku
+Luxury Watch,Rolex,Watches,10000,5,Premium luxury watch,Gold Edition,RLX-GOLD-001
+Designer Bag,Gucci,Bags,2500,10,Premium designer bag,Black Leather,GCI-BAG-001</pre>
+    </div>
+
+    {% if messages %}
+    <ul class="messagelist">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}-message"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form enctype="multipart/form-data" method="post" id="bulk-upload-form">
+        {% csrf_token %}
+        <div class="file-upload">
+            <label for="csv_file">Select CSV File:</label>
+            <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
+        </div>
+        
+        <div class="submit-row">
+            <input type="submit" value="Upload Products" class="default" name="_save">
+            <a href="{% url 'admin:products_product_changelist' %}" class="closelink">Cancel</a>
+            <a href="{% static 'products/sample_products.csv' %}" class="button" download>Download Sample CSV</a>
+        </div>
+    </form>
+</div>
+
+<script>
+document.getElementById('bulk-upload-form').onsubmit = function() {
+    const fileInput = document.getElementById('csv_file');
+    if (fileInput.files.length === 0) {
+        alert('Please select a CSV file to upload.');
+        return false;
+    }
+    return true;
+};
+</script>
+{% endblock %}

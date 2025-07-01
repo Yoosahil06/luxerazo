@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Bottega Veneta Collection{% endblock %}
+{% block description %}Explore Luxerazo's exclusive collection of Bottega Veneta luxury products.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}">
+<style>
+  /* Bottega Veneta luxury styling */
+  .luxe-hero {
+    background: linear-gradient(135deg, #f5f4f2 0%, #e6e4e0 100%);
+  }
+  
+  .luxe-hero-overlay {
+    background: linear-gradient(135deg, rgba(34, 139, 34, 0.15) 0%, rgba(0, 100, 0, 0.3) 100%);
+  }
+  
+  .luxe-hero-title {
+    color: #228b22;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  
+  .luxe-hero-subtitle {
+    color: #006400;
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  
+  .luxe-section-title {
+    color: #228b22;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .luxe-collection-card {
+    border: 1px solid #228b22;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    background: white;
+  }
+  
+  .luxe-collection-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 100, 0, 0.3);
+    transform: translateY(-8px);
+  }
+  
+  .luxe-collection-overlay {
+    background: rgba(0, 100, 0, 0.6);
+  }
+  
+  .luxe-collection-cta {
+    background: #228b22;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 13px;
+    transition: all 0.3s ease;
+  }
+  
+  .luxe-collection-cta:hover {
+    background: #006400;
+    transform: scale(1.05);
+  }
+  
+  .luxe-collection-title {
+    color: #228b22;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  .luxe-collection-subtitle {
+    color: #006400;
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  
+  .luxe-collection-price {
+    color: #228b22;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .luxe-no-products {
+    text-align: center;
+    padding: 60px 20px;
+    color: #228b22;
+    font-family: 'Playfair Display', serif;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static "img/bottega_veneta-hero.jpg" %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Natural Elegance</p>
+    <h1 class="luxe-hero-title">Bottega Veneta Collection</h1>
+    <p class="luxe-hero-description">
+      Discover the natural elegance and artisanal craftsmanship of Bottega Veneta luxury products curated exclusively for you.
+    </p>
+  </div>
+</section>
+
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Luxury Redefined</p>
+      <h2 class="luxe-section-title">Exclusive Bottega Veneta Collection</h2>
+      <p class="luxe-section-description">
+        From handcrafted leather goods to elegant accessories, explore the essence of Bottega Veneta's unparalleled style and quality.
+      </p>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      {% for product in products %}
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="{{ forloop.counter0|add:'100' }}">
+        {% if product.main_image %}
+        <img src="{{ product.main_image.image.url }}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% else %}
+        <img src="{% static 'img/hero1.jpg' %}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% endif %}
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">{{ product.name }}</h3>
+            <p class="luxe-collection-subtitle">{{ product.brand.name }}</p>
+            <p class="luxe-collection-price">${{ product.discounted_price|floatformat:2 }}</p>
+            {% if product.discount_percent > 0 %}
+            <p class="luxe-collection-discount" style="color: #006400; font-size: 14px; margin-bottom: 15px; font-style: italic;">{{ product.discount_percent }}% OFF</p>
+            {% endif %}
+            <a href="{% url 'catalog:product_detail' product.slug %}" class="luxe-collection-cta">
+              Explore
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="luxe-no-products" style="text-align: center; padding: 60px 20px; color: #228b22;">
+        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 15px;">Coming Soon</h3>
+        <p>Our exclusive Bottega Veneta collection is being curated. Please check back soon for the finest luxury products.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

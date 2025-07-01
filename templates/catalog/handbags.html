@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Luxury Handbags Collection{% endblock %}
+{% block description %}Explore Luxerazo's exclusive collection of luxury handbags from the world's most prestigious brands.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}">
+<style>
+  /* Elegant handbag styling */
+  .luxe-hero {
+    background: linear-gradient(135deg, #f5f1eb 0%, #e6ddd4 100%);
+  }
+  
+  .luxe-hero-overlay {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(160, 82, 45, 0.3) 100%);
+  }
+  
+  .luxe-hero-title {
+    color: #8b4513;
+    text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+  }
+  
+  .luxe-hero-subtitle {
+    color: #a0522d;
+    font-style: italic;
+    font-weight: 300;
+  }
+  
+  .luxe-section-title {
+    color: #8b4513;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+  }
+  
+  .luxe-collection-card {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box, 
+                linear-gradient(135deg, #a0522d, #deb887) border-box;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+  }
+  
+  .luxe-collection-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(160, 82, 45, 0.05) 0%, rgba(222, 184, 135, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .luxe-collection-card:hover::before {
+    opacity: 1;
+  }
+  
+  .luxe-collection-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(160, 82, 45, 0.25);
+  }
+  
+  .luxe-collection-overlay {
+    background: linear-gradient(135deg, rgba(160, 82, 45, 0.9) 0%, rgba(139, 69, 19, 0.85) 100%);
+  }
+  
+  .luxe-collection-cta {
+    background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  
+  .luxe-collection-cta:hover {
+    background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%);
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(139, 69, 19, 0.4);
+  }
+  
+  .luxe-collection-title {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  
+  .luxe-collection-subtitle {
+    color: #deb887;
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  
+  .luxe-collection-price {
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .luxe-brand-highlight {
+    background: linear-gradient(135deg, #f5f1eb 0%, #e6ddd4 100%);
+    padding: 40px 20px;
+    border-radius: 15px;
+    margin: 60px 0;
+    text-align: center;
+    border: 1px solid #deb887;
+  }
+  
+  .luxe-brand-highlight h3 {
+    color: #8b4513;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .luxe-brand-highlight p {
+    color: #a0522d;
+    font-style: italic;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static "img/handbags-hero.jpg" %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Timeless Elegance</p>
+    <h1 class="luxe-hero-title">Luxury Handbags Collection</h1>
+    <p class="luxe-hero-description">
+      Discover exquisite handbags that embody sophistication, craftsmanship, and timeless style.
+    </p>
+  </div>
+</section>
+
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Curated Excellence</p>
+      <h2 class="luxe-section-title">Prestigious Handbag Collection</h2>
+      <p class="luxe-section-description">
+        From iconic totes to elegant clutches, discover handbags that define luxury and elevate every ensemble.
+      </p>
+    </div>
+    
+    <!-- Brand Highlight -->
+    <div class="luxe-brand-highlight">
+      <h3>Crafted by Masters</h3>
+      <p>Each handbag in our collection represents the pinnacle of luxury craftsmanship, featuring the finest materials and meticulous attention to detail from the world's most prestigious fashion houses.</p>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      {% for product in products %}
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="{{ forloop.counter0|add:'100' }}">
+        {% if product.main_image %}
+        <img src="{{ product.main_image.image.url }}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% else %}
+        <img src="{% static 'img/hero1.jpg' %}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% endif %}
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">{{ product.name }}</h3>
+            <p class="luxe-collection-subtitle">{{ product.brand.name }}</p>
+            <p class="luxe-collection-price">${{ product.discounted_price|floatformat:2 }}</p>
+            {% if product.discount_percent > 0 %}
+            <p class="luxe-collection-discount" style="color: #deb887; font-size: 14px; margin-bottom: 15px;">{{ product.discount_percent }}% OFF</p>
+            {% endif %}
+            <a href="{% url 'catalog:product_detail' product.slug %}" class="luxe-collection-cta">
+              Explore
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="luxe-no-products" style="text-align: center; padding: 60px 20px; color: #8b4513;">
+        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 15px;">Coming Soon</h3>
+        <p>Our exquisite handbag collection is being carefully curated. Please check back soon for the finest luxury handbags.</p>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Additional Info Section -->
+    <div class="luxe-brand-highlight" style="margin-top: 80px;">
+      <h3>Why Choose Luxerazo Handbags?</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px; text-align: left;">
+        <div>
+          <h4 style="color: #8b4513; margin-bottom: 10px;">Authenticity Guaranteed</h4>
+          <p style="font-size: 14px; margin: 0;">Every handbag comes with a certificate of authenticity and our lifetime guarantee.</p>
+        </div>
+        <div>
+          <h4 style="color: #8b4513; margin-bottom: 10px;">Expert Curation</h4>
+          <p style="font-size: 14px; margin: 0;">Our team of luxury experts hand-selects each piece for quality and timeless appeal.</p>
+        </div>
+        <div>
+          <h4 style="color: #8b4513; margin-bottom: 10px;">White Glove Service</h4>
+          <p style="font-size: 14px; margin: 0;">Enjoy complimentary concierge service and personalized styling consultations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,515 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Customization Services – Luxerazo Bespoke Creations{% endblock %}
+{% block description %}Discover Luxerazo's luxury customization services. Create unique, personalized pieces with our master craftsmen and exclusive customization options.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ULTRA-LUXURY CUSTOMIZATION PAGE STYLES */
+.luxe-custom-hero {
+  position: relative;
+  min-height: 80vh;
+  background: linear-gradient(135deg, var(--luxe-obsidian) 0%, var(--luxe-navy) 50%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-custom-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine2.jpg" %}') center/cover;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.luxe-custom-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-custom-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-md) var(--luxe-space-xl);
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.125rem;
+  margin-bottom: var(--luxe-space-lg);
+  box-shadow: var(--luxe-shadow-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: luxe-pulse-gold 3s infinite;
+}
+
+.luxe-custom-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 900;
+  line-height: 1.0;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
+  letter-spacing: -2px;
+}
+
+.luxe-custom-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 2rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-lg);
+  font-style: italic;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.luxe-custom-hero-description {
+  font-size: 1.375rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: var(--luxe-space-xl);
+  font-weight: 500;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.luxe-custom-services {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+}
+
+.luxe-custom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-custom-card {
+  background: white;
+  padding: var(--luxe-space-xl);
+  border-radius: 16px;
+  box-shadow: var(--luxe-shadow-medium);
+  text-align: center;
+  border: 3px solid transparent;
+  transition: all var(--luxe-transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-custom-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--luxe-gold-gradient);
+}
+
+.luxe-custom-card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--luxe-shadow-strong);
+  border-color: var(--luxe-gold);
+}
+
+.luxe-custom-icon {
+  width: 100px;
+  height: 100px;
+  background: var(--luxe-gold-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--luxe-space-lg);
+  font-size: 2.5rem;
+  color: var(--luxe-obsidian);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-custom-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.luxe-custom-description {
+  color: var(--luxe-charcoal);
+  line-height: 1.8;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-custom-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--luxe-space-md);
+  text-align: left;
+}
+
+.luxe-custom-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: var(--luxe-space-xs);
+  font-weight: 500;
+  color: var(--luxe-charcoal);
+}
+
+.luxe-custom-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--luxe-gold);
+  font-weight: 700;
+}
+
+.luxe-exclusive-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-lg) var(--luxe-space-xl);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--luxe-font-body);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--luxe-transition-medium);
+  box-shadow: var(--luxe-shadow-gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-exclusive-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+}
+
+.luxe-contact-section {
+  background: var(--luxe-navy);
+  color: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  text-align: center;
+}
+
+.luxe-contact-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.luxe-contact-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: var(--luxe-space-lg);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-contact-description {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  margin-bottom: var(--luxe-space-xl);
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.luxe-contact-info {
+  display: flex;
+  justify-content: center;
+  gap: var(--luxe-space-xl);
+  flex-wrap: wrap;
+  margin-top: var(--luxe-space-lg);
+}
+
+.luxe-contact-method {
+  display: flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: rgba(248, 246, 240, 0.1);
+  padding: var(--luxe-space-md) var(--luxe-space-lg);
+  border-radius: 8px;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  transition: all var(--luxe-transition-medium);
+}
+
+.luxe-contact-method:hover {
+  border-color: var(--luxe-gold);
+  background: rgba(248, 246, 240, 0.2);
+  transform: translateY(-2px);
+}
+
+.luxe-contact-icon {
+  font-size: 1.5rem;
+  color: var(--luxe-gold);
+}
+
+.luxe-contact-text {
+  font-weight: 600;
+  color: var(--luxe-pearl);
+}
+
+@media (max-width: 768px) {
+  .luxe-custom-hero {
+    min-height: 70vh;
+  }
+  
+  .luxe-custom-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .luxe-contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Customization Hero -->
+<section class="luxe-custom-hero" data-animate>
+  <div class="luxe-custom-hero-content">
+    <div class="luxe-custom-hero-badge">
+      <i class="fas fa-magic"></i>
+      <span>Bespoke Creations</span>
+    </div>
+    <h1 class="luxe-custom-hero-title">Customization</h1>
+    <p class="luxe-custom-hero-subtitle">Where Vision Becomes Reality</p>
+    <p class="luxe-custom-hero-description">
+      Transform your luxury dreams into reality with our master craftsmen. From personalized engravings to completely bespoke creations, we bring your unique vision to life with unparalleled artistry and attention to detail.
+    </p>
+  </div>
+</section>
+
+<!-- Customization Services -->
+<section class="luxe-custom-services" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Artisanal Excellence</p>
+      <h2 class="luxe-section-title">Customization Options</h2>
+      <p class="luxe-section-description">
+        Discover the full spectrum of customization possibilities available through our network of master craftsmen and luxury artisans.
+      </p>
+    </div>
+    
+    <div class="luxe-custom-grid">
+      <div class="luxe-custom-card luxe-hover-lift" data-animate-delay="100">
+        <div class="luxe-custom-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <h3 class="luxe-custom-title">Timepiece Customization</h3>
+        <p class="luxe-custom-description">
+          Personalize luxury watches with our master horologists and certified craftsmen.
+        </p>
+        <ul class="luxe-custom-list">
+          <li>Custom dial designs and colors</li>
+          <li>Personalized engravings</li>
+          <li>Bespoke strap materials</li>
+          <li>Unique case modifications</li>
+          <li>Limited edition complications</li>
+        </ul>
+      </div>
+      
+      <div class="luxe-custom-card luxe-hover-lift" data-animate-delay="200">
+        <div class="luxe-custom-icon">
+          <i class="fas fa-gem"></i>
+        </div>
+        <h3 class="luxe-custom-title">Jewelry Personalization</h3>
+        <p class="luxe-custom-description">
+          Create one-of-a-kind jewelry pieces with our certified gemologists and designers.
+        </p>
+        <ul class="luxe-custom-list">
+          <li>Custom gemstone selection</li>
+          <li>Bespoke setting designs</li>
+          <li>Personalized engravings</li>
+          <li>Metal type customization</li>
+          <li>Heritage piece restoration</li>
+        </ul>
+      </div>
+      
+      <div class="luxe-custom-card luxe-hover-lift" data-animate-delay="300">
+        <div class="luxe-custom-icon">
+          <i class="fas fa-shopping-bag"></i>
+        </div>
+        <h3 class="luxe-custom-title">Leather Goods</h3>
+        <p class="luxe-custom-description">
+          Customize luxury bags and accessories with our master leather artisans.
+        </p>
+        <ul class="luxe-custom-list">
+          <li>Monogramming and embossing</li>
+          <li>Custom color combinations</li>
+          <li>Bespoke hardware finishes</li>
+          <li>Interior personalization</li>
+          <li>Size modifications</li>
+        </ul>
+      </div>
+      
+      <div class="luxe-custom-card luxe-hover-lift" data-animate-delay="400">
+        <div class="luxe-custom-icon">
+          <i class="fas fa-tshirt"></i>
+        </div>
+        <h3 class="luxe-custom-title">Fashion Customization</h3>
+        <p class="luxe-custom-description">
+          Tailor luxury fashion pieces to your exact specifications and style preferences.
+        </p>
+        <ul class="luxe-custom-list">
+          <li>Bespoke tailoring services</li>
+          <li>Custom fabric selection</li>
+          <li>Personalized embroidery</li>
+          <li>Fit adjustments</li>
+          <li>Style modifications</li>
+        </ul>
+      </div>
+      
+      <div class="luxe-custom-card luxe-hover-lift" data-animate-delay="500">
+        <div class="luxe-custom-icon">
+          <i class="fas fa-palette"></i>
+        </div>
+        <h3 class="luxe-custom-title">Artistic Collaborations</h3>
+        <p class="luxe-custom-description">
+          Commission unique artistic pieces through our network of renowned artists and designers.
+        </p>
+        <ul class="luxe-custom-list">
+          <li>Custom artwork commissions</li>
+          <li>Limited edition collaborations</li>
+          <li>Bespoke design concepts</li>
+          <li>Artistic interpretations</li>
+          <li>Heritage piece recreation</li>
+        </ul>
+      </div>
+      
+      <div class="luxe-custom-card luxe-hover-lift" data-animate-delay="600">
+        <div class="luxe-custom-icon">
+          <i class="fas fa-crown"></i>
+        </div>
+        <h3 class="luxe-custom-title">Exclusive Collections</h3>
+        <p class="luxe-custom-description">
+          Create entirely bespoke collections tailored to your lifestyle and preferences.
+        </p>
+        <ul class="luxe-custom-list">
+          <li>Complete wardrobe curation</li>
+          <li>Lifestyle-based collections</li>
+          <li>Seasonal customizations</li>
+          <li>Event-specific pieces</li>
+          <li>Legacy collection creation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="luxe-contact-section" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-contact-content">
+      <h2 class="luxe-contact-title">Begin Your Custom Journey</h2>
+      <p class="luxe-contact-description">
+        Ready to create something truly unique? Get in touch with our customization specialists to discuss your vision and explore the endless possibilities of bespoke luxury.
+      </p>
+      
+      <div class="luxe-contact-info">
+        <div class="luxe-contact-method">
+          <div class="luxe-contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="luxe-contact-text">customization@luxerazo.com</div>
+        </div>
+        
+        <div class="luxe-contact-method">
+          <div class="luxe-contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="luxe-contact-text">+1 (555) 123-LUXE</div>
+        </div>
+        
+        <div class="luxe-contact-method">
+          <div class="luxe-contact-icon">
+            <i class="fas fa-calendar"></i>
+          </div>
+          <div class="luxe-contact-text">Book Consultation</div>
+        </div>
+      </div>
+      
+      <a href="/contact/" class="luxe-exclusive-cta luxe-ripple" style="margin-top: var(--luxe-space-xl);">
+        <i class="fas fa-magic"></i>
+        <span>Start Your Custom Project</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Luxury scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.animateDelay || 0;
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, delay);
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all animated elements
+  document.querySelectorAll('[data-animate], [data-animate-delay]').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    observer.observe(el);
+  });
+  
+  // Add luxury hover effects to custom cards
+  document.querySelectorAll('.luxe-custom-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.borderColor = 'var(--luxe-gold)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.borderColor = 'transparent';
+    });
+  });
+});
+</script>
+{% endblock %}

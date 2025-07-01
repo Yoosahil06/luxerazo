@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Jewelry Collection{% endblock %}
+{% block description %}Explore Luxerazo's exclusive collection of luxury jewelry.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static "img/hero4.jpg" %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Luxury Jewelry</p>
+    <h1 class="luxe-hero-title">Jewelry Collection</h1>
+    <p class="luxe-hero-description">
+      Discover the finest luxury jewelry, curated for the discerning collector.
+    </p>
+  </div>
+</section>
+
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Exclusive Luxury Jewelry</p>
+      <h2 class="luxe-section-title">Our Jewelry Collection</h2>
+      <p class="luxe-section-description">
+        Browse our curated selection of authentic luxury jewelry, crafted to perfection.
+      </p>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      {% for product in products %}
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="{{ forloop.counter0|add:'100' }}">
+        {% if product.main_image %}
+        <img src="{{ product.main_image.image.url }}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% else %}
+        <img src="{% static 'img/hero1.jpg' %}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% endif %}
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">{{ product.name }}</h3>
+            <p class="luxe-collection-subtitle">{{ product.brand.name }}</p>
+            <p class="luxe-collection-price">${{ product.discounted_price|floatformat:2 }}</p>
+            <a href="{% url 'catalog:product_detail' product.slug %}" class="luxe-collection-cta">
+              View Details
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="luxe-no-products">
+        <p>No jewelry available at the moment.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

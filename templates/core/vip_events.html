@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}VIP Events – Luxerazo Exclusive Experiences{% endblock %}
+{% block description %}Join Luxerazo's VIP events for exclusive access to luxury brand showcases, private viewings, and curated experiences designed for our most discerning clients.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ULTRA-LUXURY VIP EVENTS PAGE STYLES */
+.luxe-vip-hero {
+  position: relative;
+  min-height: 75vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-vip-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine4.jpg" %}') center/cover no-repeat;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.luxe-vip-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-vip-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-sm) var(--luxe-space-lg);
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: var(--luxe-space-md);
+  box-shadow: var(--luxe-shadow-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.luxe-vip-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.luxe-vip-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.5rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-lg);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.luxe-vip-hero-description {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: var(--luxe-space-xl);
+  font-weight: 500;
+}
+
+.luxe-vip-events {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--luxe-charcoal);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.luxe-vip-section {
+  margin-bottom: var(--luxe-space-xxl);
+}
+
+.luxe-vip-section h2 {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-vip-section p {
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-vip-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--luxe-space-md);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.luxe-vip-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: var(--luxe-space-sm);
+  font-weight: 500;
+}
+
+.luxe-vip-list li::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  color: var(--luxe-gold);
+  font-weight: 700;
+}
+
+.luxe-vip-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-lg) var(--luxe-space-xl);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--luxe-font-body);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--luxe-transition-medium);
+  box-shadow: var(--luxe-shadow-gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-vip-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+}
+
+@media (max-width: 768px) {
+  .luxe-vip-hero {
+    min-height: 60vh;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury VIP Events Hero -->
+<section class="luxe-vip-hero" data-animate>
+  <div class="luxe-vip-hero-content">
+    <div class="luxe-vip-hero-badge">
+      <i class="fas fa-star"></i>
+      <span>Exclusive Access</span>
+    </div>
+    <h1 class="luxe-vip-hero-title">VIP Events</h1>
+    <p class="luxe-vip-hero-subtitle">Experience the Pinnacle of Luxury</p>
+    <p class="luxe-vip-hero-description">
+      Join Luxerazo's VIP events for exclusive access to luxury brand showcases, private viewings, and curated experiences designed for our most discerning clients.
+    </p>
+  </div>
+</section>
+
+<!-- VIP Events Information -->
+<section class="luxe-vip-events" data-animate>
+  <div class="luxe-vip-section">
+    <h2>Upcoming Events</h2>
+    <p>
+      Experience unforgettable moments with our curated selection of VIP events, including private fashion shows, luxury brand launches, and exclusive galas.
+    </p>
+    <ul class="luxe-vip-list">
+      <li>Private Fashion Shows with Top Designers</li>
+      <li>Exclusive Product Launches and Previews</li>
+      <li>Luxury Brand Gala Dinners</li>
+      <li>Invitation-Only Networking Events</li>
+      <li>Personalized VIP Experiences</li>
+    </ul>
+    <a href="/contact/" class="luxe-vip-cta luxe-ripple">
+      Request Your Invitation
+    </a>
+  </div>
+</section>
+
+{% endblock %}

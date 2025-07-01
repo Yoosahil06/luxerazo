@@ -1,0 +1,509 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Personal Shopping – Luxerazo Bespoke Experience{% endblock %}
+{% block description %}Experience personalized luxury shopping with Luxerazo. Our expert stylists provide bespoke services tailored to your unique style and preferences.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ULTRA-LUXURY PERSONAL SHOPPING PAGE STYLES */
+.luxe-personal-hero {
+  position: relative;
+  min-height: 80vh;
+  background: linear-gradient(135deg, var(--luxe-obsidian) 0%, var(--luxe-navy) 50%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-personal-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/hero2.jpg" %}') center/cover;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.luxe-personal-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-personal-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-md) var(--luxe-space-xl);
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.125rem;
+  margin-bottom: var(--luxe-space-lg);
+  box-shadow: var(--luxe-shadow-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: luxe-pulse-gold 3s infinite;
+}
+
+.luxe-personal-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 900;
+  line-height: 1.0;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
+  letter-spacing: -2px;
+}
+
+.luxe-personal-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 2rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-lg);
+  font-style: italic;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.luxe-personal-hero-description {
+  font-size: 1.375rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: var(--luxe-space-xl);
+  font-weight: 500;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.luxe-personal-services {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+}
+
+.luxe-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-service-card {
+  background: white;
+  padding: var(--luxe-space-xl);
+  border-radius: 16px;
+  box-shadow: var(--luxe-shadow-medium);
+  text-align: center;
+  border: 3px solid transparent;
+  transition: all var(--luxe-transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--luxe-gold-gradient);
+}
+
+.luxe-service-card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--luxe-shadow-strong);
+  border-color: var(--luxe-gold);
+}
+
+.luxe-service-icon {
+  width: 100px;
+  height: 100px;
+  background: var(--luxe-gold-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--luxe-space-lg);
+  font-size: 2.5rem;
+  color: var(--luxe-obsidian);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-service-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.luxe-service-description {
+  color: var(--luxe-charcoal);
+  line-height: 1.8;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.luxe-personal-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--luxe-space-md);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.luxe-personal-list li {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: var(--luxe-space-md);
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--luxe-navy);
+}
+
+.luxe-personal-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--luxe-gold);
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.luxe-exclusive-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-lg) var(--luxe-space-xl);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--luxe-font-body);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--luxe-transition-medium);
+  box-shadow: var(--luxe-shadow-gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-exclusive-cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+}
+
+.luxe-concierge-section {
+  background: var(--luxe-navy);
+  color: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  text-align: center;
+}
+
+.luxe-concierge-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.luxe-concierge-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: var(--luxe-space-lg);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-concierge-description {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  margin-bottom: var(--luxe-space-xl);
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.luxe-contact-section {
+  background: var(--luxe-champagne);
+  padding: var(--luxe-space-xxl) 0;
+  text-align: center;
+}
+
+.luxe-contact-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.luxe-contact-title {
+  font-family: var(--luxe-font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-contact-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--luxe-charcoal);
+  margin-bottom: var(--luxe-space-lg);
+  font-weight: 500;
+}
+
+.luxe-contact-info {
+  display: flex;
+  justify-content: center;
+  gap: var(--luxe-space-xl);
+  flex-wrap: wrap;
+  margin-top: var(--luxe-space-lg);
+}
+
+.luxe-contact-method {
+  display: flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: white;
+  padding: var(--luxe-space-md) var(--luxe-space-lg);
+  border-radius: 8px;
+  box-shadow: var(--luxe-shadow-subtle);
+  border: 2px solid transparent;
+  transition: all var(--luxe-transition-medium);
+}
+
+.luxe-contact-method:hover {
+  border-color: var(--luxe-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--luxe-shadow-medium);
+}
+
+.luxe-contact-icon {
+  font-size: 1.5rem;
+  color: var(--luxe-gold);
+}
+
+.luxe-contact-text {
+  font-weight: 600;
+  color: var(--luxe-navy);
+}
+
+@media (max-width: 768px) {
+  .luxe-personal-hero {
+    min-height: 70vh;
+  }
+  
+  .luxe-services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .luxe-contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Personal Shopping Hero -->
+<section class="luxe-personal-hero" data-animate>
+  <div class="luxe-personal-hero-content">
+    <div class="luxe-personal-hero-badge">
+      <i class="fas fa-shopping-bag"></i>
+      <span>Bespoke Experience</span>
+    </div>
+    <h1 class="luxe-personal-hero-title">Personal Shopping</h1>
+    <p class="luxe-personal-hero-subtitle">Tailored Luxury Just for You</p>
+    <p class="luxe-personal-hero-description">
+      Our expert stylists provide personalized shopping experiences designed to match your unique style and preferences. Discover the finest luxury collections with guidance from our dedicated team.
+    </p>
+  </div>
+</section>
+
+<!-- Luxury Services Grid -->
+<section class="luxe-personal-services" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Bespoke Services</p>
+      <h2 class="luxe-section-title">Our Exclusive Offerings</h2>
+      <p class="luxe-section-description">
+        Experience a curated selection of luxury products tailored to your tastes, with exclusive access to limited editions and private collections.
+      </p>
+    </div>
+    
+    <div class="luxe-services-grid">
+      <div class="luxe-service-card luxe-hover-lift" data-animate-delay="100">
+        <div class="luxe-service-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h3 class="luxe-service-title">Expert Stylists</h3>
+        <p class="luxe-service-description">
+          One-on-one consultations with our certified luxury stylists who understand the nuances of high-end fashion and your personal aesthetic.
+        </p>
+      </div>
+      
+      <div class="luxe-service-card luxe-hover-lift" data-animate-delay="200">
+        <div class="luxe-service-icon">
+          <i class="fas fa-gem"></i>
+        </div>
+        <h3 class="luxe-service-title">Personalized Curation</h3>
+        <p class="luxe-service-description">
+          Receive personalized recommendations and styling advice based on your lifestyle, preferences, and exclusive access to designer pieces.
+        </p>
+      </div>
+      
+      <div class="luxe-service-card luxe-hover-lift" data-animate-delay="300">
+        <div class="luxe-service-icon">
+          <i class="fas fa-eye"></i>
+        </div>
+        <h3 class="luxe-service-title">Exclusive Previews</h3>
+        <p class="luxe-service-description">
+          Be the first to see upcoming collections and limited editions before they're available to the public, ensuring you never miss coveted pieces.
+        </p>
+      </div>
+      
+      <div class="luxe-service-card luxe-hover-lift" data-animate-delay="400">
+        <div class="luxe-service-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h3 class="luxe-service-title">Private Appointments</h3>
+        <p class="luxe-service-description">
+          Enjoy private shopping appointments and exclusive events in our luxury showrooms, away from the crowds and distractions.
+        </p>
+      </div>
+      
+      <div class="luxe-service-card luxe-hover-lift" data-animate-delay="500">
+        <div class="luxe-service-icon">
+          <i class="fas fa-shipping-fast"></i>
+        </div>
+        <h3 class="luxe-service-title">Seamless Delivery</h3>
+        <p class="luxe-service-description">
+          Experience seamless purchase and delivery coordination with white-glove service that ensures your luxury items arrive in perfect condition.
+        </p>
+      </div>
+      
+      <div class="luxe-service-card luxe-hover-lift" data-animate-delay="600">
+        <div class="luxe-service-icon">
+          <i class="fas fa-infinity"></i>
+        </div>
+        <h3 class="luxe-service-title">Lifetime Support</h3>
+        <p class="luxe-service-description">
+          Ongoing support for your luxury wardrobe including maintenance advice, styling updates, and exclusive access to our network of specialists.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="luxe-contact-section" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-contact-content">
+      <h2 class="luxe-contact-title">Begin Your Journey</h2>
+      <p class="luxe-contact-description">
+        Contact our personal shopping team to schedule your consultation and begin your bespoke luxury journey with Luxerazo's expert guidance.
+      </p>
+      
+      <div class="luxe-contact-info">
+        <div class="luxe-contact-method">
+          <div class="luxe-contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="luxe-contact-text">personalshopping@luxerazo.com</div>
+        </div>
+        
+        <div class="luxe-contact-method">
+          <div class="luxe-contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="luxe-contact-text">+1 (555) 123-LUXE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Personal Concierge Redirection -->
+<section class="luxe-concierge-section" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-concierge-content">
+      <h2 class="luxe-concierge-title">Personal Concierge Services</h2>
+      <p class="luxe-concierge-description">
+        Elevate your luxury experience with our dedicated Personal Concierge team. From exclusive access to private events to personalized shopping assistance, our concierge specialists are here to cater to your every need with unmatched attention to detail.
+      </p>
+      <a href="/concierge/" class="luxe-exclusive-cta luxe-ripple">
+        <i class="fas fa-concierge-bell"></i>
+        <span>Discover Personal Concierge</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Luxury scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.animateDelay || 0;
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, delay);
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all animated elements
+  document.querySelectorAll('[data-animate], [data-animate-delay]').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    observer.observe(el);
+  });
+  
+  // Add luxury hover effects to service cards
+  document.querySelectorAll('.luxe-service-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.borderColor = 'var(--luxe-gold)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.borderColor = 'transparent';
+    });
+  });
+});
+</script>
+{% endblock %}

@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib import messages
+from django.http import JsonResponse
 
 def home_view(request):
     return render(request, 'core/home.html')
@@ -7,6 +9,37 @@ def about_view(request):
     return render(request, 'core/about.html')
 
 def contact_view(request):
+    if request.method == 'POST':
+        # Handle luxury contact form submission
+        first_name = request.POST.get('first_name', '')
+        last_name = request.POST.get('last_name', '')
+        email = request.POST.get('email', '')
+        phone = request.POST.get('phone', '')
+        subject = request.POST.get('subject', '')
+        message = request.POST.get('message', '')
+        
+        # Basic validation
+        if not all([first_name, last_name, email, subject, message]):
+            messages.error(request, 'Please fill in all required fields.')
+            return render(request, 'core/contact.html')
+        
+        # Here you would typically:
+        # 1. Save to database
+        # 2. Send email notification
+        # 3. Integrate with CRM system
+        # For now, we'll just show a success message
+        
+        messages.success(request, 
+            f'Thank you, {first_name}! Your message has been received. '
+            'Our luxury concierge team will respond within 2 hours.')
+        
+        # If AJAX request, return JSON response
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'success': True,
+                'message': 'Your message has been sent successfully!'
+            })
+    
     return render(request, 'core/contact.html')
 
 def concierge_view(request):
