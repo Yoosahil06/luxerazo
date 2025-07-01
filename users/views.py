@@ -1,11 +1,9 @@
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from .models import Profile
-from orders.models import Wishlist
+from orders.models import Wishlist, Order
 from products.models import Product
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
 
 @login_required
 def dashboard_view(request):
@@ -25,3 +23,16 @@ def toggle_wishlist(request, product_id):
     else:
         wishlist.product_wishlists.add(product)
     return redirect('dashboard')
+
+@login_required
+def account_view(request):
+    profile, _ = Profile.objects.get_or_create(user=request.user)
+    wishlist_items = Wishlist.objects.filter(user=request.user).select_related('product')
+    recent_orders = Order.objects.filter(user=request.user).order_by('-created_at')[:5]
+    
+    context = {
+        'profile': profile,
+        'wishlist': [item.product for item in wishlist_items],
+        'recent_orders': recent_orders,
+    }
+    return render(request, 'users/account.html', context)
