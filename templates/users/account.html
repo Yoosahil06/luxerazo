@@ -1,0 +1,565 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}My Account – Luxerazo{% endblock %}
+{% block description %}Manage your Luxerazo account, view orders, wishlist, and exclusive member benefits.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ULTRA-LUXURY ACCOUNT PAGE STYLES */
+.luxe-account-hero {
+  position: relative;
+  min-height: 60vh;
+  background: linear-gradient(135deg, var(--luxe-obsidian) 0%, var(--luxe-navy) 50%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-account-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine2.jpg" %}') center/cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.luxe-account-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-account-welcome {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+}
+
+.luxe-account-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.5rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-lg);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.luxe-account-tier {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-md) var(--luxe-space-xl);
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: var(--luxe-shadow-gold);
+  animation: luxe-pulse-gold 3s infinite;
+}
+
+.luxe-account-content {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+}
+
+.luxe-account-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-account-card {
+  background: white;
+  padding: var(--luxe-space-xl);
+  border-radius: 16px;
+  box-shadow: var(--luxe-shadow-medium);
+  border: 3px solid transparent;
+  transition: all var(--luxe-transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-account-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--luxe-gold-gradient);
+}
+
+.luxe-account-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--luxe-shadow-strong);
+  border-color: var(--luxe-gold);
+}
+
+.luxe-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--luxe-space-md);
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-card-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--luxe-gold-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--luxe-obsidian);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-card-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--luxe-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.luxe-card-content {
+  color: var(--luxe-charcoal);
+  line-height: 1.7;
+}
+
+.luxe-order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--luxe-space-md);
+  border: 1px solid rgba(35, 55, 71, 0.1);
+  border-radius: 8px;
+  margin-bottom: var(--luxe-space-sm);
+  transition: all var(--luxe-transition-medium);
+}
+
+.luxe-order-item:hover {
+  border-color: var(--luxe-gold);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.luxe-order-number {
+  font-family: var(--luxe-font-display);
+  font-weight: 600;
+  color: var(--luxe-navy);
+}
+
+.luxe-order-status {
+  padding: var(--luxe-space-xs) var(--luxe-space-sm);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.luxe-status-confirmed {
+  background: rgba(34, 197, 94, 0.1);
+  color: #059669;
+}
+
+.luxe-status-processing {
+  background: rgba(251, 191, 36, 0.1);
+  color: #d97706;
+}
+
+.luxe-status-shipped {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+}
+
+.luxe-wishlist-item {
+  display: flex;
+  align-items: center;
+  gap: var(--luxe-space-md);
+  padding: var(--luxe-space-md);
+  border: 1px solid rgba(35, 55, 71, 0.1);
+  border-radius: 8px;
+  margin-bottom: var(--luxe-space-sm);
+  transition: all var(--luxe-transition-medium);
+}
+
+.luxe-wishlist-item:hover {
+  border-color: var(--luxe-gold);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.luxe-wishlist-image {
+  width: 60px;
+  height: 60px;
+  background: var(--luxe-platinum);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--luxe-charcoal);
+}
+
+.luxe-wishlist-details {
+  flex: 1;
+}
+
+.luxe-wishlist-name {
+  font-family: var(--luxe-font-display);
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-xs);
+}
+
+.luxe-wishlist-price {
+  color: var(--luxe-gold);
+  font-weight: 600;
+}
+
+.luxe-btn-remove {
+  background: transparent;
+  border: 1px solid var(--luxe-burgundy);
+  color: var(--luxe-burgundy);
+  padding: var(--luxe-space-xs) var(--luxe-space-sm);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--luxe-transition-medium);
+}
+
+.luxe-btn-remove:hover {
+  background: var(--luxe-burgundy);
+  color: white;
+}
+
+.luxe-empty-state {
+  text-align: center;
+  padding: var(--luxe-space-xl);
+  color: var(--luxe-charcoal);
+  opacity: 0.7;
+}
+
+.luxe-empty-icon {
+  font-size: 3rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-cta-section {
+  background: var(--luxe-navy);
+  color: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  text-align: center;
+}
+
+.luxe-cta-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: var(--luxe-space-lg);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--luxe-space-lg);
+  flex-wrap: wrap;
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-lg) var(--luxe-space-xl);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--luxe-font-body);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--luxe-transition-medium);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-cta-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+}
+
+@media (max-width: 768px) {
+  .luxe-account-hero {
+    min-height: 50vh;
+  }
+  
+  .luxe-account-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .luxe-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Account Hero -->
+<section class="luxe-account-hero" data-animate>
+  <div class="luxe-account-hero-content">
+    <h1 class="luxe-account-welcome">Welcome Back, {{ request.user.first_name|default:request.user.username }}</h1>
+    <p class="luxe-account-subtitle">Your Luxury Experience Awaits</p>
+    <div class="luxe-account-tier">
+      <i class="fas fa-crown"></i>
+      <span>{{ profile.tier|default:"Elite" }} Member</span>
+    </div>
+  </div>
+</section>
+
+<!-- Account Content -->
+<section class="luxe-account-content" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Account Overview</p>
+      <h2 class="luxe-section-title">Your Luxury Dashboard</h2>
+      <p class="luxe-section-description">
+        Manage your exclusive collections, track orders, and access premium services.
+      </p>
+    </div>
+    
+    <div class="luxe-account-grid">
+      <!-- Recent Orders -->
+      <div class="luxe-account-card luxe-hover-lift" data-animate-delay="100">
+        <div class="luxe-card-header">
+          <div class="luxe-card-icon">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <h3 class="luxe-card-title">Recent Orders</h3>
+        </div>
+        <div class="luxe-card-content">
+          {% if recent_orders %}
+            {% for order in recent_orders %}
+              <div class="luxe-order-item">
+                <div>
+                  <div class="luxe-order-number">Order #{{ order.id }}</div>
+                  <div style="font-size: 0.875rem; color: var(--luxe-charcoal); opacity: 0.8;">
+                    {{ order.created_at|date:"M d, Y" }}
+                  </div>
+                </div>
+                <div>
+                  <div class="luxe-order-status luxe-status-{{ order.status|lower }}">
+                    {{ order.status }}
+                  </div>
+                  <div style="font-weight: 600; color: var(--luxe-gold); margin-top: 4px;">
+                    ${{ order.total|floatformat:2 }}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="luxe-empty-state">
+              <div class="luxe-empty-icon">
+                <i class="fas fa-shopping-bag"></i>
+              </div>
+              <p>No orders yet. Start exploring our exclusive collections.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Wishlist -->
+      <div class="luxe-account-card luxe-hover-lift" data-animate-delay="200">
+        <div class="luxe-card-header">
+          <div class="luxe-card-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3 class="luxe-card-title">Your Wishlist</h3>
+        </div>
+        <div class="luxe-card-content">
+          {% if wishlist %}
+            {% for product in wishlist %}
+              <div class="luxe-wishlist-item">
+                <div class="luxe-wishlist-image">
+                  <i class="fas fa-gem"></i>
+                </div>
+                <div class="luxe-wishlist-details">
+                  <div class="luxe-wishlist-name">{{ product.name }}</div>
+                  <div class="luxe-wishlist-price">${{ product.price|floatformat:2 }}</div>
+                </div>
+                <a href="{% url 'toggle_wishlist' product.id %}" class="luxe-btn-remove">
+                  Remove
+                </a>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="luxe-empty-state">
+              <div class="luxe-empty-icon">
+                <i class="fas fa-heart"></i>
+              </div>
+              <p>Your wishlist is empty. Discover luxury pieces to save for later.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Account Details -->
+      <div class="luxe-account-card luxe-hover-lift" data-animate-delay="300">
+        <div class="luxe-card-header">
+          <div class="luxe-card-icon">
+            <i class="fas fa-user-crown"></i>
+          </div>
+          <h3 class="luxe-card-title">Account Details</h3>
+        </div>
+        <div class="luxe-card-content">
+          <div style="margin-bottom: var(--luxe-space-md);">
+            <strong>Email:</strong> {{ request.user.email }}
+          </div>
+          <div style="margin-bottom: var(--luxe-space-md);">
+            <strong>Member Since:</strong> {{ request.user.date_joined|date:"M Y" }}
+          </div>
+          <div style="margin-bottom: var(--luxe-space-md);">
+            <strong>Loyalty Points:</strong> {{ profile.loyalty_points|default:"0" }}
+          </div>
+          <div>
+            <strong>Tier Status:</strong> {{ profile.tier|default:"Elite" }} Member
+          </div>
+        </div>
+      </div>
+      
+      <!-- Quick Actions -->
+      <div class="luxe-account-card luxe-hover-lift" data-animate-delay="400">
+        <div class="luxe-card-header">
+          <div class="luxe-card-icon">
+            <i class="fas fa-concierge-bell"></i>
+          </div>
+          <h3 class="luxe-card-title">Quick Actions</h3>
+        </div>
+        <div class="luxe-card-content">
+          <div style="display: flex; flex-direction: column; gap: var(--luxe-space-sm);">
+            <a href="/orders/" style="color: var(--luxe-navy); text-decoration: none; padding: var(--luxe-space-sm); border: 1px solid rgba(35, 55, 71, 0.2); border-radius: 6px; transition: all var(--luxe-transition-medium);">
+              <i class="fas fa-list" style="margin-right: var(--luxe-space-sm);"></i>
+              View All Orders
+            </a>
+            <a href="/private-client/" style="color: var(--luxe-navy); text-decoration: none; padding: var(--luxe-space-sm); border: 1px solid rgba(35, 55, 71, 0.2); border-radius: 6px; transition: all var(--luxe-transition-medium);">
+              <i class="fas fa-crown" style="margin-right: var(--luxe-space-sm);"></i>
+              Private Client Services
+            </a>
+            <a href="/concierge/" style="color: var(--luxe-navy); text-decoration: none; padding: var(--luxe-space-sm); border: 1px solid rgba(35, 55, 71, 0.2); border-radius: 6px; transition: all var(--luxe-transition-medium);">
+              <i class="fas fa-concierge-bell" style="margin-right: var(--luxe-space-sm);"></i>
+              Personal Concierge
+            </a>
+            <a href="/contact/" style="color: var(--luxe-navy); text-decoration: none; padding: var(--luxe-space-sm); border: 1px solid rgba(35, 55, 71, 0.2); border-radius: 6px; transition: all var(--luxe-transition-medium);">
+              <i class="fas fa-envelope" style="margin-right: var(--luxe-space-sm);"></i>
+              Contact Support
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="luxe-cta-section" data-animate>
+  <div class="luxe-container">
+    <h2 class="luxe-cta-title">Continue Your Luxury Journey</h2>
+    <p style="font-size: 1.25rem; opacity: 0.9; margin-bottom: var(--luxe-space-xl);">
+      Discover new arrivals and exclusive collections curated just for you.
+    </p>
+    
+    <div class="luxe-cta-buttons">
+      <a href="/catalog/new-arrivals/" class="luxe-cta-btn luxe-ripple">
+        <i class="fas fa-sparkles"></i>
+        <span>New Arrivals</span>
+      </a>
+      <a href="/catalog/watches/" class="luxe-cta-btn luxe-ripple">
+        <i class="fas fa-clock"></i>
+        <span>Luxury Timepieces</span>
+      </a>
+      <a href="/vip-events/" class="luxe-cta-btn luxe-ripple">
+        <i class="fas fa-calendar-star"></i>
+        <span>VIP Events</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Luxury scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.animateDelay || 0;
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, delay);
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all animated elements
+  document.querySelectorAll('[data-animate], [data-animate-delay]').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    observer.observe(el);
+  });
+  
+  // Add hover effects to quick action links
+  document.querySelectorAll('.luxe-card-content a').forEach(link => {
+    link.addEventListener('mouseenter', function() {
+      this.style.borderColor = 'var(--luxe-gold)';
+      this.style.background = 'rgba(212, 175, 55, 0.05)';
+    });
+    
+    link.addEventListener('mouseleave', function() {
+      this.style.borderColor = 'rgba(35, 55, 71, 0.2)';
+      this.style.background = 'transparent';
+    });
+  });
+});
+</script>
+{% endblock %}

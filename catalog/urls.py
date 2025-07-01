@@ -16,6 +16,7 @@ urlpatterns = [
     path('sunglasses/', views.sunglasses, name='sunglasses'),
     path('patek-philippe/', views.patek_philippe, name='patek_philippe'),
     path('new-collection/', views.new_collection, name='new_collection'),
+    path('new-arrivals/', views.new_arrivals, name='new_arrivals'),
     path('audemars-piguet/', views.audemars_piguet, name='audemars_piguet'),
     path('richard-mille/', views.richard_mille, name='richard_mille'),
     path('gucci/', views.gucci, name='gucci'),
