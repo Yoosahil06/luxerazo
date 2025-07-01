@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Sustainability – Luxerazo Commitment to Responsible Luxury{% endblock %}
+{% block description %}Discover Luxerazo's dedication to sustainability and responsible luxury. Learn about our eco-friendly practices and ethical sourcing.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* LUXURY SUSTAINABILITY PAGE STYLES - Similar to Authenticity */
+.luxe-auth-hero {
+  position: relative;
+  min-height: 70vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-auth-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine4.jpg" %}') center/cover;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.luxe-auth-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-auth-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-sm) var(--luxe-space-lg);
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: var(--luxe-space-md);
+  box-shadow: var(--luxe-shadow-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.luxe-auth-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.luxe-auth-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.5rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-lg);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.luxe-auth-hero-description {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: var(--luxe-space-xl);
+  font-weight: 500;
+}
+
+.luxe-sustainability-section {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--luxe-charcoal);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.luxe-sustainability-section h2 {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-sustainability-section p {
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-sustainability-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--luxe-space-md);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.luxe-sustainability-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: var(--luxe-space-sm);
+  font-weight: 500;
+}
+
+.luxe-sustainability-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--luxe-gold);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .luxe-auth-hero {
+    min-height: 60vh;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Sustainability Hero -->
+<section class="luxe-auth-hero" data-animate>
+  <div class="luxe-auth-hero-content">
+    <div class="luxe-auth-hero-badge">
+      <i class="fas fa-leaf"></i>
+      <span>Eco-Conscious Luxury</span>
+    </div>
+    <h1 class="luxe-auth-hero-title">Sustainability Commitment</h1>
+    <p class="luxe-auth-hero-subtitle">Responsible. Ethical. Timeless.</p>
+    <p class="luxe-auth-hero-description">
+      At Luxerazo, we believe true luxury embraces responsibility. Our commitment to sustainability ensures that every piece we offer honors the planet and future generations.
+    </p>
+  </div>
+</section>
+
+<!-- Sustainability Information -->
+<section class="luxe-sustainability-section" data-animate>
+  <h2>Our Sustainable Practices</h2>
+  <p>
+    We integrate eco-friendly practices throughout our sourcing, production, and delivery processes to minimize environmental impact without compromising on quality or exclusivity.
+  </p>
+  <ul class="luxe-sustainability-list">
+    <li>Ethical sourcing of materials from certified suppliers</li>
+    <li>Use of recycled and sustainable packaging materials</li>
+    <li>Carbon-neutral shipping options available</li>
+    <li>Support for artisan communities and fair labor practices</li>
+    <li>Continuous innovation in sustainable luxury design</li>
+  </ul>
+  <p>
+    Join us in redefining luxury with conscience and care.
+  </p>
+</section>
+
+{% endblock %}

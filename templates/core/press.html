@@ -1,0 +1,417 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Press & Media – Luxerazo in the Spotlight{% endblock %}
+{% block description %}Discover Luxerazo's media coverage and press releases. Learn about our recognition in luxury fashion and industry awards.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* LUXURY PRESS PAGE STYLES */
+.luxe-press-hero {
+  position: relative;
+  min-height: 70vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-press-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine1.png" %}') center/cover;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.luxe-press-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-press-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-sm) var(--luxe-space-lg);
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: var(--luxe-space-md);
+  box-shadow: var(--luxe-shadow-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.luxe-press-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.luxe-press-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.5rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-lg);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.luxe-press-hero-description {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: var(--luxe-space-xl);
+  font-weight: 500;
+}
+
+.luxe-press-features {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+}
+
+.luxe-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-feature-card {
+  background: white;
+  padding: var(--luxe-space-xl);
+  border-radius: 12px;
+  box-shadow: var(--luxe-shadow-medium);
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all var(--luxe-transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--luxe-gold-gradient);
+}
+
+.luxe-feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--luxe-shadow-strong);
+  border-color: var(--luxe-gold);
+}
+
+.luxe-feature-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--luxe-gold-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--luxe-space-md);
+  font-size: 2rem;
+  color: var(--luxe-obsidian);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-feature-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.luxe-feature-description {
+  color: var(--luxe-charcoal);
+  line-height: 1.7;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.luxe-press-coverage {
+  background: var(--luxe-champagne);
+  padding: var(--luxe-space-xxl) 0;
+}
+
+.luxe-coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--luxe-space-lg);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-coverage-card {
+  background: white;
+  padding: var(--luxe-space-lg);
+  border-radius: 8px;
+  box-shadow: var(--luxe-shadow-subtle);
+  text-align: center;
+  border: 1px solid var(--luxe-platinum);
+  transition: all var(--luxe-transition-medium);
+}
+
+.luxe-coverage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--luxe-shadow-medium);
+  border-color: var(--luxe-gold);
+}
+
+.luxe-coverage-publication {
+  font-family: var(--luxe-font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-sm);
+}
+
+.luxe-coverage-headline {
+  color: var(--luxe-charcoal);
+  line-height: 1.6;
+  font-weight: 500;
+  margin-bottom: var(--luxe-space-sm);
+  font-style: italic;
+}
+
+.luxe-coverage-date {
+  font-size: 0.875rem;
+  color: var(--luxe-gold);
+  font-weight: 600;
+}
+
+.luxe-press-contact {
+  background: var(--luxe-navy);
+  color: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  text-align: center;
+}
+
+.luxe-contact-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.luxe-contact-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-contact-text {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: var(--luxe-space-lg);
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.luxe-contact-info {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--luxe-gold);
+}
+
+@media (max-width: 768px) {
+  .luxe-press-hero {
+    min-height: 60vh;
+  }
+  
+  .luxe-features-grid,
+  .luxe-coverage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Press Hero -->
+<section class="luxe-press-hero" data-animate>
+  <div class="luxe-press-hero-content">
+    <div class="luxe-press-hero-badge">
+      <i class="fas fa-newspaper"></i>
+      <span>Media Recognition</span>
+    </div>
+    <h1 class="luxe-press-hero-title">PRESS & MEDIA</h1>
+    <p class="luxe-press-hero-subtitle">Recognized Excellence in Luxury</p>
+    <p class="luxe-press-hero-description">
+      Luxerazo has been featured in the world's most prestigious publications, recognized for our commitment to authenticity, exceptional service, and curated luxury collections that define the pinnacle of style.
+    </p>
+  </div>
+</section>
+
+<!-- Press Features -->
+<section class="luxe-press-features" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Industry Recognition</p>
+      <h2 class="luxe-section-title">Awards & Achievements</h2>
+      <p class="luxe-section-description">
+        Our dedication to excellence has earned recognition from leading industry organizations and luxury publications worldwide.
+      </p>
+    </div>
+    
+    <div class="luxe-features-grid">
+      <div class="luxe-feature-card luxe-hover-lift" data-animate-delay="100">
+        <div class="luxe-feature-icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <h3 class="luxe-feature-title">Luxury Retailer of the Year</h3>
+        <p class="luxe-feature-description">
+          Awarded by the International Luxury Association for outstanding service and authentic luxury curation.
+        </p>
+      </div>
+      
+      <div class="luxe-feature-card luxe-hover-lift" data-animate-delay="200">
+        <div class="luxe-feature-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <h3 class="luxe-feature-title">Excellence in Authentication</h3>
+        <p class="luxe-feature-description">
+          Recognized for our industry-leading authentication processes and commitment to genuine luxury products.
+        </p>
+      </div>
+      
+      <div class="luxe-feature-card luxe-hover-lift" data-animate-delay="300">
+        <div class="luxe-feature-icon">
+          <i class="fas fa-crown"></i>
+        </div>
+        <h3 class="luxe-feature-title">Premium Customer Service</h3>
+        <p class="luxe-feature-description">
+          Honored for delivering white-glove customer experiences that exceed the expectations of luxury clientele.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Press Coverage -->
+<section class="luxe-press-coverage" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Media Coverage</p>
+      <h2 class="luxe-section-title">Featured In</h2>
+      <p class="luxe-section-description">
+        Discover how leading publications have covered Luxerazo's impact on the luxury retail landscape.
+      </p>
+    </div>
+    
+    <div class="luxe-coverage-grid">
+      <div class="luxe-coverage-card" data-animate-delay="100">
+        <h3 class="luxe-coverage-publication">Luxury Times</h3>
+        <p class="luxe-coverage-headline">"Luxerazo Sets New Standards in Luxury Authentication"</p>
+        <div class="luxe-coverage-date">March 2024</div>
+      </div>
+      
+      <div class="luxe-coverage-card" data-animate-delay="200">
+        <h3 class="luxe-coverage-publication">Elite Fashion Weekly</h3>
+        <p class="luxe-coverage-headline">"The Future of Luxury Retail: A Luxerazo Perspective"</p>
+        <div class="luxe-coverage-date">February 2024</div>
+      </div>
+      
+      <div class="luxe-coverage-card" data-animate-delay="300">
+        <h3 class="luxe-coverage-publication">Prestige Magazine</h3>
+        <p class="luxe-coverage-headline">"Curating Excellence: Inside Luxerazo's Selection Process"</p>
+        <div class="luxe-coverage-date">January 2024</div>
+      </div>
+      
+      <div class="luxe-coverage-card" data-animate-delay="400">
+        <h3 class="luxe-coverage-publication">Luxury Lifestyle</h3>
+        <p class="luxe-coverage-headline">"White-Glove Service Redefined by Luxerazo"</p>
+        <div class="luxe-coverage-date">December 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Press Contact -->
+<section class="luxe-press-contact" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-contact-content">
+      <h2 class="luxe-contact-title">Media Inquiries</h2>
+      <p class="luxe-contact-text">
+        For press inquiries, interview requests, or media partnerships, our communications team is ready to assist with your needs.
+      </p>
+      <div class="luxe-contact-info">
+        press@luxerazo.com
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Luxury scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.animateDelay || 0;
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, delay);
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all animated elements
+  document.querySelectorAll('[data-animate], [data-animate-delay]').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    observer.observe(el);
+  });
+  
+  // Add luxury hover effects to feature cards
+  document.querySelectorAll('.luxe-feature-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.borderColor = 'var(--luxe-gold)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.borderColor = 'transparent';
+    });
+  });
+});
+</script>
+{% endblock %}

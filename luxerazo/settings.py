@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'brands',
     'concierge',
     'catalog',
+    'cms',
+    'analytics',
     # 'accounts',
     # 'dashboard',
     # 'content',

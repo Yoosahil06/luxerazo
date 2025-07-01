@@ -1,0 +1,419 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Authentication & Verification – Luxerazo Guarantee{% endblock %}
+{% block description %}Discover Luxerazo's industry-leading authentication process. Every luxury item undergoes rigorous verification by certified experts to ensure absolute authenticity.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ULTRA-LUXURY AUTHENTICATION PAGE STYLES */
+.luxe-auth-hero {
+  position: relative;
+  min-height: 80vh;
+  background: linear-gradient(135deg, var(--luxe-obsidian) 0%, var(--luxe-navy) 50%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-auth-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine2.jpg" %}') center/cover;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.luxe-auth-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-auth-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  padding: var(--luxe-space-md) var(--luxe-space-xl);
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.125rem;
+  margin-bottom: var(--luxe-space-lg);
+  box-shadow: var(--luxe-shadow-gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: luxe-pulse-gold 3s infinite;
+}
+
+.luxe-auth-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 900;
+  line-height: 1.0;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
+  letter-spacing: -2px;
+}
+
+.luxe-auth-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 2rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-lg);
+  font-style: italic;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.luxe-auth-hero-description {
+  font-size: 1.375rem;
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: var(--luxe-space-xl);
+  font-weight: 500;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.luxe-auth-process {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+}
+
+.luxe-process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-process-card {
+  background: white;
+  padding: var(--luxe-space-xl);
+  border-radius: 16px;
+  box-shadow: var(--luxe-shadow-medium);
+  text-align: center;
+  border: 3px solid transparent;
+  transition: all var(--luxe-transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-process-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--luxe-gold-gradient);
+}
+
+.luxe-process-card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--luxe-shadow-strong);
+  border-color: var(--luxe-gold);
+}
+
+.luxe-process-number {
+  width: 60px;
+  height: 60px;
+  background: var(--luxe-gold-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--luxe-space-lg);
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--luxe-obsidian);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-process-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.luxe-process-description {
+  color: var(--luxe-charcoal);
+  line-height: 1.8;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-guarantee-section {
+  background: var(--luxe-navy);
+  color: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  text-align: center;
+}
+
+.luxe-guarantee-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.luxe-guarantee-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: var(--luxe-space-lg);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-guarantee-description {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  margin-bottom: var(--luxe-space-xl);
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.luxe-guarantee-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--luxe-space-xl);
+  margin-top: var(--luxe-space-xl);
+}
+
+.luxe-guarantee-item {
+  background: rgba(248, 246, 240, 0.1);
+  padding: var(--luxe-space-lg);
+  border-radius: 16px;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  transition: all var(--luxe-transition-medium);
+}
+
+.luxe-guarantee-item:hover {
+  border-color: var(--luxe-gold);
+  background: rgba(248, 246, 240, 0.2);
+  transform: translateY(-4px);
+}
+
+.luxe-guarantee-icon {
+  font-size: 2.5rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-guarantee-item-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--luxe-space-sm);
+  color: var(--luxe-pearl);
+}
+
+.luxe-guarantee-item-text {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .luxe-auth-hero {
+    min-height: 70vh;
+  }
+  
+  .luxe-process-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .luxe-guarantee-features {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Authentication Hero -->
+<section class="luxe-auth-hero" data-animate>
+  <div class="luxe-auth-hero-content">
+    <div class="luxe-auth-hero-badge">
+      <i class="fas fa-shield-alt"></i>
+      <span>100% Authentic</span>
+    </div>
+    <h1 class="luxe-auth-hero-title">Authentication</h1>
+    <p class="luxe-auth-hero-subtitle">Uncompromising Verification</p>
+    <p class="luxe-auth-hero-description">
+      Every luxury item at Luxerazo undergoes rigorous authentication by our team of certified experts. Our multi-step verification process ensures absolute authenticity, giving you complete peace of mind with every purchase.
+    </p>
+  </div>
+</section>
+
+<!-- Authentication Process -->
+<section class="luxe-auth-process" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Our Process</p>
+      <h2 class="luxe-section-title">7-Step Authentication</h2>
+      <p class="luxe-section-description">
+        Our industry-leading authentication process combines expert knowledge, advanced technology, and meticulous attention to detail.
+      </p>
+    </div>
+    
+    <div class="luxe-process-grid">
+      <div class="luxe-process-card luxe-hover-lift" data-animate-delay="100">
+        <div class="luxe-process-number">1</div>
+        <h3 class="luxe-process-title">Initial Assessment</h3>
+        <p class="luxe-process-description">
+          Expert evaluation of item provenance, documentation, and overall condition by our senior authenticators.
+        </p>
+      </div>
+      
+      <div class="luxe-process-card luxe-hover-lift" data-animate-delay="200">
+        <div class="luxe-process-number">2</div>
+        <h3 class="luxe-process-title">Physical Inspection</h3>
+        <p class="luxe-process-description">
+          Detailed examination of materials, craftsmanship, and brand-specific manufacturing characteristics.
+        </p>
+      </div>
+      
+      <div class="luxe-process-card luxe-hover-lift" data-animate-delay="300">
+        <div class="luxe-process-number">3</div>
+        <h3 class="luxe-process-title">Digital Analysis</h3>
+        <p class="luxe-process-description">
+          Advanced technological verification using specialized equipment and proprietary authentication software.
+        </p>
+      </div>
+      
+      <div class="luxe-process-card luxe-hover-lift" data-animate-delay="400">
+        <div class="luxe-process-number">4</div>
+        <h3 class="luxe-process-title">Brand Verification</h3>
+        <p class="luxe-process-description">
+          Cross-reference with brand-specific databases and direct manufacturer authentication when available.
+        </p>
+      </div>
+      
+      <div class="luxe-process-card luxe-hover-lift" data-animate-delay="500">
+        <div class="luxe-process-number">5</div>
+        <h3 class="luxe-process-title">Expert Review</h3>
+        <p class="luxe-process-description">
+          Secondary examination by category specialists with decades of experience in luxury authentication.
+        </p>
+      </div>
+      
+      <div class="luxe-process-card luxe-hover-lift" data-animate-delay="600">
+        <div class="luxe-process-number">6</div>
+        <h3 class="luxe-process-title">Documentation</h3>
+        <p class="luxe-process-description">
+          Comprehensive authentication report with detailed findings and high-resolution photography.
+        </p>
+      </div>
+      
+      <div class="luxe-process-card luxe-hover-lift" data-animate-delay="700">
+        <div class="luxe-process-number">7</div>
+        <h3 class="luxe-process-title">Digital Certificate</h3>
+        <p class="luxe-process-description">
+          Blockchain-verified certificate of authenticity with unique identifier and complete authentication history.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Guarantee Section -->
+<section class="luxe-guarantee-section" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-guarantee-content">
+      <h2 class="luxe-guarantee-title">Our Guarantee</h2>
+      <p class="luxe-guarantee-description">
+        We stand behind every item we authenticate with our comprehensive lifetime guarantee, ensuring your investment is protected forever.
+      </p>
+      
+      <div class="luxe-guarantee-features">
+        <div class="luxe-guarantee-item" data-animate-delay="100">
+          <div class="luxe-guarantee-icon">
+            <i class="fas fa-infinity"></i>
+          </div>
+          <h3 class="luxe-guarantee-item-title">Lifetime Guarantee</h3>
+          <p class="luxe-guarantee-item-text">
+            Our authentication guarantee remains valid for the lifetime of your luxury item.
+          </p>
+        </div>
+        
+        <div class="luxe-guarantee-item" data-animate-delay="200">
+          <div class="luxe-guarantee-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="luxe-guarantee-item-title">Full Protection</h3>
+          <p class="luxe-guarantee-item-text">
+            200% purchase price refund if an item is proven to be non-authentic.
+          </p>
+        </div>
+        
+        <div class="luxe-guarantee-item" data-animate-delay="300">
+          <div class="luxe-guarantee-icon">
+            <i class="fas fa-fingerprint"></i>
+          </div>
+          <h3 class="luxe-guarantee-item-title">Unique Certification</h3>
+          <p class="luxe-guarantee-item-text">
+            Blockchain-verified certificates with tamper-proof authentication history.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Luxury scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.animateDelay || 0;
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, delay);
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all animated elements
+  document.querySelectorAll('[data-animate], [data-animate-delay]').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    observer.observe(el);
+  });
+});
+</script>
+{% endblock %}

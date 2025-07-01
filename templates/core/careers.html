@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Careers – Join Luxerazo's Luxury Team{% endblock %}
+{% block description %}Explore career opportunities at Luxerazo. Join our team dedicated to delivering ultra-luxury fashion and exceptional customer experiences.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* LUXURY CAREERS PAGE STYLES */
+.luxe-careers-hero {
+  position: relative;
+  min-height: 60vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-careers-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine3.jpg" %}') center/cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.luxe-careers-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-careers-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.25rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-sm);
+  font-style: italic;
+}
+
+.luxe-careers-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-careers-hero-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-careers-info {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--luxe-charcoal);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.luxe-careers-section {
+  margin-bottom: var(--luxe-space-xxl);
+}
+
+.luxe-careers-section h2 {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-careers-section p {
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-careers-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--luxe-space-md);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.luxe-careers-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: var(--luxe-space-sm);
+  font-weight: 500;
+}
+
+.luxe-careers-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--luxe-gold);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .luxe-careers-hero {
+    min-height: 50vh;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Careers Hero -->
+<section class="luxe-careers-hero" data-animate>
+  <div class="luxe-careers-hero-content">
+    <p class="luxe-careers-hero-subtitle">Join Our Team</p>
+    <h1 class="luxe-careers-hero-title">Careers at Luxerazo</h1>
+    <p class="luxe-careers-hero-description">
+      Be part of a world-class team dedicated to delivering ultra-luxury fashion and exceptional customer experiences.
+    </p>
+  </div>
+</section>
+
+<!-- Careers Information -->
+<section class="luxe-careers-info" data-animate>
+  <div class="luxe-careers-section">
+    <h2>Why Work With Us</h2>
+    <p>
+      Luxerazo offers a dynamic and inspiring work environment where passion for luxury and excellence drives everything we do.
+    </p>
+    <ul class="luxe-careers-list">
+      <li>Competitive compensation and benefits</li>
+      <li>Opportunities for professional growth and development</li>
+      <li>Inclusive and diverse workplace culture</li>
+      <li>Access to exclusive luxury events and products</li>
+      <li>Collaborate with industry leaders and experts</li>
+    </ul>
+  </div>
+  
+  <div class="luxe-careers-section">
+    <h2>Current Openings</h2>
+    <p>
+      Explore our current job openings and find the perfect role to advance your career in luxury retail.
+    </p>
+    <p>
+      Please send your resume and cover letter to <a href="mailto:careers@luxerazo.com">careers@luxerazo.com</a>.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

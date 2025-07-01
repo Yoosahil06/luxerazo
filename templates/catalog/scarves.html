@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Luxerazo – Luxury Scarves Collection{% endblock %}
+{% block description %}Explore Luxerazo's exclusive collection of luxury scarves from the world's most prestigious fashion houses.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-catalog.css' %}">
+<style>
+  /* Elegant scarf styling */
+  .luxe-hero {
+    background: linear-gradient(135deg, #faf8f5 0%, #f0ebe5 100%);
+  }
+  
+  .luxe-hero-overlay {
+    background: linear-gradient(135deg, rgba(184, 134, 11, 0.15) 0%, rgba(139, 69, 19, 0.25) 100%);
+  }
+  
+  .luxe-hero-title {
+    color: #b8860b;
+    text-shadow: 2px 2px 4px rgba(184, 134, 11, 0.3);
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    letter-spacing: 3px;
+    font-style: italic;
+  }
+  
+  .luxe-hero-subtitle {
+    color: #daa520;
+    font-style: italic;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .luxe-section-title {
+    color: #b8860b;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .luxe-collection-card {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box, 
+                linear-gradient(135deg, #daa520, #f4e4bc) border-box;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    position: relative;
+  }
+  
+  .luxe-collection-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(218, 165, 32, 0.08) 0%, rgba(244, 228, 188, 0.08) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .luxe-collection-card:hover::before {
+    opacity: 1;
+  }
+  
+  .luxe-collection-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(218, 165, 32, 0.3);
+  }
+  
+  .luxe-collection-overlay {
+    background: linear-gradient(135deg, rgba(218, 165, 32, 0.92) 0%, rgba(184, 134, 11, 0.88) 100%);
+  }
+  
+  .luxe-collection-cta {
+    background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 35px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    font-size: 11px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .luxe-collection-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .luxe-collection-cta:hover::before {
+    left: 100%;
+  }
+  
+  .luxe-collection-cta:hover {
+    background: linear-gradient(135deg, #daa520 0%, #b8860b 100%);
+    transform: scale(1.1);
+    box-shadow: 0 12px 30px rgba(184, 134, 11, 0.5);
+  }
+  
+  .luxe-collection-title {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  
+  .luxe-collection-subtitle {
+    color: #f4e4bc;
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .luxe-collection-price {
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 18px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  .luxe-elegance-section {
+    background: linear-gradient(135deg, #faf8f5 0%, #f0ebe5 100%);
+    padding: 60px 20px;
+    border-radius: 20px;
+    margin: 80px 0;
+    text-align: center;
+    border: 2px solid #f4e4bc;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .luxe-elegance-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(218, 165, 32, 0.05) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+  }
+  
+  .luxe-elegance-section h3 {
+    color: #b8860b;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .luxe-elegance-section p {
+    color: #8b7355;
+    font-style: italic;
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .luxe-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .luxe-feature-card {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #f4e4bc;
+    transition: transform 0.3s ease;
+  }
+  
+  .luxe-feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(218, 165, 32, 0.2);
+  }
+  
+  .luxe-feature-card h4 {
+    color: #b8860b;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+  
+  .luxe-feature-card p {
+    color: #8b7355;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="luxe-hero" data-animate>
+  <div class="luxe-hero-image" style="background-image: url('{% static "img/scarves-hero.jpg" %}');" data-parallax="0.5"></div>
+  <div class="luxe-hero-overlay"></div>
+  
+  <div class="luxe-hero-content">
+    <p class="luxe-hero-subtitle">Artisanal Elegance</p>
+    <h1 class="luxe-hero-title">Luxury Scarves Collection</h1>
+    <p class="luxe-hero-description">
+      Discover exquisite scarves that embody timeless sophistication and artisanal craftsmanship from the world's most prestigious fashion houses.
+    </p>
+  </div>
+</section>
+
+<section class="luxe-collections" data-animate>
+  <div class="luxe-container">
+    <div class="luxe-section-header">
+      <p class="luxe-section-subtitle">Silk & Cashmere Masterpieces</p>
+      <h2 class="luxe-section-title">Exquisite Scarves Collection</h2>
+      <p class="luxe-section-description">
+        From hand-painted silk to luxurious cashmere, discover scarves that transform any ensemble into a statement of refined elegance.
+      </p>
+    </div>
+    
+    <!-- Elegance Highlight -->
+    <div class="luxe-elegance-section">
+      <h3>The Art of Silk</h3>
+      <p>Each scarf in our collection represents centuries of textile artistry, featuring the finest silk and cashmere from renowned fashion houses. These aren't just accessories—they're wearable works of art that tell stories of heritage, craftsmanship, and timeless style.</p>
+      
+      <div class="luxe-features-grid">
+        <div class="luxe-feature-card">
+          <h4>Hand-Painted Designs</h4>
+          <p>Exclusive patterns created by master artisans, each piece unique in its artistic expression and color harmony.</p>
+        </div>
+        <div class="luxe-feature-card">
+          <h4>Premium Materials</h4>
+          <p>Only the finest silk, cashmere, and modal fabrics sourced from the most prestigious textile mills worldwide.</p>
+        </div>
+        <div class="luxe-feature-card">
+          <h4>Versatile Styling</h4>
+          <p>From elegant neck scarves to sophisticated head wraps, endless possibilities for personal expression.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="luxe-collections-grid">
+      {% for product in products %}
+      <div class="luxe-collection-card luxe-hover-lift" data-animate-delay="{{ forloop.counter0|add:'100' }}">
+        {% if product.main_image %}
+        <img src="{{ product.main_image.image.url }}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% else %}
+        <img src="{% static 'img/hero1.jpg' %}" alt="{{ product.name }}" class="luxe-collection-image">
+        {% endif %}
+        <div class="luxe-collection-overlay">
+          <div class="luxe-collection-content">
+            <h3 class="luxe-collection-title">{{ product.name }}</h3>
+            <p class="luxe-collection-subtitle">{{ product.brand.name }}</p>
+            <p class="luxe-collection-price">${{ product.discounted_price|floatformat:2 }}</p>
+            {% if product.discount_percent > 0 %}
+            <p class="luxe-collection-discount" style="color: #f4e4bc; font-size: 14px; margin-bottom: 18px; font-style: italic;">{{ product.discount_percent }}% OFF</p>
+            {% endif %}
+            <a href="{% url 'catalog:product_detail' product.slug %}" class="luxe-collection-cta">
+              Discover
+            </a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="luxe-no-products" style="text-align: center; padding: 80px 20px; color: #b8860b;">
+        <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 20px; font-style: italic;">Curating Excellence</h3>
+        <p style="font-style: italic; color: #8b7355;">Our luxury scarves collection is being carefully curated with the finest pieces from prestigious fashion houses. Please return soon to discover these exquisite accessories.</p>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Care Instructions -->
+    <div class="luxe-elegance-section" style="margin-top: 100px;">
+      <h3>Caring for Your Luxury Scarves</h3>
+      <div class="luxe-features-grid">
+        <div class="luxe-feature-card">
+          <h4>Professional Cleaning</h4>
+          <p>We recommend professional dry cleaning to maintain the integrity of delicate fibers and preserve vibrant colors.</p>
+        </div>
+        <div class="luxe-feature-card">
+          <h4>Proper Storage</h4>
+          <p>Store flat or gently folded in acid-free tissue paper, away from direct sunlight to prevent fading.</p>
+        </div>
+        <div class="luxe-feature-card">
+          <h4>Gentle Handling</h4>
+          <p>Handle with clean hands and avoid contact with perfumes, lotions, or sharp jewelry that may snag delicate fibers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

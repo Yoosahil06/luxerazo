@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Shipping & Returns – Luxerazo Premium Service{% endblock %}
+{% block description %}Experience white-glove shipping and returns with Luxerazo. Secure, insured, and personalized delivery for your luxury acquisitions.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* LUXURY SHIPPING PAGE STYLES */
+.luxe-shipping-hero {
+  position: relative;
+  min-height: 60vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-deep-burgundy) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--luxe-pearl);
+  overflow: hidden;
+}
+
+.luxe-shipping-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/magazine2.jpg" %}') center/cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.luxe-shipping-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: var(--luxe-space-xl);
+}
+
+.luxe-shipping-hero-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.25rem;
+  color: var(--luxe-gold);
+  margin-bottom: var(--luxe-space-sm);
+  font-style: italic;
+}
+
+.luxe-shipping-hero-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--luxe-space-md);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxe-shipping-hero-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-shipping-info {
+  background: var(--luxe-pearl);
+  padding: var(--luxe-space-xxl) 0;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--luxe-charcoal);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.luxe-shipping-section {
+  margin-bottom: var(--luxe-space-xxl);
+}
+
+.luxe-shipping-section h2 {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-shipping-section p {
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-shipping-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-shipping-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: var(--luxe-space-sm);
+  font-weight: 500;
+}
+
+.luxe-shipping-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--luxe-gold);
+  font-weight: 700;
+}
+
+.luxe-shipping-contact {
+  text-align: center;
+  margin-top: var(--luxe-space-xl);
+  font-weight: 600;
+  color: var(--luxe-navy);
+}
+
+@media (max-width: 768px) {
+  .luxe-shipping-hero {
+    min-height: 50vh;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Ultra-Luxury Shipping Hero -->
+<section class="luxe-shipping-hero" data-animate>
+  <div class="luxe-shipping-hero-content">
+    <p class="luxe-shipping-hero-subtitle">White-Glove Delivery</p>
+    <h1 class="luxe-shipping-hero-title">Secure & Insured Shipping</h1>
+    <p class="luxe-shipping-hero-description">
+      At Luxerazo, we treat your luxury acquisitions with the utmost care. Our shipping services are designed to provide secure, insured, and personalized delivery experiences that match the exclusivity of your purchase.
+    </p>
+  </div>
+</section>
+
+<!-- Shipping Information -->
+<section class="luxe-shipping-info" data-animate>
+  <div class="luxe-shipping-section">
+    <h2>Shipping Options</h2>
+    <ul class="luxe-shipping-list">
+      <li>Standard Shipping: 3-5 business days with full insurance coverage.</li>
+      <li>Express Shipping: 1-2 business days with white-glove handling.</li>
+      <li>In-Person Delivery: Schedule a private delivery experience with our concierge team.</li>
+    </ul>
+  </div>
+  
+  <div class="luxe-shipping-section">
+    <h2>Returns & Exchanges</h2>
+    <p>
+      We understand that luxury purchases require flexibility. Our return and exchange policies are designed to provide you with peace of mind and exceptional service.
+    </p>
+    <ul class="luxe-shipping-list">
+      <li>30-day return window for all items in original condition.</li>
+      <li>Complimentary return shipping for VIP clients.</li>
+      <li>Personalized assistance with exchanges and refunds.</li>
+    </ul>
+  </div>
+  
+  <div class="luxe-shipping-section">
+    <h2>Customer Support</h2>
+    <p>
+      Our dedicated support team is available 24/7 to assist with any shipping inquiries or special requests.
+    </p>
+    <p class="luxe-shipping-contact">
+      Call us at +1 (555) 123-LUXE or email shipping@luxerazo.com
+    </p>
+  </div>
+</section>
+
+{% endblock %}
