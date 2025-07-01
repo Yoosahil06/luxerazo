@@ -90,11 +90,11 @@ WSGI_APPLICATION = 'luxerazo.wsgi.application'
 # --------------------------------------------
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Luxerazo',
         'USER': 'postgres',
-        'PASSWORD': 'sAHIL096114',
-        'HOST': 'localhost',
+        'PASSWORD': 'Sahil096114',  
+        'HOST': 'localhost',     
         'PORT': '5432',
     }
 }
