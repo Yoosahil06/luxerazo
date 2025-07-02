@@ -13,6 +13,17 @@ def dashboard_view(request):
         'wishlist': wishlist.products.all(),
     })
 
+def account_view(request):
+    if request.user.is_authenticated:
+        profile, _ = Profile.objects.get_or_create(user=request.user)
+        return render(request, 'users/account.html', {
+            'profile': profile,
+        })
+    else:
+        return render(request, 'users/account.html', {
+            'profile': None,
+        })
+
 @login_required
 def toggle_wishlist(request, product_id):
     product = get_object_or_404(Product, pk=product_id)

@@ -9,7 +9,7 @@ urlpatterns = [
     path('', include('core.urls')),  # homepage, about, etc.
     path('products/', include('products.urls')),
     path('orders/', include('orders.urls')),
-    path('users/', include('users.urls')),
+    path('account/', include('users.urls')),
     path('brands/', include('brands.urls')),
     path('concierge/', include('concierge.urls')),
     path('catalog/', include('catalog.urls')),

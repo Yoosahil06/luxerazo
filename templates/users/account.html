@@ -1,0 +1,515 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Account – Luxerazo{% endblock %}
+{% block description %}Manage your exclusive Luxerazo account, view your luxury collection, and access premium services.{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/luxury-footer.css' %}">
+<style>
+/* Ultra-Premium Account Page Styling */
+.luxe-account-hero {
+  position: relative;
+  min-height: 40vh;
+  background: linear-gradient(135deg, var(--luxe-navy) 0%, var(--luxe-midnight) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.luxe-account-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('{% static "img/luxury-pattern.svg" %}') repeat;
+  opacity: 0.05;
+  z-index: 1;
+}
+
+.luxe-account-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--luxe-pearl);
+}
+
+.luxe-account-title {
+  font-family: var(--luxe-font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: var(--luxe-space-sm);
+  background: var(--luxe-gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+}
+
+.luxe-account-subtitle {
+  font-family: var(--luxe-font-accent);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--luxe-platinum);
+  margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-account-main {
+  padding: var(--luxe-space-xxl) 0;
+  background: var(--luxe-pearl);
+  position: relative;
+}
+
+.luxe-account-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--luxe-space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--luxe-space-lg);
+}
+
+.luxe-account-card {
+  background: linear-gradient(145deg, #ffffff 0%, var(--luxe-cream) 100%);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: all var(--luxe-transition-luxury);
+  box-shadow: var(--luxe-shadow-subtle);
+}
+
+.luxe-account-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--luxe-gold-gradient);
+  border-radius: 16px;
+  padding: 2px;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: 1;
+}
+
+.luxe-account-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+}
+
+.luxe-card-header {
+  background: var(--luxe-gold-gradient);
+  padding: var(--luxe-space-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.luxe-card-title {
+  font-family: var(--luxe-font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--luxe-obsidian);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+}
+
+.luxe-card-icon {
+  font-size: 1.5rem;
+  color: var(--luxe-navy);
+}
+
+.luxe-card-content {
+  padding: var(--luxe-space-xl);
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(145deg, #ffffff 0%, var(--luxe-cream) 100%);
+}
+
+.luxe-profile-item {
+  margin-bottom: var(--luxe-space-lg);
+  padding-bottom: var(--luxe-space-md);
+  border-bottom: 1px solid var(--luxe-platinum);
+}
+
+.luxe-profile-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.luxe-profile-label {
+  font-family: var(--luxe-font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--luxe-charcoal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--luxe-space-xs);
+}
+
+.luxe-profile-value {
+  font-family: var(--luxe-font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--luxe-navy);
+  margin: 0;
+}
+
+.luxe-profile-value.tier {
+  color: var(--luxe-burgundy);
+  font-family: var(--luxe-font-accent);
+  font-style: italic;
+  font-size: 1.5rem;
+}
+
+.luxe-profile-value.points {
+  color: var(--luxe-gold);
+  font-weight: 700;
+}
+
+.luxe-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--luxe-space-md);
+}
+
+.luxe-account-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--luxe-space-md) var(--luxe-space-lg);
+  background: transparent;
+  border: 2px solid var(--luxe-navy);
+  border-radius: 8px;
+  font-family: var(--luxe-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  text-decoration: none;
+  transition: all var(--luxe-transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxe-account-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--luxe-navy);
+  transition: left var(--luxe-transition-medium);
+  z-index: 1;
+}
+
+.luxe-account-btn:hover::before {
+  left: 0;
+}
+
+.luxe-account-btn:hover {
+  color: var(--luxe-pearl);
+  border-color: var(--luxe-navy);
+  transform: translateY(-2px);
+  box-shadow: var(--luxe-shadow-medium);
+}
+
+.luxe-account-btn span,
+.luxe-account-btn i {
+  position: relative;
+  z-index: 2;
+}
+
+.luxe-account-btn.primary {
+  background: var(--luxe-gold-gradient);
+  border-color: var(--luxe-gold);
+  color: var(--luxe-obsidian);
+}
+
+.luxe-account-btn.primary::before {
+  background: var(--luxe-navy);
+}
+
+.luxe-login-card {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--luxe-space-xxl);
+}
+
+.luxe-login-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.luxe-login-title {
+  font-family: var(--luxe-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--luxe-navy);
+  margin-bottom: var(--luxe-space-md);
+}
+
+.luxe-login-text {
+  font-family: var(--luxe-font-body);
+  font-size: 1.125rem;
+  color: var(--luxe-charcoal);
+  margin-bottom: var(--luxe-space-lg);
+  line-height: 1.7;
+}
+
+.luxe-login-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--luxe-space-sm);
+  padding: var(--luxe-space-md) var(--luxe-space-xl);
+  background: var(--luxe-gold-gradient);
+  color: var(--luxe-obsidian);
+  text-decoration: none;
+  border-radius: 8px;
+  font-family: var(--luxe-font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all var(--luxe-transition-medium);
+  box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+  color: var(--luxe-obsidian);
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .luxe-account-grid {
+    grid-template-columns: 1fr;
+    gap: var(--luxe-space-lg);
+    padding: 0 var(--luxe-space-md);
+  }
+  
+  .luxe-account-title {
+    font-size: 2.5rem;
+  }
+  
+  .luxe-card-content {
+    padding: var(--luxe-space-lg);
+  }
+  
+  .luxe-login-card {
+    padding: var(--luxe-space-xl);
+  }
+}
+
+/* Animation for page load */
+@keyframes luxe-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.luxe-account-card {
+  animation: luxe-fade-in-up 0.8s ease-out forwards;
+}
+
+.luxe-account-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Ultra-Premium Hero Section -->
+<section class="luxe-account-hero">
+  <div class="luxe-account-hero-content">
+    <h1 class="luxe-account-title">My Account</h1>
+    <p class="luxe-account-subtitle">Your Gateway to Luxury</p>
+  </div>
+</section>
+
+<!-- Account Main Content -->
+<section class="luxe-account-main">
+  {% if profile %}
+    <div class="luxe-account-grid">
+      <!-- Profile Information Card -->
+      <div class="luxe-account-card">
+        <div class="luxe-card-header">
+          <h2 class="luxe-card-title">
+            <i class="fas fa-user-crown luxe-card-icon"></i>
+            Profile Information
+          </h2>
+        </div>
+        <div class="luxe-card-content">
+          <div class="luxe-profile-item">
+            <div class="luxe-profile-label">Username</div>
+            <p class="luxe-profile-value">{{ user.username }}</p>
+          </div>
+          
+          <div class="luxe-profile-item">
+            <div class="luxe-profile-label">Email Address</div>
+            <p class="luxe-profile-value">{{ user.email }}</p>
+          </div>
+          
+          <div class="luxe-profile-item">
+            <div class="luxe-profile-label">Loyalty Points</div>
+            <p class="luxe-profile-value points">{{ profile.loyalty_points|default:"0" }}</p>
+          </div>
+          
+          <div class="luxe-profile-item">
+            <div class="luxe-profile-label">Membership Tier</div>
+            <p class="luxe-profile-value tier">{{ profile.tier|default:"Silver" }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Quick Actions Card -->
+      <div class="luxe-account-card">
+        <div class="luxe-card-header">
+          <h2 class="luxe-card-title">
+            <i class="fas fa-concierge-bell luxe-card-icon"></i>
+            Quick Actions
+          </h2>
+        </div>
+        <div class="luxe-card-content">
+          <div class="luxe-action-buttons">
+            <a href="{% url 'dashboard' %}" class="luxe-account-btn primary">
+              <span>Dashboard</span>
+              <i class="fas fa-tachometer-alt"></i>
+            </a>
+            
+            <a href="/orders/" class="luxe-account-btn">
+              <span>Order History</span>
+              <i class="fas fa-history"></i>
+            </a>
+            
+            <a href="/products/" class="luxe-account-btn">
+              <span>Browse Collections</span>
+              <i class="fas fa-gem"></i>
+            </a>
+            
+            <a href="/concierge/" class="luxe-account-btn">
+              <span>Personal Concierge</span>
+              <i class="fas fa-concierge-bell"></i>
+            </a>
+            
+            <a href="#" class="luxe-account-btn">
+              <span>Edit Profile</span>
+              <i class="fas fa-edit"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="luxe-account-grid">
+      <div class="luxe-account-card luxe-login-card">
+        <div class="luxe-login-content">
+          <h2 class="luxe-login-title">Welcome to Luxerazo</h2>
+          <p class="luxe-login-text">
+            Access your exclusive account to manage your luxury collection, view personalized recommendations, and enjoy our premium concierge services.
+          </p>
+          <a href="/admin/login/?next=/account/" class="luxe-login-btn">
+            <i class="fas fa-key"></i>
+            <span>Access Your Account</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Add luxury hover sound effects (if audio files exist)
+  const buttons = document.querySelectorAll('.luxe-account-btn, .luxe-login-btn');
+  
+  buttons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      // Add subtle animation on hover
+      this.style.transform = 'translateY(-2px)';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+    });
+    
+    button.addEventListener('click', function(e) {
+      // Add ripple effect
+      const ripple = document.createElement('span');
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.classList.add('ripple');
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  });
+  
+  // Add scroll-triggered animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+  
+  // Observe account cards
+  document.querySelectorAll('.luxe-account-card').forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = `all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.2}s`;
+    observer.observe(card);
+  });
+});
+
+// Add CSS for ripple effect
+const style = document.createElement('style');
+style.textContent = `
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+  }
+  
+  @keyframes ripple-animation {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);
+</script>
+{% endblock %}
