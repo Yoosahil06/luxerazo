@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login – Luxerazo{% endblock %}
+
+{% block extra_css %}
+<style>
+.luxe-login-container {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--luxe-obsidian) 0%, var(--luxe-navy) 100%);
+    padding: var(--luxe-space-xl);
+}
+
+.luxe-login-form {
+    background: white;
+    padding: var(--luxe-space-xl);
+    border-radius: 16px;
+    box-shadow: var(--luxe-shadow-strong);
+    width: 100%;
+    max-width: 480px;
+}
+
+.luxe-login-header {
+    text-align: center;
+    margin-bottom: var(--luxe-space-xl);
+}
+
+.luxe-login-title {
+    font-family: var(--luxe-font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--luxe-navy);
+    margin-bottom: var(--luxe-space-sm);
+}
+
+.luxe-login-subtitle {
+    color: var(--luxe-charcoal);
+    font-size: 1.125rem;
+}
+
+.luxe-form-group {
+    margin-bottom: var(--luxe-space-lg);
+}
+
+.luxe-form-label {
+    display: block;
+    margin-bottom: var(--luxe-space-sm);
+    font-weight: 600;
+    color: var(--luxe-navy);
+}
+
+.luxe-form-input {
+    width: 100%;
+    padding: var(--luxe-space-md);
+    border: 2px solid var(--luxe-pearl);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all var(--luxe-transition-fast);
+}
+
+.luxe-form-input:focus {
+    border-color: var(--luxe-gold);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.luxe-login-btn {
+    width: 100%;
+    padding: var(--luxe-space-md);
+    background: var(--luxe-gold-gradient);
+    color: var(--luxe-obsidian);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all var(--luxe-transition-fast);
+}
+
+.luxe-login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--luxe-shadow-gold);
+}
+
+.luxe-form-error {
+    color: var(--luxe-error);
+    font-size: 0.875rem;
+    margin-top: var(--luxe-space-sm);
+}
+
+.luxe-form-help {
+    text-align: center;
+    margin-top: var(--luxe-space-lg);
+    color: var(--luxe-charcoal);
+}
+
+.luxe-form-help a {
+    color: var(--luxe-gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.luxe-form-help a:hover {
+    text-decoration: underline;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="luxe-login-container">
+    <div class="luxe-login-form">
+        <div class="luxe-login-header">
+            <h1 class="luxe-login-title">Welcome Back</h1>
+            <p class="luxe-login-subtitle">Sign in to your Luxerazo account</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+            <div class="luxe-form-error">
+                Please enter a correct username and password. Note that both fields may be case-sensitive.
+            </div>
+            {% endif %}
+
+            <div class="luxe-form-group">
+                <label class="luxe-form-label" for="id_username">Username</label>
+                <input type="text" name="username" id="id_username" class="luxe-form-input" required>
+            </div>
+
+            <div class="luxe-form-group">
+                <label class="luxe-form-label" for="id_password">Password</label>
+                <input type="password" name="password" id="id_password" class="luxe-form-input" required>
+            </div>
+
+            <button type="submit" class="luxe-login-btn">Sign In</button>
+
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
+        <div class="luxe-form-help">
+            <p>Don't have an account? <a href="#">Create Account</a></p>
+            <p><a href="#">Forgot Password?</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

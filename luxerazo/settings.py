@@ -141,3 +141,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # DEFAULT PRIMARY KEY FIELD TYPE
 # --------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# --------------------------------------------
+# AUTHENTICATION SETTINGS
+# --------------------------------------------
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/account/'
+LOGOUT_REDIRECT_URL = '/'
